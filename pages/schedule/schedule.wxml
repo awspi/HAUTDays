@@ -1,0 +1,58 @@
+<!--pages/schedule/schedule.wxml-->
+<view style="height: 100rpx;background-color: #EC6A8E;"></view>
+<!-- 自定义导航栏 -->
+<view class="navbar">
+    <!-- 更多icon -->
+    <view class="popup" >
+        <van-icon name="more-o" size="23" />
+    </view>
+    <view bindtap="onSwitchWeekHandler">
+        <!-- 展示课表的周数 -->
+            <text>第 1 周(本周)</text>
+            <!-- 下拉箭头 -->
+            <van-icon style="position: relative; left: 20rpx;" 
+            name="{{isSwitchingWeek ? 'arrow-up' : 'arrow-down' }}" />
+    </view>
+
+</view>
+
+<!-- 星期 行 -->
+<view class="week">
+    <text style="flex-shrink: 0; display: flex; align-items: center; line-height: 24rpx; padding-left: 10rpx;">
+    {{showMonth}}月
+    </text>
+    <view wx:for="{{weeks}}" wx:key="item" class="week_date">
+        <text>{{ item }}</text>
+        <text style=" font-size: 21rpx;  "
+        style="{{today===showWeekDates[index] ? 'font-weight: bold; color: #ffffff;':'color: #f7f7f7;'}}"
+        >{{showWeekDates[index]}}</text>
+    </view>
+</view>
+
+<!-- 一天时间 列 -->
+<view class="left">
+    <block wx:for="{{courseTime}}" wx:key="courseTime">
+        <text hidden="{{index === 4}}" style="font-size: 25rpx;">
+            {{ index < 4 ? index + 1 : index }}
+        </text>
+        <text 
+        style="{{index===4 ? 'color: #000000;font-size: 25rpx; padding-top:30rpx ':'color: #999999;font-size: 20rpx;'}}">{{ item }}</text>
+    </block>
+</view>
+<!-- 课表 页 -->
+<swiper class="right" >
+    <swiper-item wx:for="{{3}}" wx:key="item">
+        <view >
+        <!-- 课程card -->
+        <view style="margin-top:10rpx">
+        <view  class="card" >
+            <text>123asdasdasdasdasdasdasdasdasdasdasd</text>
+            </view>
+        </view>
+        </view>
+    </swiper-item>
+</swiper>
+
+
+
+
