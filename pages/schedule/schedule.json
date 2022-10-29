@@ -1,6 +1,7 @@
 {
     "usingComponents": {
-        "van-button": "@vant/weapp/button/index",
-        "van-icon": "@vant/weapp/icon/index"
+        "van-icon": "@vant/weapp/icon/index",
+        "detail-card":"../../components/detailCard/detailCard",
+        "week-selecter":"../../components/weekSelecter/weekSelecter"
       }
 }

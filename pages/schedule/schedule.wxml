@@ -1,5 +1,5 @@
-<!--pages/schedule/schedule.wxml-->
-<view style="height: 100rpx;background-color: #EC6A8E;"></view>
+<view class="navbar-wrapper">
+<view style="height: 100rpx;"></view>
 <!-- 自定义导航栏 -->
 <view class="navbar">
     <!-- 更多icon -->
@@ -8,17 +8,20 @@
     </view>
     <view bindtap="onSwitchWeekHandler">
         <!-- 展示课表的周数 -->
-            <text>第 1 周(本周)</text>
+            <text>第 {{showWeek}} 周 {{showWeek===currentWeek?"(本周)":""}}</text>
             <!-- 下拉箭头 -->
-            <van-icon style="position: relative; left: 20rpx;" 
+            <van-icon style="position: relative; left: 10rpx;" 
             name="{{isSwitchingWeek ? 'arrow-up' : 'arrow-down' }}" />
     </view>
-
 </view>
-
+<!-- 选择周数 -->
+<week-selecter show="{{isSwitchingWeek}}" 
+totalWeeks="{{totalLessons.length}}"
+current="{{showWeek-1}}"
+bindchange="onChangeWeek"></week-selecter>
 <!-- 星期 行 -->
 <view class="week">
-    <text style="flex-shrink: 0; display: flex; align-items: center; line-height: 24rpx; padding-left: 10rpx;">
+    <text style="flex-shrink: 0; align-items: center; line-height: 24rpx; padding-left: 10rpx;">
     {{showMonth}}月
     </text>
     <view wx:for="{{weeks}}" wx:key="item" class="week_date">
@@ -28,7 +31,7 @@
         >{{showWeekDates[index]}}</text>
     </view>
 </view>
-
+</view>
 <!-- 一天时间 列 -->
 <view class="left">
     <block wx:for="{{courseTime}}" wx:key="courseTime">
@@ -40,19 +43,18 @@
     </block>
 </view>
 <!-- 课表 页 -->
-<swiper class="right" >
-    <swiper-item wx:for="{{3}}" wx:key="item">
-        <view >
+<swiper class="right" bindchange="onChangePage" current="{{showWeek-1}}">
+    <swiper-item wx:for="{{totalLessons}}" wx:key="index" wx:for-item="weekLessons" >
         <!-- 课程card -->
-        <view style="margin-top:10rpx">
-        <view  class="card" >
-            <text>123asdasdasdasdasdasdasdasdasdasdasd</text>
-            </view>
-        </view>
+        <view  wx:for="{{weekLessons}}" wx:key="style" class="card" 
+        bindtap="showDetailCard"
+        data-detail="{{item}}"
+        style="{{item.style}}" >
+            <text>{{item.name}}</text>
+            <text>✿{{item.classroom}}</text>
         </view>
     </swiper-item>
 </swiper>
 
-
-
+<detail-card show="{{isDetailCardVisible}}" lesson="{{showDetail}}"/>
 

@@ -1,6 +1,9 @@
 /* pages/schedule/schedule.wxss */
 
 /* 自定义导航栏 */
+.navbar-wrapper{
+    background-color: #EC6A8E;
+}
 .navbar {
 	height: 65rpx;
     display: flex;
@@ -11,7 +14,6 @@
 	width: 100%;
     font-size: 28rpx;
     color: white;
-    background-color: #EC6A8E;
 }
 .popup {
 	position: absolute;
@@ -26,7 +28,6 @@
     flex-wrap: nowrap;
     height: 5%;
     color: white;
-    background-color: #EC6A8E;
 }
 .week_date {
 	width: calc(94% / 7);
@@ -51,7 +52,7 @@
 }
 /* 课表右侧 */
 .right {
-    height: 100vh; 
+    height: 80vh; 
     position: relative; 
     left: 8%; 
     width: 92%;
@@ -59,14 +60,18 @@
 	flex-shrink: 0;
     font-weight: bolder;
 }
+
+
 .card {
+    margin-top: 2rpx;
+    margin-left: 2rpx;
     position: absolute;
 	width: 14%;
 	color: white;
 	font-size: 23rpx;
-	padding: 2rpx 6rpx;
+	padding: 2rpx 5rpx;
 	word-break: break-word;
 	box-sizing: border-box;
     overflow: hidden;
-    background-color: violet;
+    border-radius: 7%;
 }

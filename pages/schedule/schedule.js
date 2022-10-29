@@ -1,18 +1,25 @@
 // pages/schedule/schedule.js
 
-import {timeFormat,getFirstDayOfWeek} from '../../utils/time'
+import {timeFormat,genWeekDates} from '../../utils/time'
+const app=getApp()
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
         weeks: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],//周
         courseTime: ['8:05','9:00','10:05','11:00','中午','14:40','15:35','16:30','17:25','19:00','19:55'],
-        showWeekDates:[],//展示的7个日期
+        showWeekDates:genWeekDates(),//展示的7个日期
         today:timeFormat(new Date()),//当天日期
+        showWeek:app.globalData.currentWeek,//展示的周数
+        currentWeek:app.globalData.currentWeek,//现在的周数
         showMonth:new Date().getMonth()+1,//当前月份
-        isSwitchingWeek:false//是否展开切换学周
+        isSwitchingWeek:true,//是否展开切换周
+        //
+        showDetail:0,//弹出层 课程的info
+        isDetailCardVisible:false,//控制课程详情弹窗
+        //
+        totalLessons:app.globalData.lessons
     },
     
     /**
@@ -23,71 +30,63 @@ Page({
             isSwitchingWeek:!this.data.isSwitchingWeek
         })
     },
-    /**
-     * 生成显示的7天
-     */
-    genWeekDates(date=new Date()){
-        const arr=[]
-        for(let i=0;i<7;i++){
-            arr[i]=getFirstDayOfWeek(date,i)
-        }
-        console.log(arr);
+    onChangeWeek(e){
+        const index=e.detail.current
+        const date=new Date()
+        const diff=index+1-this.data.currentWeek
+        date.setDate(date.getDate()+(diff)*7)
         this.setData({
-            showWeekDates:arr
+            showWeek:index+1,
+            showWeekDates:genWeekDates(date)
         })
     },
+
 
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.genWeekDates()
+        //筛选周
+        this.setData({
+            // showsLessons: [app.globalData.currentWeek-1],
+            isSwitchingWeek:false,//隐藏切换周
+            showWeek:app.globalData.currentWeek
+        })
     },
-
-
     /**
-     * 生命周期函数--监听页面初次渲染完成
+     * 显示课程详情
      */
-    onReady() {
-
+    showDetailCard(e){
+        wx.vibrateShort({
+          type: 'light',
+        })
+        this.setData({
+            isDetailCardVisible:true,
+            showDetail:e.currentTarget.dataset.detail
+        })
     },
-
     /**
-     * 生命周期函数--监听页面显示
+     * 滑动切换页
      */
-    onShow() {
-
+    onChangePage(e){
+        const index=e.detail.current
+        const source=e.detail.source
+        console.log('switch week to ',index+1);
+        if(source!=="touch"){
+            return
+        }
+        //更新显示的日期
+        const date=new Date()
+        const diff=index+1-this.data.currentWeek
+        console.log(index+1,this.data.currentWeek,diff);
+        date.setDate(date.getDate()+(diff)*7)
+        this.setData({
+            showWeekDates:genWeekDates(date),
+            //更新页面
+            showWeek:index+1,
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
     /**
      * 用户点击右上角分享
      */

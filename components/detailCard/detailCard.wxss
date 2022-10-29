@@ -1,0 +1,14 @@
+/* components/detailCard/detailCard.wxss */
+.title{
+    width: 100%;
+    font-size: 32rpx;
+    font-weight:bold;
+    text-align: center;
+    padding: 10rpx ;
+}
+.item {
+    padding: 20rpx 20rpx;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: space-between;
+}

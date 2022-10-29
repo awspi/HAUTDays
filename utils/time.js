@@ -13,7 +13,31 @@ function getFirstDayOfWeek (date,offset=0) {
     date.setDate(date.getDate()-weekday+1+offset);//往前算（weekday-1）天，年份、月份会自动变化
     return timeFormat(date);
 }
+function getCurrentWeek(termStartDateStr,termEndDateStr){
+    const totalDays = Math.floor((Date.parse(termEndDateStr) - Date.parse(termStartDateStr)) / 86400000)
+    const pastDays = (new Date() - Date.parse(termStartDateStr)) / 86400000
+    return Math.floor(totalDays / 7 * (pastDays / totalDays)) + 1
+}
+function getTotalWeeks(termStartDateStr,termEndDateStr){
+    const totalDays = Math.floor((Date.parse(termEndDateStr) - Date.parse(termStartDateStr)) / 86400000)
+    const totalWeeks = Math.floor(totalDays / 7) + 1
+    return totalWeeks
+}
+/**
+ * 生成显示的7天
+ */
+function genWeekDates(date=new Date()){
+    console.log(date);
+    const arr=[]
+    for(let i=0;i<7;i++){
+        arr[i]=getFirstDayOfWeek(date,i)
+    }
+    return arr
+}
 module.exports={
+    genWeekDates,
     timeFormat,
-    getFirstDayOfWeek
+    getFirstDayOfWeek,
+    getCurrentWeek,
+    getTotalWeeks
 }
