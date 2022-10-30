@@ -1,11 +1,13 @@
 // pages/login/login.js
+import {getUserProfile} from '../../utils/user'
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
-
+        loading:false,
+        xh:"",
+        password:""
     },
 
     /**
@@ -14,53 +16,32 @@ Page({
     onLoad(options) {
 
     },
-
     /**
-     * 生命周期函数--监听页面初次渲染完成
+     * 登录
+     * @param {} e 
      */
-    onReady() {
-
+    async onLoginHandler(e){
+        if(this.data.loading) return
+        //获取wx信息
+        await getUserProfile()
+        //
+        console.log(this.data.xh);
+        console.log(this.data.password);
+        
+        this.setData({
+            loading:true
+        })
     },
-
     /**
-     * 生命周期函数--监听页面显示
+     * ?被点击
      */
-    onShow() {
-
+    onIconClick(){
+        console.log("?被点击");
     },
-
     /**
-     * 生命周期函数--监听页面隐藏
+     * 使用须知 被点击
      */
-    onHide() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
+    onInstructionClick(){
+        console.log("使用须知 被点击");
     }
 })

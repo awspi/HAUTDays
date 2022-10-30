@@ -686,14 +686,19 @@ App({
     wx.setStorageSync('lessons',this.globalData.lessons)
     
     //profile
-    this.globalData.profile={
-        xh:201911020101,
-        name:"闻苏鹏",
-        class:"计科2005",
-        college:"信息科学与工程学院"
+    const profile=wx.getStorageSync('profile')
+    if(!profile.name){
+        //如果没有获取教务系统
+        wx.setStorageSync('profile', {
+            xh:201911020101,
+            name:"闻苏鹏",
+            class:"计科2005",
+            college:"信息科学与工程学院"
+        })
     }
-    
-    //
+    this.globalData.profile=wx.getStorageSync('profile')
+
+
     // 登录
     wx.login({
       success: res => {

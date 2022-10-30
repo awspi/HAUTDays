@@ -1,8 +1,9 @@
-<view style="background-color: #ebdee1; height: 100vh;">
+<view style="position: fixed;height: 100%; width: 100%; left: 0; top: 0;">
+    <view style="background-color: #ebdee1; height: 100vh;">
 <view style="height: 180rpx;"/>
     <view class="profile_card">
         <view style="display: flex; height: 100%;">
-            <image src="http://img9.vilipix.com/picture/logo/2021/01/24/05/56/12717666_ff8815fee796325262b83ec007109c69_170.gif" 
+            <image src="{{profile.avatarUrl}}" 
             mode="scaleToFill"
             class="avatar"
             ></image>
@@ -18,11 +19,15 @@
         <text>{{profile.xh}}</text>
         </view>
         <!-- icon -->
-        <van-icon name="info" size="45rpx" color="white" custom-style="position:fixed; right:50rpx;top:40rpx;" />
+        <van-icon name="info" size="45rpx" color="white" 
+        bindtap="onRefreshHandler"
+        custom-style="position:fixed; right:50rpx;top:40rpx;" />
     </view>
 <!-- cell -->
 <van-cell-group inset>
 <van-cell wx:for="{{menus}}" wx:key="icon" clickable is-link
+    url="{{item.url}}"
     icon="{{item.icon}}" title="{{item.title}}" label="{{item.label}}" value="{{item.value}}"></van-cell>
 </van-cell-group>
+</view>
 </view>

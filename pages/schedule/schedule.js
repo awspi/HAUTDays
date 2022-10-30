@@ -47,7 +47,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        //筛选周
         this.setData({
             // showsLessons: [app.globalData.currentWeek-1],
             isSwitchingWeek:false,//隐藏切换周

@@ -28,7 +28,7 @@
                 "selectedIconPath": "assets/tabBar/list_s.png"
             },
             {
-                "pagePath": "pages/login/login",
+                "pagePath": "pages/gn/logs",
                 "text": "功能",
                 "iconPath": "assets/tabBar/analysis.png",
                 "selectedIconPath": "assets/tabBar/analysis_s.png"
