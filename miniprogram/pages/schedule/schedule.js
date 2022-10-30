@@ -1,6 +1,7 @@
 // pages/schedule/schedule.js
 
 import {timeFormat,genWeekDates} from '../../utils/time'
+import Dialog from '@vant/weapp/dialog/dialog';
 const app=getApp()
 Page({
     /**
@@ -13,7 +14,7 @@ Page({
         today:timeFormat(new Date()),//当天日期
         showWeek:app.globalData.currentWeek,//展示的周数
         currentWeek:app.globalData.currentWeek,//现在的周数
-        showMonth:new Date().getMonth()+1,//当前月份
+        showMonth:null,//当前月份
         isSwitchingWeek:true,//是否展开切换周
         //
         showDetail:0,//弹出层 课程的info
@@ -30,6 +31,9 @@ Page({
             isSwitchingWeek:!this.data.isSwitchingWeek
         })
     },
+    /**
+     * 通过scroll-view改变
+     */
     onChangeWeek(e){
         const index=e.detail.current
         const date=new Date()
@@ -37,7 +41,8 @@ Page({
         date.setDate(date.getDate()+(diff)*7)
         this.setData({
             showWeek:index+1,
-            showWeekDates:genWeekDates(date)
+            showWeekDates:genWeekDates(date),
+            showMonth:date.getMonth()+1
         })
     },
 
@@ -47,11 +52,32 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        //一个bug
         this.setData({
             // showsLessons: [app.globalData.currentWeek-1],
             isSwitchingWeek:false,//隐藏切换周
-            showWeek:app.globalData.currentWeek
+            showWeek:app.globalData.currentWeek,
+            showMonth:new Date().getMonth()+1
         })
+    },
+    onShow(){
+        this.setData({
+            showWeek:app.globalData.currentWeek,//展示的周数
+            currentWeek:app.globalData.currentWeek,//现在的周数
+            totalLessons:app.globalData.lessons
+        })
+        //如果没信息 就弹窗
+        //? totalLessons
+        if(this.data.totalLessons===""){
+            Dialog.alert({
+                title: '注意',
+                message: '登录后才能使用课程表,请先登录~',
+              }).then(() => {
+                  wx.navigateTo({
+                    url: '/pages/login/login',
+                  })
+              });
+        }
     },
     /**
      * 显示课程详情
@@ -84,6 +110,7 @@ Page({
             showWeekDates:genWeekDates(date),
             //更新页面
             showWeek:index+1,
+            showMonth:date.getMonth()+1
         })
     },
     /**

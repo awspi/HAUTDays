@@ -58,5 +58,6 @@ bindchange="onChangeWeek"></week-selecter>
 </swiper>
 
 <detail-card show="{{isDetailCardVisible}}" lesson="{{showDetail}}"/>
+<van-dialog id="van-dialog" />
 </view>
 

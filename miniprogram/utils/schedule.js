@@ -36,10 +36,7 @@ function genCardStyle(lessons){
     })
     return res
 }
-// function filterLessons(week,lessons){
-//     return lessons.filter(item=>week>=item.weekRange[0]&&week<=item.weekRange[1])
-     
-// }
+
 
 /**
  * 把lessons按照周数分类
