@@ -21,20 +21,48 @@ const colorArr=[
     '#CCCC99',
     '#FF9999'
 ]
-function genCardStyle(lessons){
-    const res=lessons.map((item,index)=>{
-        const {timeRange,dayOfWeek}=item
-        const height=(timeRange[1]-timeRange[0]+1)*9
-        const tem=timeRange[0]-1
-        const top=(tem>2?tem+1:tem)*9
-        const left=(dayOfWeek-1)*14.2857
-        return Object.assign(item,{
-            style:`
-            top:${top}%;left:${left}%;height:${height}%;
-            background-color:${colorArr[index%20]};`
-        })
+function genCardStyle(lesson,index,random=false){
+    const {timeRange,dayOfWeek}=lesson
+    const height=(timeRange[1]-timeRange[0]+1)*9
+    const tem=timeRange[0]-1
+    const top=(tem>2?tem+1:tem)*9
+    const left=(dayOfWeek-1)*14.2857
+    let color=""
+    if(random){
+        color=getRandomColor()
+    }else{
+        color=colorArr[index%20]
+    }
+    console.log(color);
+    return Object.assign(lesson,{
+        style:`
+        top:${top}%;left:${left}%;height:${height}%;
+        background-color:${color};`
     })
-    return res
+}
+
+function getRandomColor() {
+    let rgb = []
+    for (let i = 0; i < 3; ++i) {
+      let color = Math.floor(Math.random() * 256).toString(16)
+      color = color.length == 1 ? '0' + color : color
+      rgb.push(color)
+    }
+    return '#' + rgb.join('')
+}
+/**
+ * 
+ * 保存自定义课程
+ * 处理 weekArr->weekRange
+ */
+function saveCustomLesson(rawinfo,index){
+    const styled= genCardStyle(rawinfo,index)
+    console.log(styled);
+    const lessons=app.globalData.lessons
+    for(let i=0;i<styled.weekArr.length;i++){
+        lessons[styled.weekArr[i]-1].push(styled)
+    }
+    app.globalData.lessons=lessons
 }
 
 
@@ -54,5 +82,6 @@ function assortLessons(termRange,lessons){
 }
 module.exports={
     genCardStyle,
-    assortLessons
+    assortLessons,
+    saveCustomLesson
 }

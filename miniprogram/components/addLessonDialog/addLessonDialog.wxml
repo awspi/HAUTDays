@@ -1,0 +1,69 @@
+<view>
+    <van-dialog
+width="85%"
+  custom-style="position:absolute; margin-top:100rpx;"
+  use-slot
+  title="{{title}}"
+  show="{{ show }}"
+  show-cancel-button
+  confirmButtonText="{{confirmText}}"
+  bind:confirm="submit"
+  bind:close="cancel"
+>
+<view>
+    <van-cell-group>
+    <van-field
+    clickable
+    model:value="{{ name }}"
+        label="课程名称"
+        required
+    />
+    <van-field
+    clickable
+    model:value="{{ showTime }}"
+        readonly
+        label="时间"
+        required
+        bind:click-input="onSlecetTime"
+    />
+    <van-field
+    clickable
+    model:value="{{ teacher_name }}"
+        label="老师"
+    />
+    <van-field
+    clickable
+    model:value="{{ credit }}"
+        label="学分"
+        type="number"
+    />
+    <van-field
+    clickable
+    model:value="{{ classroom }}"
+        label="上课地点"
+    />
+    </van-cell-group>
+    <van-field
+        label="上课周次"
+        readonly
+        border="{{false}}"
+        required
+    />
+    <van-checkbox-group value="{{ selectedWeeks }}" bind:change="onSelectWeek">
+        <view style="display: flex; justify-content: space-between; align-items:center; flex-wrap: wrap; margin: 0 5rpx 10rpx 10rpx ">
+        <van-checkbox 
+        style="padding: 10rpx;"
+         name="{{item+1}}" wx:for="{{weekCount}}" wx:key="*this">{{item+1}}</van-checkbox>
+        </view>
+        <view style="display: flex; justify-content: space-evenly; margin-bottom: 20rpx;">
+            <van-button round size="small" color="#EC6A8E" bind:click="addAllWeeks">全选</van-button>
+                <van-button round size="small" color="#EC6A8E" bind:click="addOddWeeks">单周</van-button>
+                <van-button round size="small" color="#EC6A8E" bind:click="addEvenWeeks">双周</van-button>
+                <van-button round size="small" color="#EC6A8E" bind:click="clearWeeks">清除</van-button>
+        </view>
+    </van-checkbox-group>
+</view>
+<lesson-time-selecter show="{{isPickerShow}}" bind:selected="onTimeRangeSelected" ></lesson-time-selecter>
+</van-dialog>
+</view>
+

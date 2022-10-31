@@ -1,0 +1,11 @@
+{
+    "component": true,
+    "usingComponents": {
+        "van-dialog": "@vant/weapp/dialog/index",
+        "van-field": "@vant/weapp/field/index",
+        "van-checkbox": "@vant/weapp/checkbox/index",
+        "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+        "van-button": "@vant/weapp/button/index",
+        "lesson-time-selecter":"../lessonTimeSelecter/lessonTimeSelecter"
+    }
+}

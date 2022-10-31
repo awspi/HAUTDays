@@ -4,11 +4,12 @@ import {getCurrentWeek} from './utils/time'
 
 App({
   globalData: {
-    termRange:wx.getStorageSync('key'),
+    termRange:wx.getStorageSync('termRange'),
     currentWeek:1
   },
     onLaunch() {
     //初始化云开发
+    console.log(new Date());
     wx.cloud.init({
     env:"schoolepmpic-9ag8l",
     traceUser:true
@@ -22,16 +23,6 @@ App({
     this.globalData.lessons =wx.getStorageSync('lessons')
     //用户信息
     this.globalData.profile=wx.getStorageSync('profile')||{}
-    //
-    wx.cloud.callFunction({
-        name: 'test',
-        data:{
-            a:1
-        }
-    }).then(err=>{
-        console.log(err);
-    })
-
     // 登录
 
     wx.login({

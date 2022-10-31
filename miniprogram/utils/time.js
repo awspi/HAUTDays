@@ -34,10 +34,23 @@ function genWeekDates(date=new Date()){
     }
     return arr
 }
+
+/**
+ * 获取可选结束节数组 
+ * 
+ */
+function genLimitedTime(startTime,length=10){
+    const arr=[]
+    for(let i=startTime;i<=length;i++){
+        arr.push(`第${i}节`)
+    }
+    return arr
+}
 module.exports={
     genWeekDates,
     timeFormat,
     getFirstDayOfWeek,
     getCurrentWeek,
-    getTotalWeeks
+    getTotalWeeks,
+    genLimitedTime
 }

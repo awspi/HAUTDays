@@ -35,29 +35,47 @@ bindchange="onChangeWeek"></week-selecter>
 </view>
 <!-- 一天时间 列 -->
 <view class="left">
-    <block wx:for="{{courseTime}}" wx:key="courseTime">
+    <view wx:for="{{courseTime}}" wx:key="courseTime" class="left-item">
+    <block wx:if="{{index!==4}}">
+        <text 
+        style="position:absolute;left:4rpx;top:5rpx;color: #999999;font-size: 20rpx;">{{ item[0] }}</text>
         <text hidden="{{index === 4}}" style="font-size: 25rpx;">
             {{ index < 4 ? index + 1 : index }}
         </text>
         <text 
-        style="{{index===4 ? 'color: #000000;font-size: 25rpx; padding-top:30rpx ':'color: #999999;font-size: 20rpx;'}}">{{ item }}</text>
+        style="position:absolute;left:4rpx;bottom:5rpx;color: #999999;font-size: 20rpx;">{{ item[1] }}</text>
     </block>
+    <text 
+        wx:else
+        style="display:block;color: #000000;font-size: 25rpx;margin-top: 50%;">{{ item }}</text>
+    </view>
 </view>
 <!-- 课表 页 -->
 <swiper class="right" bindchange="onChangePage" current="{{showWeek-1}}">
     <swiper-item wx:for="{{totalLessons}}" wx:key="index" wx:for-item="weekLessons" >
+    <!-- 背景层 -->
+    <view 
+    bindlongpress="onBgLongpress"
+    style="width: 100vh;height: 100vh;"></view>
         <!-- 课程card -->
-        <view  wx:for="{{weekLessons}}" wx:key="style" class="card" 
+        <view  wx:for="{{weekLessons}}" wx:key="style" class="card"
+        bindlongpress="onCardLongpress"
         bindtap="showDetailCard"
         data-detail="{{item}}"
         style="{{item.style}}" >
             <text>{{item.name}}</text>
             <text>✿{{item.classroom}}</text>
         </view>
+        
     </swiper-item>
+
 </swiper>
+<add-lesson-dialog show="{{isAddLessonDialogVisible}}" bind:done="onAddLessonDone"
+    lesson="{{selectedLesson}}"></add-lesson-dialog>
+
 
 <detail-card show="{{isDetailCardVisible}}" lesson="{{showDetail}}"/>
+
 <van-dialog id="van-dialog" />
 </view>
 

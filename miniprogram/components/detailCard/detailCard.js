@@ -35,7 +35,6 @@ Component({
                 isDetailCardVisible:true
             });
             }
-   
         }
     }
 })

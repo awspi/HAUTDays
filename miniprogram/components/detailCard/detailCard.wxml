@@ -22,6 +22,13 @@
         <text>学分</text>
         <text>{{lesson.credit}}</text>
         </view>
+        <view class="item">
+        <text>上课周次</text>
+        <block>
+        <text wx:if="{{lesson.weekArr}}" >{{lesson.weekArr}}周</text>
+        <text wx:else="" >{{lesson.weekRange[0]}}-{{lesson.weekRange[1]}}周</text>
+        </block>
+        </view>
     </view>
 </view>
 </van-popup>

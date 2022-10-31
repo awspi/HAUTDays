@@ -9,7 +9,7 @@ Page({
      */
     data: {
         weeks: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],//周
-        courseTime: ['8:05','9:00','10:05','11:00','中午','14:40','15:35','16:30','17:25','19:00','19:55'],
+        courseTime: [['08:30','09:15'],['09:20','10:05'],['10:25','11:10'],['11:15','12:00'],'中午',['14:30','15:15'],['15:20','16:05'],['16:25','17:10'],['17:25','18:00'],['19:30','20:15'],['20:25','21:10']],
         showWeekDates:genWeekDates(),//展示的7个日期
         today:timeFormat(new Date()),//当天日期
         showWeek:app.globalData.currentWeek,//展示的周数
@@ -20,7 +20,10 @@ Page({
         showDetail:0,//弹出层 课程的info
         isDetailCardVisible:false,//控制课程详情弹窗
         //
-        totalLessons:app.globalData.lessons
+        totalLessons:app.globalData.lessons,
+        //
+        isAddLessonDialogVisible:false,
+        selectedLesson:{}
     },
     
     /**
@@ -117,6 +120,34 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage() {
+    },
+    /**
+     * 背景被长按,新增课程
+     */
+    onBgLongpress(){
+        console.log('背景被长按,新增课程');
+        this.setData({
+            isAddLessonDialogVisible:true,
+            selectedLesson:{}
+        })
+    },
+    //新增课程完成的回调
+    onAddLessonDone(){
+        this.setData({
+            isAddLessonDialogVisible:false,
+            totalLessons:app.globalData.lessons,
+            selectedLesson:{}
+        })
+    },//
+    /**
+     * 课程被长按,修改课程
+     */
+    onCardLongpress(e){
+        console.log("课程被长按,修改课程");
+        this.setData({
+            isAddLessonDialogVisible:true,
+            selectedLesson:e.currentTarget.dataset.detail
+        })
 
     }
 })
