@@ -51,7 +51,7 @@ exports.main = async (event, context) => {
 
 
 /**
- *  登录
+ *  登录 获取登录状态
  * @param {*} xh 学号
  * @param {*} mm 密码
  */
@@ -75,12 +75,10 @@ async function login(xh,mm){
       .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37')
       .set('Content-Type', 'application/x-www-form-urlencoded')
     const { modulus, exponent } = res.body
-    // console.log(modulus, exponent);
     //! encode
     const rsaKey = new RSAKey()
     rsaKey.setPublic(b64tohex(modulus), b64tohex(exponent))
     const pwd = hex2b64(rsaKey.encrypt(mm));
-    // console.log(pwd);
     //! login
     const loginRes = await agent.post(`https://jwglxt.haut.edu.cn/jwglxt/xtgl/login_slogin.html?time=${new Date().getTime()}`)
       .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37')
@@ -109,7 +107,7 @@ async function login(xh,mm){
 
 
 /**
- * 获取termRange
+ * 获取学期范围 termRange
  */
 async function getTermRange(xh){
     //! 获取学期开始和结束日期
@@ -122,7 +120,7 @@ async function getTermRange(xh){
     return termRange
 }
 /**
- * 获取课程
+ * 获取课程 
  */
 async function getLessons(xnm,xqm,termRange) {
     const lessonsRes = await agent.post('https://jwglxt.haut.edu.cn/jwglxt/kbcx/xskbcx_cxXsgrkb.html?gnmkdm=N2151')
@@ -132,28 +130,55 @@ async function getLessons(xnm,xqm,termRange) {
     .send({ xnm: xnm})
     .send({ xqm: xqm })
     const rawList=lessonsRes.body.kbList
+    // console.log(rawList);//
     const lessons = []
     const lessonNameArr=[]
+    //生成totalWeeks [] -->activeWeeks
+    const totalDays = Math.floor((Date.parse(termRange[1]) - Date.parse(termRange[0])) / 86400000)
+    const totalWeeks = Math.floor(totalDays / 7) + 1
     rawList.forEach((item,index) => {
         let timeRange
+        const activeWeeks=[]
         let weekTemp
+        //课程节数
         if(item.jcor.includes('-')){
             //1-2
             const timeTemp=item.jcor.split('-')
             timeRange=[parseInt(timeTemp[0]), parseInt(timeTemp[1])]
+
         }else{
             //todo 只有一节课 1-1 ?
         }
-        if(item.zcd.includes('-')){
-            //1-2周
-            weekTemp=item.zcd.split('-')
-            weekRange=[parseInt(weekTemp[0]), parseInt(weekTemp[1].slice(0, -1))]
-        }else{
-            // 只有一周  9周
-            weekTemp=item.zcd
-            const week=parseInt(weekTemp.slice(0, -1))
-            weekRange=[week,week]
-        }
+        //含有此课程的周
+        //zcd: "5-7周,9-13周"
+        //zcd: "5-13周"
+        //zcd: "13周"
+        const zcds=item.zcd.split(',')
+        zcds.forEach(zcd=>{
+            if(zcd.includes('-')){
+                //"5-13周"
+                weekTemp=zcd.split('-')
+                const weekRange=[parseInt(weekTemp[0]), parseInt(weekTemp[1].slice(0, -1))]
+                for(let i=weekRange[0];i<=weekRange[1];i++){
+                    activeWeeks.push(i)
+                }
+            }else{
+                // 只有一周  9周
+                weekTemp=zcd
+                const week=parseInt(weekTemp.slice(0, -1))
+                activeWeeks.push(week)
+            }
+        })
+        // if(item.zcd.includes('-')){
+        //     //1-2周
+        //     weekTemp=item.zcd.split('-')
+        //     weekRange=[parseInt(weekTemp[0]), parseInt(weekTemp[1].slice(0, -1))]
+        // }else{
+        //     // 只有一周  9周
+        //     weekTemp=item.zcd
+        //     const week=parseInt(weekTemp.slice(0, -1))
+        //     weekRange=[week,week]
+        // }
         const raw={
             name: item.kcmc,
             teacher_name: item.xm,
@@ -162,7 +187,7 @@ async function getLessons(xnm,xqm,termRange) {
             credit: item.xf,
             dayOfWeek: item.xqj,
             timeRange,
-            weekRange
+            activeWeeks
         }
         //设置唯一的index
         let lessonsUniqueIndex=lessonNameArr.findIndex(name=>name===item.kcmc)
@@ -172,20 +197,19 @@ async function getLessons(xnm,xqm,termRange) {
         }
         const styledLesson= genCardStyle(raw,lessonsUniqueIndex)
         lessons.push(styledLesson)
-        // lessons.push(item)
     })
-    const totalDays = Math.floor((Date.parse(termRange[1]) - Date.parse(termRange[0])) / 86400000)
-    const totalWeeks = Math.floor(totalDays / 7) + 1
-
+    // console.log(lessons);
     //? 生成二维数组
     const lessons_assorted = []
     for (let i = 0; i < totalWeeks; i++) {
-      lessons_assorted[i] = lessons.filter(item => {
-          return (i+1) >= item.weekRange[0] && (i+1) <= item.weekRange[1]
-      })
+      lessons_assorted[i] = lessons.filter(item =>item.activeWeeks.includes(i+1))
     }
     return lessons_assorted
 }
+/**
+ * 获取用户信息
+ * @param {*} xh 学号
+ */
 async function getInfo(xh){
     const infoRes = await agent.get('https://jwglxt.haut.edu.cn/jwglxt/xtgl/index_cxYhxxIndex.html?localeKey=zh_CN&su=' + xh)
     .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37')

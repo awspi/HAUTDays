@@ -59,8 +59,8 @@ function saveCustomLesson(rawinfo,index){
     const styled= genCardStyle(rawinfo,index)
     console.log(styled);
     const lessons=app.globalData.lessons
-    for(let i=0;i<styled.weekArr.length;i++){
-        lessons[styled.weekArr[i]-1].push(styled)
+    for(let i=0;i<styled.activeWeeks.length;i++){
+        lessons[styled.activeWeeks[i]-1].push(styled)
     }
     app.globalData.lessons=lessons
 }

@@ -14,6 +14,7 @@
         </view>
         <view class="student_name">
         <text>{{profile.name}}</text>
+        <text wx:if="{{profile.xh==='201926010802'}}">♡</text>
         </view>
         <view class="student_xh">
         <text>{{profile.xh}}</text>

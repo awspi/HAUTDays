@@ -25,8 +25,10 @@
         <view class="item">
         <text>上课周次</text>
         <block>
-        <text wx:if="{{lesson.weekArr}}" >{{lesson.weekArr}}周</text>
-        <text wx:else="" >{{lesson.weekRange[0]}}-{{lesson.weekRange[1]}}周</text>
+        <!--  -->
+        <text>{{lesson.activeWeeks}}周</text>
+        <!-- <text wx:if="{{lesson.weekArr}}" >{{lesson.weekArr}}周</text>
+        <text wx:else="" >{{lesson.weekRange[0]}}-{{lesson.weekRange[1]}}周</text> -->
         </block>
         </view>
     </view>

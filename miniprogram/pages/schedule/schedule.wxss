@@ -79,7 +79,7 @@
 	width: 14%;
 	color: white;
 	font-size: 22rpx;
-	padding: 2rpx 0rpx;
+	padding: 4rpx 0 0 4rpx;
 	word-break: break-word;
 	box-sizing: border-box;
     overflow-y: hidden;

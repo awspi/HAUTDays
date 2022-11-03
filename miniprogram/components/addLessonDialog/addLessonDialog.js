@@ -28,9 +28,8 @@ Component({
         credit:"",
         dayOfWeek:"",
         timeRange:[],
-        weekRange:[],
         weekCount:app.globalData.lessons.length,
-        selectedWeeks:[],
+        activeWeeks:[],//
         //
         isPickerShow:false,
         //
@@ -50,7 +49,7 @@ Component({
                 credit:this.data.credit,
                 dayOfWeek:this.data.dayOfWeek,
                 timeRange:this.data.timeRange,
-                weekArr:this.data.selectedWeeks,
+                activeWeeks:this.data.activeWeeks.map(str=>parseInt(str)),
                 time:`${this.data.timeRange[0]}-${this.data.timeRange[1]}节`,
                 style:"",
                 custom:true
@@ -62,8 +61,9 @@ Component({
         //选择上课周次
         onSelectWeek(e){
             this.setData({
-                selectedWeeks: e.detail,
+                activeWeeks: e.detail,
               });
+            console.log(this.data.activeWeeks);
         },
         // 选择时间
         onSlecetTime(){
@@ -83,7 +83,7 @@ Component({
                 arr.push(""+(i+1))
             }
             this.setData({
-                selectedWeeks:arr
+                activeWeeks:arr
             })
         },
         addOddWeeks(){
@@ -94,7 +94,7 @@ Component({
                 }
             }
             this.setData({
-                selectedWeeks:arr
+                activeWeeks:arr
             })
         },
         addEvenWeeks(){
@@ -105,12 +105,12 @@ Component({
                 }
             }
             this.setData({
-                selectedWeeks:arr
+                activeWeeks:arr
             })
         },
         clearWeeks(){
             this.setData({
-                selectedWeeks:[]
+                activeWeeks:[]
             })
         },//
         saveCustomLesson(rawinfo,index){
@@ -124,8 +124,9 @@ Component({
             }
             console.log(styled);
             const lessons=app.globalData.lessons
-            for(let i=0;i<styled.weekArr.length;i++){
-                lessons[styled.weekArr[i]-1].push(styled)
+            
+            for(let i=0;i<styled.activeWeeks.length;i++){
+                lessons[styled.activeWeeks[i]-1].push(styled)
             }
             app.globalData.lessons=lessons
             wx.setStorageSync('lessons', lessons)
@@ -154,7 +155,8 @@ Component({
                     ...lesson,
                     showTime:`${dayOfWeekNames[dayOfWeek-1]},第${timeRange[0]}节到第${timeRange[1]}节`,
                     title:"修改课程",
-                    confirmText:"修改"
+                    confirmText:"修改",
+                    activeWeeks:lesson.activeWeeks.map(String)
                 })
             }
         },
@@ -162,6 +164,7 @@ Component({
         show:function(show){
             console.log(show);
             if(show){
+                
                 return
             }
             this.setData({
@@ -174,9 +177,8 @@ Component({
                 credit:"",
                 dayOfWeek:"",
                 timeRange:[],
-                weekRange:[],
+                activeWeeks:[],//
                 weekCount:app.globalData.lessons.length,
-                selectedWeeks:[],
                 //
                 isPickerShow:false,
                 //
