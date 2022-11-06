@@ -4,7 +4,8 @@
         "pages/logs/logs",
         "pages/gn/logs",
         "pages/profile/profile",
-        "pages/login/login"
+        "pages/login/login",
+        "pages/home/home"
     ],
     "window": {
         "navigationBarBackgroundColor": "#ff8198",
@@ -23,12 +24,12 @@
         "list": [
             {
                 "pagePath": "pages/schedule/schedule",
-                "text": "首页",
+                "text": "课程表",
                 "iconPath": "assets/tabBar/list.png",
                 "selectedIconPath": "assets/tabBar/list_s.png"
             },
             {
-                "pagePath": "pages/gn/logs",
+                "pagePath": "pages/home/home",
                 "text": "功能",
                 "iconPath": "assets/tabBar/analysis.png",
                 "selectedIconPath": "assets/tabBar/analysis_s.png"

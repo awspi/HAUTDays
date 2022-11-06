@@ -1,48 +1,29 @@
-// 云函数入口文件
-// const cloud = require('wx-server-sdk')
-//
+const superagent = require('superagent');
+const { RSAKey } = require('./utils/rsa')
+const { b64tohex, hex2b64 } = require('./utils/encode/base64')
+const {getStr} =require('./utils/str')
+const {genCardStyle}= require('./utils/style')
 
 
-// let agent = null
-
-// cloud.init()
-/**
- * ! 获取课程
- * 1.根据xh在数据库中查询 找到则返回结果
- * 2.找不到,就去教务系统获取
- * 3.获取后保存在数据库 并返回
- */
-
- // status,msg,data
-
+let agent = null
 // 云函数入口函数
 exports.main = async (event, context) => {
-    // const wxContext = cloud.getWXContext()
-    //
-    // const {xh,mm}=event
-    // const xh="201911020101"
-    // const mm="xiaoli2AL"
-    // //重制agent
-    // agent=superagent.agent()
-    // const loginRes=await login(xh,mm)
-    // if(loginRes.status==="error"){
-    //     return loginRes
-    // }
-    // const termRange=await getTermRange(xh)
-    // const lessons=await getLessons(2022,3,termRange)
-    // const {college,class_,name} = await getInfo(xh)
+    agent=superagent.agent()
+    const xh="201911020101"
+    const mm="xiaoli2AL"
+    const loginRes=await login(xh,mm)
+    if(loginRes.status==="error"){
+        return loginRes
+    }
+    const termRange=await getTermRange(xh)
+    const lessons=await getLessons(2022,3,termRange)
+    const profile=await getInfo(xh)
     return {
-        status:"ok"
-        // data:{
-        //     termRange,
-        //     lessons,
-        //     profile:{
-        //         xh,
-        //         name,
-        //         class:class_,
-        //         college,
-        //     }
-        // }
+        a:agent,
+        b:"11",
+        termRange,
+        lessons,
+        profile
     }
 }
 
@@ -100,7 +81,6 @@ async function login(xh,mm){
           status:"ok"
       }
     }
-  
 }
 
 
@@ -117,56 +97,58 @@ async function getTermRange(xh){
     console.log(termRange);
     return termRange
 }
-
 /**
  * 获取课程
  */
-async function getLessons(xnm, xqm,termRange) {
+async function getLessons(xnm,xqm,termRange) {
     const lessonsRes = await agent.post('https://jwglxt.haut.edu.cn/jwglxt/kbcx/xskbcx_cxXsgrkb.html?gnmkdm=N2151')
     .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37')
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .type('form')
     .send({ xnm: xnm})
     .send({ xqm: xqm })
-
-  const lessons = []
-    lessonsRes.body.kbList?.forEach((item,index) => {
-        const styledLeson= genCardStyle({
-        name: item.kcmc,
-        teacher_name: item.xm,
-        classroom: item.cdmc,
-        time: item.jc,
-        credit: item.xf,
-        dayOfWeek: item.xqj,
-        timeRange: [parseInt(item.jcor.split('-')[0]), parseInt(item.jcor.split('-')[1])],
-        weekRange: [parseInt(item.zcd.split('-')[0]), parseInt(item.zcd.split('-')[1].slice(0, -1))],
-        },index)
-        lessons.push(styledLeson)
+    const rawList=lessonsRes.body.kbList
+    const lessons = []
+    rawList.forEach((item,index) => {
+        const raw={
+            name: item.kcmc,
+            teacher_name: item.xm,
+            classroom: item.cdmc,
+            time: item.jc,
+            credit: item.xf,
+            dayOfWeek: item.xqj,
+            timeRange: [parseInt(item.jcor.split('-')[0]), parseInt(item.jcor.split('-')[1])],
+            weekRange: [parseInt(item.zcd.split('-')[0]), parseInt(item.zcd.split('-')[1].slice(0, -1))],
+        }
+        
+        const styledLesson= genCardStyle(raw,index)
+        lessons.push(styledLesson)
+        // lessons.push(item)
     })
     const totalDays = Math.floor((Date.parse(termRange[1]) - Date.parse(termRange[0])) / 86400000)
     const totalWeeks = Math.floor(totalDays / 7) + 1
+
     //? 生成二维数组
     const lessons_assorted = []
     for (let i = 0; i < totalWeeks; i++) {
-      lessons_assorted[i] = lessons.filter(item => i >= item.weekRange[0] && i <= item.weekRange[1])
+      lessons_assorted[i] = lessons.filter(item => {
+          return i >= item.weekRange[0] && i <= item.weekRange[1]
+      })
     }
-    console.log(lessons_assorted);
     return lessons_assorted
 }
-
 async function getInfo(xh){
     const infoRes = await agent.get('https://jwglxt.haut.edu.cn/jwglxt/xtgl/index_cxYhxxIndex.html?localeKey=zh_CN&su=' + xh)
     .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37')
     .set('Content-Type', 'application/x-www-form-urlencoded')
-
-
-  const tem = getStr(infoRes.text, `<p>`, `</p>`).split(' ')
-  const userInfo = {
-    name: getStr(infoRes.text, `class="media-heading">`, `</h4>`),
-    college: tem[0],
-    class_: tem[1]
-  }
-  console.log(userInfo);
-  return userInfo
+    const raw=infoRes.text
+    const tem = getStr(raw, `<p>`, `</p>`)
+    const temArr=tem.split(' ')
+    const name=getStr(raw, `class="media-heading">`, `</h4>`)
+    return {
+        name,
+        college: temArr[0],
+        class_:temArr[1]
+    }
 }
 

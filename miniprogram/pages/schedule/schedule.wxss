@@ -1,7 +1,9 @@
 /* pages/schedule/schedule.wxss */
 
+
+
 /* 自定义导航栏 */
-.navbar-wrapper{
+.bg-theme{
     background-color: #EC6A8E;
 }
 .navbar {
@@ -59,6 +61,7 @@
     border-top: 1rpx dotted #f0a8bc;
     border-right: 1rpx dotted #f0a8bc;
     background-color:#fff5f8;
+    color: #EC6A8E;
 }
 /* 课表右侧 */
 .right {
@@ -73,13 +76,13 @@
 
 
 .card {
-    margin-top: 3rpx;
-    margin-left: 2rpx;
+    /* margin-top: 3rpx;
+    margin-left: 2rpx; */
     position: absolute;
 	width: 14%;
 	color: white;
 	font-size: 22rpx;
-	padding: 4rpx 0 0 4rpx;
+	padding: 6rpx 0 0 6rpx;
 	word-break: break-word;
 	box-sizing: border-box;
     overflow-y: hidden;

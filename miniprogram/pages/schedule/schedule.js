@@ -17,6 +17,8 @@ Page({
         showMonth:null,//当前月份
         isSwitchingWeek:true,//是否展开切换周
         //
+        isPopupShow:false,
+        //
         showDetail:0,//弹出层 课程的info
         isDetailCardVisible:false,//控制课程详情弹窗
         //
@@ -29,6 +31,11 @@ Page({
     /**
      * 切换周
      */
+    onPopupClick(){
+        this.setData({
+            isPopupShow:true
+        })
+    },
     onSwitchWeekHandler(){
         this.setData({
             isSwitchingWeek:!this.data.isSwitchingWeek
@@ -48,8 +55,6 @@ Page({
             showMonth:date.getMonth()+1
         })
     },
-
-
 
     /**
      * 生命周期函数--监听页面加载
@@ -125,6 +130,9 @@ Page({
      * 背景被长按,新增课程
      */
     onBgLongpress(){
+        wx.vibrateShort({
+            type: 'light',
+          })
         console.log('背景被长按,新增课程');
         this.setData({
             isAddLessonDialogVisible:true,
@@ -143,6 +151,9 @@ Page({
      * 课程被长按,修改课程
      */
     onCardLongpress(e){
+        wx.vibrateShort({
+            type: 'light',
+          })
         console.log("课程被长按,修改课程");
         this.setData({
             isAddLessonDialogVisible:true,

@@ -4,17 +4,23 @@ const cloud = require('wx-server-sdk')
 const superagent = require('superagent');
 const { RSAKey } = require('./utils/rsa')
 const { b64tohex, hex2b64 } = require('./utils/encode/base64')
-const {getStr} =require('./utils/str')
+const {getStr,guid} =require('./utils/str')
 const {genCardStyle}= require('./utils/style')
+
+const {LessonsDB}=require('./services/lesson_db')
 
 let agent = null
 
-cloud.init()
+cloud.init({
+  env: 'schoolepmpic-9ag8l'
+})
+const db=cloud.database()
+const lessonsDB=new LessonsDB(db)
 /**
- * ! 获取课程
- * 1.根据xh在数据库中查询 找到则返回结果
- * 2.找不到,就去教务系统获取
- * 3.获取后保存在数据库 并返回
+ * ! 获取课程 done
+ * 1.根据xh在数据库中查询 找到则返回结果 todo 
+ * 2.找不到,就去教务系统获取 todo
+ * 3.获取后保存在数据库 并返回 done
  */
 
  // status,msg,data
@@ -31,7 +37,7 @@ exports.main = async (event, context) => {
         return loginRes
     }
     const termRange=await getTermRange(xh)
-    const lessons=await getLessons(2022,3,termRange)
+    const lessons=await getLessons(2022,3,termRange,xh)
     const {college,class_,name} = await getInfo(xh)
     return {
         status:"ok",
@@ -122,7 +128,7 @@ async function getTermRange(xh){
 /**
  * 获取课程 
  */
-async function getLessons(xnm,xqm,termRange) {
+async function getLessons(xnm,xqm,termRange,xh) {
     const lessonsRes = await agent.post('https://jwglxt.haut.edu.cn/jwglxt/kbcx/xskbcx_cxXsgrkb.html?gnmkdm=N2151')
     .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37')
     .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -169,17 +175,9 @@ async function getLessons(xnm,xqm,termRange) {
                 activeWeeks.push(week)
             }
         })
-        // if(item.zcd.includes('-')){
-        //     //1-2周
-        //     weekTemp=item.zcd.split('-')
-        //     weekRange=[parseInt(weekTemp[0]), parseInt(weekTemp[1].slice(0, -1))]
-        // }else{
-        //     // 只有一周  9周
-        //     weekTemp=item.zcd
-        //     const week=parseInt(weekTemp.slice(0, -1))
-        //     weekRange=[week,week]
-        // }
+
         const raw={
+            id:guid(),
             name: item.kcmc,
             teacher_name: item.xm,
             classroom: item.cdmc,
@@ -187,7 +185,8 @@ async function getLessons(xnm,xqm,termRange) {
             credit: item.xf,
             dayOfWeek: item.xqj,
             timeRange,
-            activeWeeks
+            activeWeeks,
+            custom:false
         }
         //设置唯一的index
         let lessonsUniqueIndex=lessonNameArr.findIndex(name=>name===item.kcmc)
@@ -198,7 +197,15 @@ async function getLessons(xnm,xqm,termRange) {
         const styledLesson= genCardStyle(raw,lessonsUniqueIndex)
         lessons.push(styledLesson)
     })
+
+    /**
+     * 数据库
+     */
     // console.log(lessons);
+    lessonsDB.saveLessons(lessons,xh)
+
+
+
     //? 生成二维数组
     const lessons_assorted = []
     for (let i = 0; i < totalWeeks; i++) {

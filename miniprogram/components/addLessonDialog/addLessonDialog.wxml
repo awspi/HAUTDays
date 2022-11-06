@@ -1,4 +1,6 @@
+<van-toast id="van-toast" />
 <view>
+
     <van-dialog
 width="85%"
   custom-style="position:absolute; margin-top:100rpx;"
@@ -66,4 +68,3 @@ width="85%"
 <lesson-time-selecter show="{{isPickerShow}}" bind:selected="onTimeRangeSelected" ></lesson-time-selecter>
 </van-dialog>
 </view>
-

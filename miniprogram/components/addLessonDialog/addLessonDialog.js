@@ -1,6 +1,8 @@
 import {genCardStyle} from '../../utils/schedule'
+import Toast from '@vant/weapp/toast/toast';
 const dayOfWeekNames= ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"]
 const app=getApp()
+import {LessonsDB} from '../../db/lesson_db'
 Component({
     /**
      * 组件的属性列表
@@ -19,6 +21,7 @@ Component({
      * 组件的初始数据
      */
     data: {
+        id:"",
         confirmText:"新增",
         title:"新增自定义课程",
         //
@@ -41,20 +44,49 @@ Component({
      * 组件的方法列表
      */
     methods: {
+        guid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            })
+        },
         submit(){
+            const {name,classroom,teacher_name,credit,dayOfWeek,timeRange,activeWeeks}=this.data
+            console.log(name,activeWeeks,timeRange);
+            if(!name||!activeWeeks.length||!timeRange.length){
+                Toast.fail({
+                    message: '请确保已填写必选项',
+                    context:this
+                  });
+                return
+            }
             const rawInfo={
-                name:this.data.name,
-                classroom:this.data.classroom,
-                teacher_name:this.data.teacher_name,
-                credit:this.data.credit,
-                dayOfWeek:this.data.dayOfWeek,
-                timeRange:this.data.timeRange,
+                id:this.data.id||this.guid(),
+                name,
+                classroom,
+                teacher_name,
+                credit,
+                dayOfWeek,
+                timeRange,
                 activeWeeks:this.data.activeWeeks.map(str=>parseInt(str)),
                 time:`${this.data.timeRange[0]}-${this.data.timeRange[1]}节`,
                 style:"",
-                custom:true
+                custom:confirmText==="新增"?true:false
             }
+            const lessonDB=new LessonsDB()
+            if(this.data.lesson.style){
+                //如果是已经存在style 就不重新生成颜色
+                rawInfo.style=this.data.lesson.style
+                const styled= rawInfo
+                lessonDB.updateLesson(styled,app.globalData.profile.xh)
+            }else{
+                const styled= genCardStyle(rawInfo,index,true)
+                lessonDB.addLesson(styled,app.globalData.profile.xh)
+            }
+
             const index=app.globalData.lessons.length
+
             this.saveCustomLesson(rawInfo,index)
             this.triggerEvent("done")
         },
@@ -113,16 +145,7 @@ Component({
                 activeWeeks:[]
             })
         },//
-        saveCustomLesson(rawinfo,index){
-            let styled=null
-            if(this.data.lesson.style){
-                //如果是已经存在style 就不重新生成颜色
-                rawinfo.style=this.data.lesson.style
-                styled= rawinfo
-            }else{
-                styled= genCardStyle(rawinfo,index,true)
-            }
-            console.log(styled);
+        saveCustomLesson(styled,index){
             const lessons=app.globalData.lessons
             
             for(let i=0;i<styled.activeWeeks.length;i++){
@@ -164,7 +187,6 @@ Component({
         show:function(show){
             console.log(show);
             if(show){
-                
                 return
             }
             this.setData({

@@ -1,81 +1,94 @@
-<view style="position: fixed;height: 100%; width: 100%; left: 0; top: 0;">
-    <view class="navbar-wrapper">
-<view style="height: 100rpx;"></view>
-<!-- 自定义导航栏 -->
-<view class="navbar">
-    <!-- 更多icon -->
-    <view class="popup" >
-        <van-icon name="more-o" size="23" />
-    </view>
-    <view bindtap="onSwitchWeekHandler">
-        <!-- 展示课表的周数 -->
-            <text>第 {{showWeek}} 周 {{showWeek===currentWeek?"(本周)":""}}</text>
-            <!-- 下拉箭头 -->
-            <van-icon style="position: relative; left: 10rpx;" 
-            name="{{isSwitchingWeek ? 'arrow-up' : 'arrow-down' }}" />
-    </view>
-</view>
-<!-- 选择周数 -->
-<week-selecter show="{{isSwitchingWeek}}" 
-totalWeeks="{{totalLessons.length}}"
-current="{{showWeek-1}}"
-bindchange="onChangeWeek"></week-selecter>
-<!-- 星期 行 -->
-<view class="week">
-    <text style="flex-shrink: 0; align-items: center; line-height: 24rpx; padding-left: 10rpx;">
-    {{showMonth}}月
-    </text>
-    <view wx:for="{{weeks}}" wx:key="item" class="week_date">
-        <text>{{ item }}</text>
-        <text style=" font-size: 21rpx;  "
-        style="{{today===showWeekDates[index] ? 'font-weight: bold; color: #ffffff;':'color: #f7f7f7;'}}"
-        >{{showWeekDates[index]}}</text>
-    </view>
-</view>
-</view>
-<!-- 一天时间 列 -->
-<view class="left">
-    <view wx:for="{{courseTime}}" wx:key="courseTime" class="left-item">
-    <block wx:if="{{index!==4}}">
-        <text 
-        style="position:absolute;left:4rpx;top:5rpx;color: #999999;font-size: 20rpx;">{{ item[0] }}</text>
-        <text hidden="{{index === 4}}" style="font-size: 25rpx;">
-            {{ index < 4 ? index + 1 : index }}
-        </text>
-        <text 
-        style="position:absolute;left:4rpx;bottom:5rpx;color: #999999;font-size: 20rpx;">{{ item[1] }}</text>
-    </block>
-    <text 
-        wx:else
-        style="display:block;color: #000000;font-size: 25rpx;margin-top: 50%;">{{ item }}</text>
-    </view>
-</view>
-<!-- 课表 页 -->
-<swiper class="right" bindchange="onChangePage" current="{{showWeek-1}}">
-    <swiper-item wx:for="{{totalLessons}}" wx:key="index" wx:for-item="weekLessons" >
-    <!-- 背景层 -->
-    <view 
-    bindlongpress="onBgLongpress"
-    style="width: 100vh;height: 100vh;"></view>
-        <!-- 课程card -->
-        <view  wx:for="{{weekLessons}}" wx:key="style" class="card"
-        bindlongpress="onCardLongpress"
-        bindtap="showDetailCard"
-        data-detail="{{item}}"
-        style="{{item.style}}" >
-            <text>{{item.name}}</text>
-            <text>✿{{item.classroom}}</text>
+<view catchtouchmove='true' style="display: flex;flex-direction: column;height: 100vh;overflow: hidden;">
+    <!-- 自定义导航栏 -->
+    <view class="bg-theme topbar" >
+        <view style="height: 100rpx;"></view>
+        <view class="navbar">
+            <!-- 更多icon -->
+            <view class="popup"  bindtap="onPopupClick">
+                <van-icon name="more-o" size="23" />
+            </view>
+            <view bindtap="onSwitchWeekHandler">
+                <!-- 展示课表的周数 -->
+                    <text>第 {{showWeek}} 周 {{showWeek===currentWeek?"(本周)":""}}</text>
+                    <!-- 下拉箭头 -->
+                    <van-icon style="position: relative; left: 10rpx;" 
+                    name="{{isSwitchingWeek ? 'arrow-up' : 'arrow-down' }}" />
+            </view>
         </view>
-        
-    </swiper-item>
+    </view>
+    <!-- 下拉显示 -->
+    <view style="flex: 1;height: 1px;position: relative;" >
+    <!-- 选择周数 -->
+    <view class="bg-theme" style="position: relative;">
+    <week-selecter show="{{isSwitchingWeek}}" 
+        totalWeeks="{{totalLessons.length}}"
+        current="{{showWeek-1}}"
+        bindchange="onChangeWeek"></week-selecter>
+    </view>
+    <!-- 主页面 -->
+    <!-- 星期 行 -->
+    <view class="week bg-theme">
+        <text style="flex-shrink: 0; align-items: center; line-height: 24rpx; padding-left: 10rpx; ">
+        {{showMonth}}月
+        </text>
+        <view wx:for="{{weeks}}" wx:key="item" class="week_date">
+            <text>{{ item }}</text>
+            <text style=" font-size: 21rpx;  "
+            style="{{today===showWeekDates[index] ? 'font-weight: bold; color: #ffffff;':'color: #f7f7f7;'}}"
+            >{{showWeekDates[index]}}</text>
+        </view>
+    </view>
+    <!-- 一天时间 列 -->
+    <view class="left">
+        <view wx:for="{{courseTime}}" wx:key="courseTime" class="left-item">
+        <block wx:if="{{index!==4}}">
+            <text 
+            style="position:absolute;left:4rpx;top:5rpx;color: #999999;font-size: 20rpx;">{{ item[0] }}</text>
+            <text hidden="{{index === 4}}" style="font-size: 25rpx;">
+                {{ index < 4 ? index + 1 : index }}
+            </text>
+            <text 
+            style="position:absolute;left:4rpx;bottom:5rpx;color: #999999;font-size: 20rpx;">{{ item[1] }}</text>
+        </block>
+        <text 
+            wx:else
+            style="display:block;color: #EC6A8E;font-weight: 800; font-size: 25rpx;margin-top: 50%;">{{ item }}</text>
+        </view>
+    </view>
+    <!-- 课表 页 -->
+    <swiper class="right" bindchange="onChangePage" current="{{showWeek-1}}"
+        easing-function="easeOutCubic">
+        <swiper-item wx:for="{{totalLessons}}" wx:key="index" wx:for-item="weekLessons" >
+        <!-- 背景层 -->
+        <view 
+        bindlongpress="onBgLongpress"
+        style="position: absolute;width: 100vh;height: 100vh;"></view>
+            <!-- 课程card -->
+            <view  wx:for="{{weekLessons}}" wx:key="id" class="card"
+            bindlongpress="onCardLongpress"
+            bindtap="showDetailCard"
+            data-detail="{{item}}"
+            style="{{item.style}}" >
+                <text>{{item.name}}</text>
+                <text>✿{{item.classroom}}</text>
+            </view>
+        </swiper-item>
 
-</swiper>
-<add-lesson-dialog show="{{isAddLessonDialogVisible}}" bind:done="onAddLessonDone"
-    lesson="{{selectedLesson}}"></add-lesson-dialog>
+    </swiper>
+    </view>
+</view>
+<!-- 组件 -->
+<tool-popup></tool-popup>
+<add-lesson-dialog show="{{isAddLessonDialogVisible}}"                   bind:done="onAddLessonDone"
+lesson="{{selectedLesson}}">
+</add-lesson-dialog>
 
 
 <detail-card show="{{isDetailCardVisible}}" lesson="{{showDetail}}"/>
 
-<van-dialog id="van-dialog" />
-</view>
+<van-dialog id="van-dialog"/>
+
+<tool-popup show="{{isPopupShow}}"/>
+
+
 

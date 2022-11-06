@@ -3,3 +3,6 @@ page {
       Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
       sans-serif;
 }
+.bg-theme{
+    background-color: #EC6A8E;
+}
