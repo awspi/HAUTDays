@@ -1,6 +1,7 @@
 <view style="position: fixed;height: 100%; width: 100%; left: 0; top: 0;">
     <view style="background-color: #ebdee1; height: 100vh;">
-<view style="height: 180rpx;"/>
+<view style="height: 120rpx;"/>
+<view style="margin-left: 30rpx;margin-bottom: 10rpx; font-size: 36rpx; color:#EC6A8E;text-shadow: 1rpx 1rpx 10rpx pink;font-weight: 800;flex-shrink: 1;">HAUTDays</view>  
     <view class="profile_card">
         <view style="display: flex; height: 100%;">
             <image src="{{profile.avatarUrl}}" 

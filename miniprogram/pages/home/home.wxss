@@ -1,1 +1,11 @@
 /* pages/home/home.wxss */
+.cell{
+    background:none;
+    padding-left:10rpx!important;
+    padding-right: 10rpx!important;
+}
+.cell-title{
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis!important;
+}

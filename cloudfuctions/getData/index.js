@@ -39,12 +39,15 @@ exports.main = async (event, context) => {
     const termRange=await getTermRange(xh)
     const lessons=await getLessons(2022,3,termRange,xh)
     const {college,class_,name} = await getInfo(xh)
+    //score
+    const Scores= await getScore(xh)
     return {
         status:"ok",
         msg:"获取成功",
         data:{
             termRange,
             lessons,
+            Scores,
             profile:{
                 xh,
                 name,
@@ -230,4 +233,25 @@ async function getInfo(xh){
         college: temArr[0],
         class_:temArr[1]
     }
+}
+
+async function getScore(xh) {
+    const scoreRes = await agent.post('https://jwglxt.haut.edu.cn/jwglxt/cjcx/cjcx_cxXsgrcj.html?doType=query&gnmkdm=N305005&su='+xh)
+    .set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37')
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .type('form')
+    .send({"xnm":""})
+    .send({"xqm":""})
+    .send({"queryModel.showCount": "300"})
+    const {items}=JSON.parse(scoreRes.text)
+    //kcxzmc 必修课 选修课
+    //cj  90 中
+    //bfzcj 成绩 纯数字
+    //kcmc课程名称
+    //xf 学分
+    //jd 绩点
+    //xnm 学年名2019
+    //xqmmc 学期名 1或2    //xqm 学期名? xqm=term*term*3
+    const Scorelist= items.map(({bfzcj,cj,kcxzmc,kcmc,jd,xf,xnm,xqmmc})=>({scoreNum:parseInt(bfzcj),score:cj,type:kcxzmc,name:kcmc,GPA:parseFloat(jd),credit:parseFloat(xf),year:parseInt(xnm),term:parseInt(xqmmc)}))
+    return Scorelist
 }

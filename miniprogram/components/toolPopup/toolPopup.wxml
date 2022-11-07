@@ -14,7 +14,7 @@
     <van-grid-item icon="exchange" text="重新加载" bind:click="onUpdateHandler"/>
     <van-grid-item icon="photo-o" text="自定义背景" bind:click="onChangeBgHandler"/>
     <van-grid-item icon="bulb-o" text="提醒设置"  bind:click="onNotifyHandler" />
-    <van-grid-item icon="question-o" text="文字"   bind:click="onHelpHandler"/>
+    <van-grid-item icon="question-o" text="使用方法"   bind:click="onHelpHandler"/>
     </van-grid>
 </view>
 </van-popup>

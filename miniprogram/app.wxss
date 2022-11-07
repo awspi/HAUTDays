@@ -6,3 +6,10 @@ page {
 .bg-theme{
     background-color: #EC6A8E;
 }
+.bg-grary-scale{
+    background-color: #eeeeee;
+    transform: scale(0.99);
+}
+.box-shadow-gary{
+    box-shadow:1rpx 1rpx 10rpx rgba(0, 0, 0, .1) ; 
+}

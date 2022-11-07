@@ -1,11 +1,10 @@
 {
     "pages": [
+
+        "pages/home/home",
         "pages/schedule/schedule",
-        "pages/logs/logs",
-        "pages/gn/logs",
         "pages/profile/profile",
-        "pages/login/login",
-        "pages/home/home"
+        "pages/login/login"
     ],
     "window": {
         "navigationBarBackgroundColor": "#ff8198",
@@ -23,22 +22,22 @@
         "borderStyle": "black",
         "list": [
             {
-                "pagePath": "pages/schedule/schedule",
-                "text": "课程表",
-                "iconPath": "assets/tabBar/list.png",
-                "selectedIconPath": "assets/tabBar/list_s.png"
+                "pagePath": "pages/home/home",
+                "text": "首页",
+                "iconPath": "assets/tabBar/home.png",
+                "selectedIconPath": "assets/tabBar/home.png"
             },
             {
-                "pagePath": "pages/home/home",
-                "text": "功能",
-                "iconPath": "assets/tabBar/analysis.png",
-                "selectedIconPath": "assets/tabBar/analysis_s.png"
+                "pagePath": "pages/schedule/schedule",
+                "text": "课程表",
+                "iconPath": "assets/tabBar/schedule.png",
+                "selectedIconPath": "assets/tabBar/schedule.png"
             },
             {
                 "pagePath": "pages/profile/profile",
                 "text": "我",
-                "iconPath": "assets/tabBar/avatar.png",
-                "selectedIconPath": "assets/tabBar/avatar_s.png"
+                "iconPath": "assets/tabBar/me.png",
+                "selectedIconPath": "assets/tabBar/me.png"
             }
         ]
     },

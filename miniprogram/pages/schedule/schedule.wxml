@@ -68,7 +68,10 @@
             bindlongpress="onCardLongpress"
             bindtap="showDetailCard"
             data-detail="{{item}}"
-            style="{{item.style}}" >
+            style="{{item.style}}"
+            hover-class="bg-grary-scale box-shadow-gary"
+            hover-start-time="20"
+            hover-stay-time="100" >
                 <text>{{item.name}}</text>
                 <text>✿{{item.classroom}}</text>
             </view>
