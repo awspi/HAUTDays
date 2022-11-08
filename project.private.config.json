@@ -8,8 +8,8 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "home",
-                    "pathName": "pages/home/home",
+                    "name": "score",
+                    "pathName": "pages/score/score",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

@@ -1,10 +1,10 @@
 {
     "pages": [
-
         "pages/home/home",
         "pages/schedule/schedule",
         "pages/profile/profile",
-        "pages/login/login"
+        "pages/login/login",
+        "pages/score/score"
     ],
     "window": {
         "navigationBarBackgroundColor": "#ff8198",

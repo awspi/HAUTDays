@@ -1,0 +1,21 @@
+.dropdown{
+    height: 24px!important;
+    width: 50vw !important;
+}
+.range{
+    flex: auto!important;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#pie{
+    width:100%;      /* 宽高自行设置 */
+    height: 100%
+}
+#line{
+    width:100%;      /* 宽高自行设置 */
+    height: 100%;
+}

@@ -21,6 +21,8 @@ App({
     this.globalData.currentWeek=getCurrentWeek(termRange[0],termRange[1])
     //获取课程
     this.globalData.lessons =wx.getStorageSync('lessons')
+    //获取成绩
+    this.globalData.scores =wx.getStorageSync('scores')
     //用户信息
     this.globalData.profile=wx.getStorageSync('profile')||{}
     // 登录

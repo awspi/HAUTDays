@@ -83,8 +83,10 @@ Page({
         wx.setStorageSync('lessons',app.globalData.lessons)
         //profile
         app.globalData.profile=Object.assign(app.globalData.profile||{},data.profile)
-        console.log(app.globalData.profile);
         wx.setStorageSync('profile',app.globalData.profile)
+        //scores
+        app.globalData.scores=data.scores
+        wx.setStorageSync('scores',app.globalData.scores)
         //termRange
         app.globalData.termRange=data.termRange
         wx.setStorageSync('termRange', app.globalData.termRange)

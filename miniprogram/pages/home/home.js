@@ -29,7 +29,7 @@ Page({
             {
                 icon:"score",
                 title:"成绩分析",
-                url:"",
+                url:'/pages/score/score',
             },
             {
                 icon:"arrange",

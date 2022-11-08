@@ -40,14 +40,14 @@ exports.main = async (event, context) => {
     const lessons=await getLessons(2022,3,termRange,xh)
     const {college,class_,name} = await getInfo(xh)
     //score
-    const Scores= await getScore(xh)
+    const scores= await getScore(xh)
     return {
         status:"ok",
         msg:"获取成功",
         data:{
             termRange,
             lessons,
-            Scores,
+            scores,
             profile:{
                 xh,
                 name,
@@ -205,6 +205,8 @@ async function getLessons(xnm,xqm,termRange,xh) {
      * 数据库
      */
     // console.log(lessons);
+
+    //todo
     lessonsDB.saveLessons(lessons,xh)
 
 
@@ -253,5 +255,7 @@ async function getScore(xh) {
     //xnm 学年名2019
     //xqmmc 学期名 1或2    //xqm 学期名? xqm=term*term*3
     const Scorelist= items.map(({bfzcj,cj,kcxzmc,kcmc,jd,xf,xnm,xqmmc})=>({scoreNum:parseInt(bfzcj),score:cj,type:kcxzmc,name:kcmc,GPA:parseFloat(jd),credit:parseFloat(xf),year:parseInt(xnm),term:parseInt(xqmmc)}))
+    //todo 处理补考的情况
+    
     return Scorelist
 }
