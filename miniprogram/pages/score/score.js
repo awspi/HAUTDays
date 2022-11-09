@@ -1,5 +1,6 @@
 import * as echarts from "../../components/ec-canvas/echarts"
 import {getPieData,getLineData,getYearOption,filterScore,getSchoolReport} from './utils/index'
+import Toast from '@vant/weapp/toast/toast';
 const app=getApp()
 let pieChart
 let lineChart
@@ -8,7 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        scores:app.globalData.scores,
+        scores:app.globalData.scores||[],
         //成绩单
         schoolReport:getSchoolReport(app.globalData.scores),
         //echarts
@@ -52,7 +53,9 @@ Page({
         //是否包含公选课
         includePublic:true,
         //成绩单
-        isPopupShow:false
+        isPopupShow:false,
+        //更新button loading
+        loading:false
 
     },
     onNaviBack(){
@@ -108,7 +111,55 @@ Page({
     onTermChange({ detail }){
         this.setData({ term: detail });
         updateOption(this.data.scores,this.data.year,this.data.term,this.data.includePublic)
-    }
+    },
+    /**
+     * 更新成绩
+     */
+    getExams() {
+        this.setData({
+            loading:true
+        })
+        Toast.loading({
+            duration: 0, // 持续展示 toast
+            forbidClick: true,
+            message: '获取中...',
+          });
+        const profile=wx.getStorageSync('loginForm')
+        wx.cloud.callFunction({
+            // 云函数名称
+            name: 'getScore',
+            // 传给云函数的参数
+            data: {
+            xh: profile.xh,
+            mm: profile.password,
+            }
+        }).then(res=>{
+            const {status,msg,data}=res.result
+                //如果登录成功 把登录信息保存到本地
+                if(status==='ok'){
+                    wx.setStorageSync('scores',data.scores)
+                    this.setData({
+                        scores:data.scores
+                    })
+                    updateOption(this.data.scores,this.data.year,this.data.term,this.data.includePublic)
+                    Toast.clear();
+                    Toast.success("获取成功")
+                }else{
+                    //登录失败
+                    Toast.fail(msg);
+                }
+                this.setData({
+                    loading:false
+                })
+        }).catch(err=>{
+            console.log(err);
+            Toast.fail("error");
+            this.setData({
+                loading:false
+            })
+        })
+        
+    },
 })
 
 function updateOption(scores,year,term,includePublic) {
@@ -118,6 +169,7 @@ function updateOption(scores,year,term,includePublic) {
 }
 
 function getPieOption(scores) {
+    if(!scores.length) return {}
    const {averageGPA,pieData}= getPieData(scores)
    return {
     title: {
@@ -146,6 +198,7 @@ function getPieOption(scores) {
   };
 }
 function getLineOption(scores) {
+    if(!scores.length) return {}
    const {xAxisData,data}= getLineData(scores)
    return {
     xAxis: {

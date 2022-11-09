@@ -8,8 +8,29 @@
         "miniprogram": {
             "list": [
                 {
+                    "name": "guidance",
+                    "pathName": "pages/guidance/guidance",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "exam",
+                    "pathName": "pages/exam/exam",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
                     "name": "score",
                     "pathName": "pages/score/score",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "activity",
+                    "pathName": "pages/activity/activity",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

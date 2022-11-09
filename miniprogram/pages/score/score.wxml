@@ -2,12 +2,16 @@
 <page-meta page-style="{{ isPopupShow ? 'overflow: hidden;' : '' }}" />
 <view catchtouchmove='true' style="display: flex;flex-direction: column;height: 100vh;overflow: hidden; background-color: #fafafa;">
     <view>
-        <view style="background-color: #EC6A8E;flex-shrink: 1;">
+        <view style="background-color: #EC6A8E;flex-shrink: 1;position: relative;">
         <view style="height: 120rpx; "/>
         <view style="display: flex;align-items: center;padding-bottom: 10rpx; margin-left: 30rpx;">
-            <van-icon name="arrow-left" color="white" size="36rpx" bind:click="onNaviBack"/>
+            <van-icon name="arrow-left" color="white" size="36rpx" style="padding: 15rpx;" bind:click="onNaviBack"/>
             <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">成绩分析 | HAUTDays</view>    
         </view>
+        </view>
+        <!-- 更新 -->
+        <view style="position: fixed;right: 16px;height: 40px; padding: 4px 0;display: flex;justify-content: flex-end;">
+        <van-button icon="replay" color="#EC6A8E" size="small" round bind:click="getExams" loading="{{loading}}">更新</van-button>
         </view>
         <!-- 选项 -->
         <van-cell-group title="选项" inset>
@@ -73,3 +77,4 @@
     </block>
 
 </van-popup>
+<van-toast id="van-toast" />

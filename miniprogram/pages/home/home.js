@@ -1,5 +1,6 @@
 import {getWeather} from '../../api/weather'
 import {timeFormat} from '../../utils/time'
+import {notification} from './static/index'
 const dayOfWeek= ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]
 const dayOfWeekIndex=["7","1","2","3","4","5","6"]
 const app=getApp()
@@ -16,7 +17,7 @@ Page({
         today:timeFormat(new Date(),"."),
         currentWeek:app.globalData.currentWeek,
         dayOfWeek:"",
-        notice:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem",
+        notice:notification,
         swiperList:[],//轮播图列表
         todayLessons:[],
         overflow:false,
@@ -24,7 +25,7 @@ Page({
             {
                 icon:"navi",
                 title:"校园导航",
-                url:"",
+                url:"/pages/guidance/guidance",
             },
             {
                 icon:"score",
@@ -34,7 +35,7 @@ Page({
             {
                 icon:"arrange",
                 title:"考试安排",
-                url:"",
+                url:"/pages/exam/exam",
             },
             {
                 icon:"find",
@@ -44,7 +45,7 @@ Page({
             {
                 icon:"activity",
                 title:"一些活动",
-                url:"",
+                url:"/pages/activity/activity",
             },
         ]
 

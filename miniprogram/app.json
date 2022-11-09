@@ -4,7 +4,10 @@
         "pages/schedule/schedule",
         "pages/profile/profile",
         "pages/login/login",
-        "pages/score/score"
+        "pages/score/score",
+        "pages/exam/exam",
+        "pages/guidance/guidance",
+        "pages/activity/activity"
     ],
     "window": {
         "navigationBarBackgroundColor": "#ff8198",

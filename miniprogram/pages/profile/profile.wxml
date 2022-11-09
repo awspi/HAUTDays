@@ -27,9 +27,22 @@
     </view>
 <!-- cell -->
 <van-cell-group inset>
-<van-cell wx:for="{{menus}}" wx:key="icon" clickable is-link
+<block  wx:for="{{menus}}" wx:key="icon">
+    <van-cell clickable is-link
+    bind:click="showPopup"
+    data-title="{{item.title}}"
     url="{{item.url}}"
-    icon="{{item.icon}}" title="{{item.title}}" label="{{item.label}}" value="{{item.value}}"></van-cell>
+    icon="{{item.icon}}" label="{{item.label}}" value="{{item.value}}">
+    <!-- open-type -->
+    <button slot="title" open-type="{{item.openType}}" class="inline-button van-cell-text">{{item.title}}</button>
+    </van-cell>
+</block>
 </van-cell-group>
+
 </view>
 </view>
+
+<van-popup show="{{ isPopupShow }}" bind:close="onClose" round custom-style="width:80vw;padding:10rpx 30rpx;max-height:70vh;min-height:40vh" >
+<rich-text nodes="{{popupContent}}"/>
+</van-popup>
+<van-toast id="van-toast" />

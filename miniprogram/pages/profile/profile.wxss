@@ -51,3 +51,22 @@
     font-style: italic;
     color:rgba(255,255,255,0.4);
 }
+
+
+.inline-button{
+    position: relative;
+	margin:0;
+    padding:0;
+    border-radius:0;
+    border:none;
+    background-color:transparent;
+    text-align: left;
+    color: #323233;
+    line-height: 24px;
+    font-size: 14px;
+    z-index: 100;
+}
+
+.inline-button::after{
+	border: none;
+}

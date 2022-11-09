@@ -1,5 +1,8 @@
 // pages/profile/profile.js
+import {menus,privacy,about} from './static/index'
 import{getUserProfile} from '../../utils/user'
+import Toast from '@vant/weapp/toast/toast';
+
 const app=getApp()
 Page({
 
@@ -7,41 +10,10 @@ Page({
      * 页面的初始数据
      */
     data: {
+        popupContent:"",
+        isPopupShow: false,
         profile:app.globalData.profile,
-        menus:[
-            {
-            icon:"manager",
-            title:"账户与数据",
-            label:"导入/更新课程表",
-            url:"/pages/login/login"
-        },
-        {
-            icon:"like",
-            title:"个性设置",
-            url:"",
-        },
-        {
-            icon:"comment-circle",
-            title:"意见反馈",
-            url:"",
-        },
-        {
-            icon:"chat",
-            title:"联系客服",
-            url:"",
-        },
-        {
-            icon:"umbrella-circle",
-            title:"用户服务条款",
-            url:"",
-        },
-        {
-            icon:"more",
-            title:"关于",
-            value:"pithy",
-            url:"",
-        },
-    ]
+        menus:menus
     },
     async onRefreshHandler(){
         await getUserProfile()
@@ -62,5 +34,29 @@ Page({
         this.setData({
             profile:app.globalData.profile
         })
+    },
+    //popup
+    onClose() {
+        this.setData({ isPopupShow: false });
+    },
+    showPopup(e) {
+        switch (e.currentTarget.dataset.title) {
+            case "用户服务条款":
+                this.setData({ 
+                    popupContent:privacy
+                    ,isPopupShow: true });
+                break;
+        
+            case "关于":
+                this.setData({ 
+                    popupContent:about
+                    ,isPopupShow: true });
+                break;
+
+            case "个性设置":
+                Toast('开发中~');
+                break;
+        }
+   
     }
 })

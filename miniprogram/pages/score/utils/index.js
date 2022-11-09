@@ -5,7 +5,7 @@ function getPieData(scores) {
     let totalGPA=0
     let totalCredit=0
     //pie
-    const pieData=[{value:0,name:"差(0~1)"},{value:0,name:"及格(1~2)"},{value:0,name:"中(2~3)"},{value:0,name:"良(3~4)"},{value:0,name:"优(4~5)"}]
+    const pieData=[{value:0,name:"差"},{value:0,name:"及格"},{value:0,name:"中"},{value:0,name:"良"},{value:0,name:"优"}]
     scores.forEach(score=>{
         totalGPA+=score.GPA*score.credit
         totalCredit+=score.credit
@@ -60,8 +60,10 @@ function getLineData(scores) {
     }
 }
 function getYearOption(scores) {
+    if(!scores.length) return []
     const set =new Set()
-    scores.forEach(item=>{
+    //时间靠后显示在前
+    scores.reverse().forEach(item=>{
         set.add(item.year)
     })
     const arr=[]
@@ -118,6 +120,9 @@ function  filterScore(scores,year,term,includePublic) {
  * @param {*} scores 
  */
 function getSchoolReport(scores) {
+    if(!scores.length){
+        return {}
+    }
     const obj={}
     //为了让最近的学期显示在前面
     scores.reverse().forEach(score=>{
