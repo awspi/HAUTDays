@@ -113,8 +113,15 @@ async function getScore(xh) {
     //jd 绩点
     //xnm 学年名2019
     //xqmmc 学期名 1或2    //xqm 学期名? xqm=term*term*3
-    const Scorelist= items.map(({bfzcj,cj,kcxzmc,kcmc,jd,xf,xnm,xqmmc})=>({scoreNum:parseInt(bfzcj),score:cj,type:kcxzmc,name:kcmc,GPA:parseFloat(jd),credit:parseFloat(xf),year:parseInt(xnm),term:parseInt(xqmmc)}))
-    //todo 处理补考的情况
+    
+    //? 处理补考的情况 所有数据带补考字样的信息(<60)不计入到绩点之中
+    const Scorelist=[]
+     items.forEach(({bfzcj,cj,kcxzmc,kcmc,jd,xf,xnm,xqmmc})=>{
+        if(parseInt(bfzcj)>=60){
+            Scorelist.push({scoreNum:parseInt(bfzcj),score:cj,type:kcxzmc,name:kcmc,GPA:parseFloat(jd),credit:parseFloat(xf),year:parseInt(xnm),term:parseInt(xqmmc)}) 
+        }
+    })
+    //? todo 含公选课：除去重修课项
     
     return Scorelist
 }

@@ -56,19 +56,21 @@
         </view>
     </view>
     <!-- 课表 页 -->
-    <swiper class="right" bindchange="onChangePage" current="{{showWeek-1}}"
-        easing-function="easeOutCubic">
+    <swiper class="right background" style="{{bgStyle_ImgUrl}} {{bgStyle_blur}}" bindchange="onChangePage" current="{{showWeek-1}}"
+        easing-function="easeOutCubic" >
         <swiper-item wx:for="{{totalLessons}}" wx:key="index" wx:for-item="weekLessons" >
         <!-- 背景层 -->
         <view 
         bindlongpress="onBgLongpress"
-        style="position: absolute;width: 100vh;height: 100vh;"></view>
+        style="position: relative;width: 100%;height: 100%;"
+        
+        ></view>
             <!-- 课程card -->
             <view  wx:for="{{weekLessons}}" wx:key="id" class="card"
             bindlongpress="onCardLongpress"
             bindtap="showDetailCard"
             data-detail="{{item}}"
-            style="{{item.style}}"
+            style="{{item.style}} {{cardStyle}}"
             hover-class="bg-grary-scale box-shadow-gary"
             hover-start-time="20"
             hover-stay-time="100" >
@@ -81,7 +83,8 @@
     </view>
 </view>
 <!-- 组件 -->
-<tool-popup></tool-popup>
+<tool-popup show="{{isPopupShow}}" bind:updateBlurOpacity="updateBlurOpacity" bind:updateBgUrl="updateBgUrl"  />
+
 <add-lesson-dialog show="{{isAddLessonDialogVisible}}"                   bind:done="onAddLessonDone"
 lesson="{{selectedLesson}}">
 </add-lesson-dialog>
@@ -91,7 +94,6 @@ lesson="{{selectedLesson}}">
 
 <van-dialog id="van-dialog"/>
 
-<tool-popup show="{{isPopupShow}}"/>
 
 
 

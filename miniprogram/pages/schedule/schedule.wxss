@@ -2,6 +2,7 @@
 
 
 
+
 /* 自定义导航栏 */
 .bg-theme{
     background-color: #EC6A8E;
@@ -76,15 +77,34 @@
 
 
 .card {
+
     /* margin-top: 3rpx;
     margin-left: 2rpx; */
     position: absolute;
 	width: 14%;
-	color: white;
+    color: white;
+    text-shadow: 1rpx 1rpx 2rpx #000;
 	font-size: 22rpx;
 	padding: 6rpx 0 0 6rpx;
 	word-break: break-word;
 	box-sizing: border-box;
     overflow-y: hidden;
     border-radius: 7%;
+    opacity: var(--card-opacity);
+    
+}
+
+/* css变量实现动态背景图片和blur */
+.background::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: no-repeat center var(--bg-img-url);
+    background-size:cover ;
+    filter: blur(var(--bg-img-blur));
+    z-index: -1;
+    
 }

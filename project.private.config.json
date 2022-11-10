@@ -34,6 +34,20 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "profile",
+                    "pathName": "pages/profile/profile",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "schedule",
+                    "pathName": "pages/schedule/schedule",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

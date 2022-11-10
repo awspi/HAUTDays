@@ -189,7 +189,7 @@ async function getLessons(xnm,xqm,termRange,xh) {
             dayOfWeek: item.xqj,
             timeRange,
             activeWeeks,
-            custom:false
+            custom:false,
         }
         //设置唯一的index
         let lessonsUniqueIndex=lessonNameArr.findIndex(name=>name===item.kcmc)
@@ -197,6 +197,10 @@ async function getLessons(xnm,xqm,termRange,xh) {
             lessonsUniqueIndex=lessonNameArr.length
             lessonNameArr.push(item.kcmc)
         }
+   
+        Object.assign(raw,{
+            startPosition:raw.dayOfWeek+"-"+raw.timeRange[0]
+        })
         const styledLesson= genCardStyle(raw,lessonsUniqueIndex)
         lessons.push(styledLesson)
     })
@@ -214,7 +218,9 @@ async function getLessons(xnm,xqm,termRange,xh) {
     //? 生成二维数组
     const lessons_assorted = []
     for (let i = 0; i < totalWeeks; i++) {
-      lessons_assorted[i] = lessons.filter(item =>item.activeWeeks.includes(i+1))
+     const weekLessons=lessons.filter(item =>item.activeWeeks.includes(i+1))
+    //  weekLessons.length&&coincide(weekLessons)
+     lessons_assorted[i] = weekLessons
     }
     return lessons_assorted
 }
@@ -254,8 +260,30 @@ async function getScore(xh) {
     //jd 绩点
     //xnm 学年名2019
     //xqmmc 学期名 1或2    //xqm 学期名? xqm=term*term*3
-    const Scorelist= items.map(({bfzcj,cj,kcxzmc,kcmc,jd,xf,xnm,xqmmc})=>({scoreNum:parseInt(bfzcj),score:cj,type:kcxzmc,name:kcmc,GPA:parseFloat(jd),credit:parseFloat(xf),year:parseInt(xnm),term:parseInt(xqmmc)}))
-    //todo 处理补考的情况
+    
+    //? 处理补考的情况 所有数据带补考字样的信息(<60)不计入到绩点之中
+    const Scorelist=[]
+     items.forEach(({bfzcj,cj,kcxzmc,kcmc,jd,xf,xnm,xqmmc})=>{
+        if(parseInt(bfzcj)>=60){
+            Scorelist.push({scoreNum:parseInt(bfzcj),score:cj,type:kcxzmc,name:kcmc,GPA:parseFloat(jd),credit:parseFloat(xf),year:parseInt(xnm),term:parseInt(xqmmc)}) 
+        }
+    })
+    //? todo 含公选课：除去重修课项
     
     return Scorelist
+}
+
+/**
+ * todo coincide
+ */
+function coincide(lessons){
+    const set=new Set()
+    lessons.forEach(item=>{
+        const {dayOfWeek,timeRange}=item
+        set.has()
+        set.add([parseInt(dayOfWeek),timeRange[0],timeRange[1]])
+    })
+
+    console.log(set);
+    // console.log(lessons);
 }

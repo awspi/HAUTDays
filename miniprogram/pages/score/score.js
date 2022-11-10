@@ -178,7 +178,7 @@ function getPieOption(scores) {
       top: 'center'
     },
     legend: {
-        title: ['差', '及格', '中', '良', '优'],
+        title: ['差', '合格', '中', '良', '优'],
         // orient: 'horizontal',
         orient: 'vertical',
         x:"left",
@@ -190,8 +190,9 @@ function getPieOption(scores) {
         data: pieData,
         radius: ['40%', '70%'],
         label:{
+            overflow: 'break',
             show: true,
-            formatter: '{b}:({d}%)' 
+            formatter: '{b}:{c}科 {d}%' 
         }
       }
     ]

@@ -42,7 +42,7 @@
 </view>
 </view>
 
-<van-popup show="{{ isPopupShow }}" bind:close="onClose" round custom-style="width:80vw;padding:10rpx 30rpx;max-height:70vh;min-height:40vh" >
+<van-popup show="{{ isPopupShow }}" bind:close="onClose" round custom-style="width:92vw;padding:10rpx 30rpx;max-height:70vh;min-height:40vh" >
 <rich-text nodes="{{popupContent}}"/>
 </van-popup>
 <van-toast id="van-toast" />

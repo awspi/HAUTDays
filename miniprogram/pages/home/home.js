@@ -1,6 +1,7 @@
 import {getWeather} from '../../api/weather'
 import {timeFormat} from '../../utils/time'
-import {notification} from './static/index'
+import {notification,functionList,swiperList} from './static/index'
+import Dialog from '@vant/weapp/dialog/dialog';
 const dayOfWeek= ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]
 const dayOfWeekIndex=["7","1","2","3","4","5","6"]
 const app=getApp()
@@ -18,36 +19,10 @@ Page({
         currentWeek:app.globalData.currentWeek,
         dayOfWeek:"",
         notice:notification,
-        swiperList:[],//轮播图列表
+        swiperList:swiperList,//轮播图列表
         todayLessons:[],
         overflow:false,
-        funcitonList:[
-            {
-                icon:"navi",
-                title:"校园导航",
-                url:"/pages/guidance/guidance",
-            },
-            {
-                icon:"score",
-                title:"成绩分析",
-                url:'/pages/score/score',
-            },
-            {
-                icon:"arrange",
-                title:"考试安排",
-                url:"/pages/exam/exam",
-            },
-            {
-                icon:"find",
-                title:"遗失寻物",
-                url:"",
-            },
-            {
-                icon:"activity",
-                title:"一些活动",
-                url:"/pages/activity/activity",
-            },
-        ]
+        funcitonList:functionList
 
     },
 
@@ -55,8 +30,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     async onLoad(options) {
-        const swiperList=["https://img9.vilipix.com/picture/pages/regular/2022/08/31/12/102478682_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg","https://img9.vilipix.com/picture/pages/regular/2022/07/06/12/100307867_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg","https://img9.vilipix.com/picture/pages/regular/2022/06/27/14/99319833_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg","https://img9.vilipix.com/picture/pages/regular/2021/04/24/19/07/89508792_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg","https://img9.vilipix.com/picture/pages/regular/2022/05/01/19/41/98014664_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg"]
-
         const day=new Date().getDay()//周几
         const currentWeekLessons=app.globalData.lessons[this.data.currentWeek-1]
         const todayLessons=currentWeekLessons.filter(item=>item.dayOfWeek===dayOfWeekIndex[day])
@@ -80,14 +53,28 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+                //如果没信息 就弹窗
+                const loginForm=wx.getStorageSync('loginForm')
+                if(!loginForm?.xh){
+                    Dialog.alert({
+                        title: '注意',
+                        message: '登录后才能使用课程表,请先登录~',
+                      }).then(() => {
+                          wx.navigateTo({
+                            url: '/pages/login/login',
+                          })
+                      });
+                }
     },
 
     /**
      * 用户点击右上角分享
      */
     onShareAppMessage() {
-
+        return {
+            title: '河工大颜值超高的课表小程序-HAUTDAYS分享给你',
+            path: '/pages/home/home'
+          }
     },
     onSeeMoreHandler(){
         wx.redirectTo({

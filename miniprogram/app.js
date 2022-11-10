@@ -25,6 +25,9 @@ App({
     this.globalData.scores =wx.getStorageSync('scores')
     //用户信息
     this.globalData.profile=wx.getStorageSync('profile')||{}
+    //课程表背景 高斯模糊 透明度
+    !wx.getStorageSync('style')&&wx.setStorageSync('style', {blur:0,opacity:1})
+    !wx.getStorageSync('style_bgUrl')&&wx.setStorageSync('style_bgUrl', "")
     // 登录
 
     wx.login({
