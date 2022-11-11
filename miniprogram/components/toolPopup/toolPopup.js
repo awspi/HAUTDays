@@ -36,7 +36,16 @@ Component({
             })
         },
         onUpdateHandler(){
-
+            this.setData({
+                isPopupShow:false
+            })
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+            // this.onLoad()
+            // wx.navigateTo({
+            //     url: "",
+            //     })
         },
         /**
          * 上传图片并转为base64
@@ -84,7 +93,7 @@ Component({
             
         },
         // 修改高斯模糊和透明度
-        //todo 不应该用opacity 而是用rgba只设置背景透明
+        //用rgba设置仅背景透明
         onBlurDrag(e){
             this.setData({
                 blur:e.detail.value

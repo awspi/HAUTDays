@@ -83,14 +83,14 @@
     position: absolute;
 	width: 14%;
     color: white;
-    text-shadow: 1rpx 1rpx 2rpx #000;
+    text-shadow: 2rpx 2rpx 4rpx #000;
 	font-size: 22rpx;
 	padding: 6rpx 0 0 6rpx;
 	word-break: break-word;
 	box-sizing: border-box;
     overflow-y: hidden;
     border-radius: 7%;
-    opacity: var(--card-opacity);
+    /* opacity: var(--card-opacity); */
     
 }
 

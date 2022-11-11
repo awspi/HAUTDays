@@ -6,22 +6,27 @@ const dayOfWeek= ["星期日","星期一","星期二","星期三","星期四","�
 const dayOfWeekIndex=["7","1","2","3","4","5","6"]
 const app=getApp()
 import Toast from '@vant/weapp/toast/toast';
+//今日课程
+const day=new Date().getDay()//周几
+const currentWeekLessons=app.globalData.lessons[app.globalData.currentWeek-1]
+const todayLessons=currentWeekLessons.filter(item=>item.dayOfWeek===dayOfWeekIndex[day])
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        // weather degree
         weather:"",
         degree:"",
-
         today:timeFormat(new Date(),"."),
         currentWeek:app.globalData.currentWeek,
-        dayOfWeek:"",
+        dayOfWeek:dayOfWeek[day],
         notice:notification,
         swiperList:swiperList,//轮播图列表
-        todayLessons:[],
-        overflow:false,
+        todayLessons:todayLessons.slice(0,3),
+        overflow:todayLessons.length>3,
         funcitonList:functionList
 
     },
@@ -30,15 +35,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     async onLoad(options) {
-        const day=new Date().getDay()//周几
-        const currentWeekLessons=app.globalData.lessons[this.data.currentWeek-1]
-        const todayLessons=currentWeekLessons.filter(item=>item.dayOfWeek===dayOfWeekIndex[day])
         this.setData({
-            ...await getWeather(),
-            swiperList,
-            dayOfWeek:dayOfWeek[day],
-            overflow:todayLessons.length>3,
-            todayLessons:todayLessons.slice(0,3)
+            ...await getWeather()
         })
     },
 

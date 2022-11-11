@@ -7,6 +7,7 @@
         try {
             const {tempFiles}= await wx.chooseMedia({
                 count:1,
+                sizeType:['compressed'],//因为转为base64 开启压缩减少体积
                 mediaType:['image'],
                 sourceType:['album']
             })
@@ -28,7 +29,6 @@
                 }
             })
         } catch (error) {
-            console.log();
             reject("上传失败"+error.errMsg)
         }
     })

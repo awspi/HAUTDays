@@ -1,24 +1,24 @@
 const colorArr=[
-    '#99CCFF',
-    '#FFCC99',
-    '#FFCCCC',
-    '#CC6699',
-    '#99CCCC',
-    '#FF6666',
-    '#CCCC66',
-    '#66CC99',
-    '#FF9966',
-    '#66CCCC',
-    '#6699CC',
-    '#99CC99',
-    '#669966',
-    '#99CC99',
-    '#99CCCC',
-    '#66CCFF',
-    '#CCCCFF',
-    '#99CC66',
-    '#CCCC99',
-    '#FF9999'
+    "153,204,255",
+    "255,204,153",
+    "255,204,204",
+    "204,102,153",
+    "153,204,204",
+    "255,102,102",
+    "204,204,102",
+    "102,204,153",
+    "255,153,102",
+    "102,204,204",
+    "102,153,204",
+    "153,204,153",
+    "102,153,102",
+    "153,204,153",
+    "153,204,204",
+    "102,204,255",
+    "204,204,255",
+    "153,204,102",
+    "204,204,153",
+    "255,153,153"
 ]
 /**
  *  为lesson设置style
@@ -34,7 +34,7 @@ function genCardStyle(lesson,index){
     return Object.assign(lesson,{
         style:`
         top:${top}%;left:${left}%;height:${height}%;
-        background-color:${colorArr[index%20]};`
+        background-color:rgba(${colorArr[index%20]},var(--card-opacity));`
     })
 }
 module.exports={
