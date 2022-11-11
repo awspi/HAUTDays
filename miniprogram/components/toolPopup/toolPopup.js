@@ -92,18 +92,18 @@ Component({
         onHelpHandler(){
             
         },
-        // 修改高斯模糊和透明度
-        //用rgba设置仅背景透明
-        onBlurDrag(e){
+        // 修改高斯模糊
+        onBlurDrag:throttle(function(e){ //防抖
             this.setData({
                 blur:e.detail.value
             })
-        },
-        onOpacityDrag(e){
+        },300),
+        //用rgba设置仅背景透明
+        onOpacityDrag:throttle(function(e){ //防抖
             this.setData({
                 opacity:e.detail.value
             })
-        },
+        },300),
         // 关闭onCloseBlurPopup
         onCloseBlurPopup(){
             //保存

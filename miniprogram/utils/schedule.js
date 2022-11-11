@@ -61,15 +61,20 @@ function genCardStyle(lesson,index,random=false){
     }else{
         color=colorArr[index%20]
     }
-    console.log(color);
     
     return Object.assign(lesson,{
         style:`
         top:${top};left:${left};height:${height};
-        background-color:rgba(${colorArr[index%20]},var(--card-opacity));`
+        background-color:rgba(${color},var(--card-opacity));`
     })
 }
-
+function hexToRgba(hex) {
+    if (!hex) hex = '#ededed';
+    let rgba = parseInt('0x' + hex.slice(1,3)) + ',' +
+        parseInt('0x' + hex.slice(3,5)) + ',' +
+        parseInt('0x' + hex.slice(5,7)) 
+    return rgba
+}
 function getRandomColor() {
     let rgb = []
     for (let i = 0; i < 3; ++i) {
@@ -77,16 +82,10 @@ function getRandomColor() {
       color = color.length == 1 ? '0' + color : color
       rgb.push(color)
     }
+    const res=hexToRgba('#' + rgb.join(''))
+    return res
+}
 
-    return hexToRgba('#' + rgb.join(''))
-}
-function hexToRgba(hex, opacity) {
-    if (!hex) hex = '#ededed';
-    let rgba = parseInt('0x' + hex.slice(1,3)) + ',' +
-        parseInt('0x' + hex.slice(3,5)) + ',' +
-        parseInt('0x' + hex.slice(5,7)) 
-    return rgba
-}
 /**
  * 
  * 保存自定义课程

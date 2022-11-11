@@ -72,7 +72,7 @@ Component({
                 activeWeeks:this.data.activeWeeks.map(str=>parseInt(str)),
                 time:`${this.data.timeRange[0]}-${this.data.timeRange[1]}节`,
                 style:"",
-                custom:confirmText==="新增"?true:false,
+                custom:this.data.confirmText==="新增"?true:false,
             }
             const lessonDB=new LessonsDB()
             if(this.data.lesson.style){

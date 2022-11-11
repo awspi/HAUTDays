@@ -45,14 +45,20 @@
             </view>
             <!-- 列表 -->
             <van-cell-group border="{{false}}">
-                <block wx:for="{{todayLessons}}" wx:key="*this">
-                    <van-cell title="{{item.name}}" label="{{item.time}}" value="{{item.classroom}}" 
-                    custom-class="cell"
-                    title-class="cell-title"
-                    clickable
-                    border="{{false}}"
-                    size="large"/> 
+
+            <view style="height: 30vh;width: 100%;line-height: 30vh;font-size:32rpx;">
+                <view wx:if="{{todayLessons.length===0}}" style="text-align: center;">今天没有课程~</view>
+                <block wx:else>
+                    <block wx:for="{{todayLessons}}" wx:key="*this">
+                                <van-cell title="{{item.name}}" label="{{item.time}}" value="{{item.classroom}}" 
+                                custom-class="cell"
+                                title-class="cell-title"
+                                clickable
+                                border="{{false}}"
+                                size="large"/> 
                 </block>
+                </block>
+            </view>
                 <!-- 底部 -->
                 <text style="display:block;text-align: center;font-size: 24rpx;margin-top: 10rpx;" bindtap="onSeeMoreHandler">{{overflow?"点击查看更多":"加载完成"}}</text>
                 </van-cell-group>            

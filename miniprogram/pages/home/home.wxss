@@ -1,5 +1,6 @@
 /* pages/home/home.wxss */
 .cell{
+    margin-top: 10rpx;
     background:none;
     padding-left:10rpx!important;
     padding-right: 10rpx!important;

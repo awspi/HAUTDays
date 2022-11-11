@@ -12,6 +12,7 @@
 - Alpha ver.|1.4.1|fix: 优化首页今日课程加载时间短暂白屏
 - Alpha ver.|1.4.2|fix: 格子透明度调整为仅背景透明
 - Alpha ver.|1.4.3|fix: 校准课程表页面课程格子的对齐
+- Alpha ver.|1.4.3|perf: 给调整背景blur和格子透明度的slider设置节流
 
 ## 提示
 
