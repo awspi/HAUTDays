@@ -53,7 +53,7 @@ async function login(xh, mm) {
       'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.37'
     )
     .set('Content-Type', 'application/x-www-form-urlencoded')
-  tokenArr = reg.exec(res2.text)
+  const tokenArr = reg.exec(res2.text)
   if (!tokenArr) {
     return {
       status: 'error',
@@ -112,7 +112,7 @@ async function getScore(xh) {
   const scoreRes = await agent
     .post(
       'https://jwglxt.haut.edu.cn/jwglxt/cjcx/cjcx_cxXsgrcj.html?doType=query&gnmkdm=N305005&su=' +
-        xh
+      xh
     )
     .set(
       'User-Agent',

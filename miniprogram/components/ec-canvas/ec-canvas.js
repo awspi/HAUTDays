@@ -46,7 +46,7 @@ Component({
   },
 
   data: {
-    isUseNewCanvas: false
+    isUseNewCanvas: true
   },
 
   ready: function () {

@@ -16,6 +16,7 @@
 - Alpha ver.|1.4.3|fix: 校准课程表页面课程格子的对齐
 - Alpha ver.|1.4.4|perf: 给调整背景 blur 和格子透明度的 slider 设置节流||fix:添加自定义课程颜色失效
 - Alpha ver.|1.4.5|style: 使用 prettier 格式化代码
+- Alpha ver.|1.4.6|refactor: 使用微信小程序分包
 
 ## 提示
 

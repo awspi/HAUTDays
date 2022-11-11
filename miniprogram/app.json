@@ -1,13 +1,26 @@
 {
+  "preloadRule": {
+    "pages/home/home": {
+      "packages": ["packageHome"],
+      "network": "all"
+    }
+  },
+  "subpackages": [
+    {
+      "root": "packageHome",
+      "pages": [
+        "pages/activity/activity",
+        "pages/exam/exam",
+        "pages/guidance/guidance",
+        "pages/score/score"
+      ]
+    }
+  ],
   "pages": [
     "pages/home/home",
     "pages/schedule/schedule",
     "pages/profile/profile",
-    "pages/login/login",
-    "pages/score/score",
-    "pages/exam/exam",
-    "pages/guidance/guidance",
-    "pages/activity/activity"
+    "pages/login/login"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ff8198",

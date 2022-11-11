@@ -1,4 +1,4 @@
-import * as echarts from '../../components/ec-canvas/echarts'
+import * as echarts from '../../../components/ec-canvas/echarts'
 import {
   getPieData,
   getLineData,

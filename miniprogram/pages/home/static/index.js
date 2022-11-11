@@ -4,17 +4,17 @@ export const functionList = [
   {
     icon: 'navi',
     title: '校园导航',
-    url: '/pages/guidance/guidance'
+    url: '/packageHome/pages/guidance/guidance'
   },
   {
     icon: 'score',
     title: '成绩分析',
-    url: '/pages/score/score'
+    url: '/packageHome/pages/score/score'
   },
   {
     icon: 'arrange',
     title: '考试安排',
-    url: '/pages/exam/exam'
+    url: '/packageHome/pages/exam/exam'
   },
   {
     icon: 'find',
@@ -24,7 +24,7 @@ export const functionList = [
   {
     icon: 'activity',
     title: '一些活动',
-    url: '/pages/activity/activity'
+    url: '/packageHome/pages/activity/activity'
   }
 ]
 
