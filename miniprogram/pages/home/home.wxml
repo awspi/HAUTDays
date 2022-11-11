@@ -1,7 +1,7 @@
 <view catchtouchmove='true' style="display: flex;flex-direction: column;height: 100vh;overflow: hidden; background-color: #fafafa;">
 <view style="background-color: #EC6A8E;flex-shrink: 1;">
     <view style="height: 120rpx; "/>
-    <view style="margin-left: 30rpx;margin-bottom: 10rpx; font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">HAUTDays</view>    
+    <view style="margin-left: 30rpx;margin-bottom: 10rpx; font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">HAUT DAYS</view>    
 </view>
     <!-- 通知 -->
     <van-notice-bar
@@ -37,7 +37,7 @@
     <!-- 今日课表 -->
     <view style="padding:10rpx 20rpx 10rpx 20rpx; flex:1;height: 1px;">
         <text style="color: #EC6A8E;font-size: 32rpx;font-weight: 700;text-shadow: 1rpx 1rpx 4rpx pink;">今日课表</text>
-        <view style="border-radius: 3%;box-shadow:  3rpx 5rpx 10rpx 5rpx rgba(236,106,142, 0.4);padding: 20rpx;background-color:white;margin-top: 20rpx;">
+        <view style="border-radius: 3rpx;box-shadow: 3px 7px 9px 1px rgba(236,106,142, 0.4);padding: 20rpx;background-color:white;margin-top: 20rpx;">
             <!-- 标题 -->
             <view style="display: flex; justify-content:space-between;letter-spacing: 5rpx;font-size: 30rpx; border-bottom: 2rpx solid #ec6a8fcb;padding-bottom: 10rpx; ">
                 <text>{{today}}|第{{currentWeek}}周|{{dayOfWeek}}</text>

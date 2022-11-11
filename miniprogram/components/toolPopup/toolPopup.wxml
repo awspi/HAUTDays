@@ -8,7 +8,7 @@ position="top"
 custom-style="height: 20%;width:100%"
 bind:close="onClose"
 >
-<text style="margin-top: 100rpx; display: block; text-align: center;font-size: 32rpx;color: #EC6A8E;font-weight: 800;">HAUTDays</text>
+<text style="margin-top: 100rpx; display: block; text-align: center;font-size: 32rpx;color: #EC6A8E;font-weight: 800;">HAUT DAYS</text>
 <view style="padding-top: 20rpx;">
 <van-grid clickable border="{{ false }}"
 icon-size="32px">

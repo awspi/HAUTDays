@@ -5,7 +5,7 @@ enhanced style="width:100vw;height:97vh;background-color: #fafafa;">
         <view style="height: 120rpx; "/>
         <view style="display: flex;align-items: center;padding-bottom: 10rpx; margin-left: 30rpx;">
             <van-icon name="arrow-left" color="white" size="36rpx" style="padding: 15rpx;" bind:click="onNaviBack"/>
-            <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">考试安排 | HAUTDays</view>    
+            <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">考试安排 | HAUTDAYS</view>    
         </view>
     </view>
     <!-- options -->

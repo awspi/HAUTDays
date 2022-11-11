@@ -12,7 +12,7 @@
     "window": {
         "navigationBarBackgroundColor": "#ff8198",
         "navigationBarTextStyle": "white",
-        "navigationBarTitleText": "HAUTDays|河工大教务",
+        "navigationBarTitleText": "HAUTDAYS|河工大教务",
         "backgroundColor": "#eeeeee",
         "navigationStyle": "custom",
         "enablePullDownRefresh": false

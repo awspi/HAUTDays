@@ -27,13 +27,19 @@ const colorArr=[
  */
 function genCardStyle(lesson,index){
     const {timeRange,dayOfWeek}=lesson
-    const height=(timeRange[1]-timeRange[0]+1)*9
+    // const height=(timeRange[1]-timeRange[0]+1)*9
+    const height=`calc(100%/11*${(timeRange[1]-timeRange[0]+1)})`
+    
     const tem=timeRange[0]-1
-    const top=(tem>2?tem+1:tem)*9
-    const left=(dayOfWeek-1)*14.2857
+    // const top=(tem>2?tem+1:tem)*9
+    const top=`calc(100%/11*${(tem>2?tem+1:tem)})`
+
+    // const left=(dayOfWeek-1)*14.2857
+    const left=`calc(100%/7*${(dayOfWeek-1)})`
+    
     return Object.assign(lesson,{
         style:`
-        top:${top}%;left:${left}%;height:${height}%;
+        top:${top};left:${left};height:${height};
         background-color:rgba(${colorArr[index%20]},var(--card-opacity));`
     })
 }

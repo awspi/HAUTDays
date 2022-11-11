@@ -45,10 +45,16 @@ const colorArr=[
 ]
 function genCardStyle(lesson,index,random=false){
     const {timeRange,dayOfWeek}=lesson
-    const height=(timeRange[1]-timeRange[0]+1)*9
+    // const height=(timeRange[1]-timeRange[0]+1)*9
+    const height=`calc(100%/11*${(timeRange[1]-timeRange[0]+1)})`
+    
     const tem=timeRange[0]-1
-    const top=(tem>2?tem+1:tem)*9
-    const left=(dayOfWeek-1)*14.2857
+    // const top=(tem>2?tem+1:tem)*9
+    const top=`calc(100%/11*${(tem>2?tem+1:tem)})`
+
+    // const left=(dayOfWeek-1)*14.2857
+    const left=`calc(100%/7*${(dayOfWeek-1)})`
+
     let color=""
     if(random){
         color=getRandomColor()
@@ -56,9 +62,10 @@ function genCardStyle(lesson,index,random=false){
         color=colorArr[index%20]
     }
     console.log(color);
+    
     return Object.assign(lesson,{
         style:`
-        top:${top}%;left:${left}%;height:${height}%;
+        top:${top};left:${left};height:${height};
         background-color:rgba(${colorArr[index%20]},var(--card-opacity));`
     })
 }
@@ -70,7 +77,15 @@ function getRandomColor() {
       color = color.length == 1 ? '0' + color : color
       rgb.push(color)
     }
-    return '#' + rgb.join('')
+
+    return hexToRgba('#' + rgb.join(''))
+}
+function hexToRgba(hex, opacity) {
+    if (!hex) hex = '#ededed';
+    let rgba = parseInt('0x' + hex.slice(1,3)) + ',' +
+        parseInt('0x' + hex.slice(3,5)) + ',' +
+        parseInt('0x' + hex.slice(5,7)) 
+    return rgba
 }
 /**
  * 

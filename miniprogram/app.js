@@ -29,6 +29,8 @@ App({
     !wx.getStorageSync('style')&&wx.setStorageSync('style', {blur:0,opacity:1})
     !wx.getStorageSync('style_bgUrl')&&wx.setStorageSync('style_bgUrl', "")
     // 登录
+    //bg
+    
 
     wx.login({
       success: res => {

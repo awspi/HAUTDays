@@ -16,21 +16,17 @@
             </view>
         </view>
     </view>
-    <!-- 下拉显示 -->
-    <view style="flex: 1;height: 1px;position: relative;" >
+
     <!-- 选择周数 -->
     <view class="bg-theme" style="position: relative;">
-    <week-selecter show="{{isSwitchingWeek}}" 
+        <week-selecter show="{{isSwitchingWeek}}" 
         totalWeeks="{{totalLessons.length}}"
         current="{{showWeek-1}}"
-        bindchange="onChangeWeek"></week-selecter>
+        bindchange="onChangeWeek"/>
     </view>
-    <!-- 主页面 -->
     <!-- 星期 行 -->
     <view class="week bg-theme">
-        <text style="flex-shrink: 0; align-items: center; line-height: 24rpx; padding-left: 10rpx; ">
-        {{showMonth}}月
-        </text>
+        <view style="text-align: center;width: 8%; margin: auto;">{{showMonth}}月</view>
         <view wx:for="{{weeks}}" wx:key="item" class="week_date">
             <text>{{ item }}</text>
             <text style=" font-size: 21rpx;  "
@@ -38,21 +34,23 @@
             >{{showWeekDates[index]}}</text>
         </view>
     </view>
+    <!-- 下拉显示 -->
+    <view style="flex: 1;height: 1px;position: relative;" >
     <!-- 一天时间 列 -->
     <view class="left">
         <view wx:for="{{courseTime}}" wx:key="courseTime" class="left-item">
         <block wx:if="{{index!==4}}">
             <text 
-            style="position:absolute;left:4rpx;top:5rpx;color: #999999;font-size: 20rpx;">{{ item[0] }}</text>
-            <text hidden="{{index === 4}}" style="font-size: 25rpx;">
+            style="position:absolute;left:3rpx;top:5rpx;color: #999999;font-size: 20rpx;">{{ item[0] }}</text>
+            <text hidden="{{index === 4}}" style="font-size: 25rpx;text-shadow: 1rpx 1rpx 1rpx rgba(0, 0, 0, 0.349);">
                 {{ index < 4 ? index + 1 : index }}
             </text>
             <text 
-            style="position:absolute;left:4rpx;bottom:5rpx;color: #999999;font-size: 20rpx;">{{ item[1] }}</text>
+            style="position:absolute;left:3rpx;bottom:5rpx;color: #999999;font-size: 20rpx;">{{ item[1] }}</text>
         </block>
         <text 
             wx:else
-            style="display:block;color: #EC6A8E;font-weight: 800; font-size: 25rpx;margin-top: 50%;">{{ item }}</text>
+            style="display:block;color: #EC6A8E;font-weight: 800; font-size: 25rpx;margin-top: 50%;text-shadow: -1rpx 1rpx 1rpx #EC6A8E;">{{ item }}</text>
         </view>
     </view>
     <!-- 课表 页 -->
