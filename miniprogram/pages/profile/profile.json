@@ -1,9 +1,9 @@
 {
-    "usingComponents": {
-        "van-icon": "@vant/weapp/icon/index",
-        "van-cell": "@vant/weapp/cell/index",
-        "van-cell-group": "@vant/weapp/cell-group/index",
-        "van-popup": "@vant/weapp/popup/index",
-        "van-toast": "@vant/weapp/toast/index"
-    }
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-toast": "@vant/weapp/toast/index"
+  }
 }

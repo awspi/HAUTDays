@@ -1,7 +1,1 @@
-<van-nav-bar
-title-class="nav"
-  title="{{title}}"
-  left-text="返回"
-  left-arrow
-  bind:click-left="onClickLeft"
-/>
+<van-nav-bar title-class="nav" title="{{title}}" left-text="返回" left-arrow bind:click-left="onClickLeft" />

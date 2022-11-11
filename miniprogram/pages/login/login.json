@@ -1,11 +1,11 @@
 {
-    "usingComponents": {
-        "van-field": "@vant/weapp/field/index",
-        "van-icon": "@vant/weapp/icon/index",
-        "van-cell": "@vant/weapp/cell/index",
-        "van-cell-group": "@vant/weapp/cell-group/index",
-        "van-button": "@vant/weapp/button/index",
-        "van-toast": "@vant/weapp/toast/index",
-        "nav-bar":"../../components/navBar/navBar"
-    }
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "nav-bar": "../../components/navBar/navBar"
+  }
 }

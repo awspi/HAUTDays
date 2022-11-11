@@ -1,5 +1,3 @@
 <van-action-sheet show="{{ show }}" z-index="{{300}}">
-    <van-picker show-toolbar columns="{{ columns }}" bind:change="onChange"  
-    id="picker"
-    bind:cancel="onCancel" bind:confirm="onConfirm"/>
+    <van-picker show-toolbar columns="{{ columns }}" bind:change="onChange" id="picker" bind:cancel="onCancel" bind:confirm="onConfirm" />
 </van-action-sheet>

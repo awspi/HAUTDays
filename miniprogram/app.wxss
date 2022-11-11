@@ -1,15 +1,15 @@
 page {
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-      Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
-      sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB',
+    'Microsoft Yahei', sans-serif;
 }
-.bg-theme{
-    background-color: #EC6A8E;
+.bg-theme {
+  background-color: #ec6a8e;
 }
-.bg-grary-scale{
-    background-color: #eeeeee;
-    transform: scale(0.99);
+.bg-grary-scale {
+  background-color: #eeeeee;
+  transform: scale(0.99);
 }
-.box-shadow-gary{
-    box-shadow:1rpx 1rpx 10rpx rgba(0, 0, 0, .1) ; 
+.box-shadow-gary {
+  box-shadow: 1rpx 1rpx 10rpx rgba(0, 0, 0, 0.1);
 }

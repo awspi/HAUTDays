@@ -1,12 +1,12 @@
 /* pages/home/home.wxss */
-.cell{
-    margin-top: 10rpx;
-    background:none;
-    padding-left:10rpx!important;
-    padding-right: 10rpx!important;
+.cell {
+  margin-top: 10rpx;
+  background: none;
+  padding-left: 10rpx !important;
+  padding-right: 10rpx !important;
 }
-.cell-title{
-    overflow-x: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis!important;
+.cell-title {
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
 }

@@ -1,12 +1,10 @@
 <!--components/weekSelecter/weekSelecter.wxml-->
 <view hidden="{{!show}}">
-<scroll-view scroll-x class="container" 
-    scroll-into-view="{{firstId}}">
-    <view id="{{'id'+item}}" wx:for="{{totalWeeks}}" wx:key="*this" class="item"
-    style="{{item===current?'font-weight:700;':''}}">
-    <view bindtap="onSwiperChange" data-current="{{item}}" >
-    <text>第{{item+1}}周</text>
-    </view>
-    </view>
-</scroll-view>
+    <scroll-view scroll-x class="container" scroll-into-view="{{firstId}}">
+        <view id="{{'id'+item}}" wx:for="{{totalWeeks}}" wx:key="*this" class="item" style="{{item===current?'font-weight:700;':''}}">
+            <view bindtap="onSwiperChange" data-current="{{item}}">
+                <text>第{{item+1}}周</text>
+            </view>
+        </view>
+    </scroll-view>
 </view>

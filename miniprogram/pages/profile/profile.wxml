@@ -1,48 +1,39 @@
 <view style="position: fixed;height: 100%; width: 100%; left: 0; top: 0;">
     <view style="background-color: #ebdee1; height: 100vh;">
-<view style="height: 120rpx;"/>
-<view style="margin-left: 50rpx;margin-bottom: 10rpx; font-size: 36rpx; color:#EC6A8E;text-shadow: 1rpx 1rpx 4rpx rgb(255, 255, 255);font-weight: 800;flex-shrink: 1;">HAUT DAYS</view>  
-    <view class="profile_card">
-        <view style="display: flex; height: 100%;">
-            <image src="{{profile.avatarUrl}}" 
-            mode="scaleToFill"
-            class="avatar"
-            ></image>
-            <view class="desc" >
-                <text>{{profile.class}}</text>
-                <text>{{profile.college}}</text>
+        <view style="height: 120rpx;" />
+        <view style="margin-left: 50rpx;margin-bottom: 10rpx; font-size: 36rpx; color:#EC6A8E;text-shadow: 1rpx 1rpx 4rpx rgb(255, 255, 255);font-weight: 800;flex-shrink: 1;">HAUT DAYS</view>
+        <view class="profile_card">
+            <view style="display: flex; height: 100%;">
+                <image src="{{profile.avatarUrl}}" mode="scaleToFill" class="avatar"></image>
+                <view class="desc">
+                    <text>{{profile.class}}</text>
+                    <text>{{profile.college}}</text>
+                </view>
             </view>
+            <view class="student_name">
+                <text>{{profile.name}}</text>
+                <text wx:if="{{profile.xh==='201926010802'}}">♡</text>
+            </view>
+            <view class="student_xh">
+                <text>{{profile.xh}}</text>
+            </view>
+            <!-- icon -->
+            <van-icon name="info" size="45rpx" color="white" bindtap="onRefreshHandler" custom-style="position:fixed; right:50rpx;top:40rpx;" />
         </view>
-        <view class="student_name">
-        <text>{{profile.name}}</text>
-        <text wx:if="{{profile.xh==='201926010802'}}">♡</text>
-        </view>
-        <view class="student_xh">
-        <text>{{profile.xh}}</text>
-        </view>
-        <!-- icon -->
-        <van-icon name="info" size="45rpx" color="white" 
-        bindtap="onRefreshHandler"
-        custom-style="position:fixed; right:50rpx;top:40rpx;" />
+        <!-- cell -->
+        <van-cell-group inset>
+            <block wx:for="{{menus}}" wx:key="icon">
+                <van-cell clickable is-link bind:click="showPopup" data-title="{{item.title}}" url="{{item.url}}" icon="{{item.icon}}" label="{{item.label}}" value="{{item.value}}">
+                    <!-- open-type -->
+                    <button slot="title" open-type="{{item.openType}}" class="inline-button van-cell-text">{{item.title}}</button>
+                </van-cell>
+            </block>
+        </van-cell-group>
+
     </view>
-<!-- cell -->
-<van-cell-group inset>
-<block  wx:for="{{menus}}" wx:key="icon">
-    <van-cell clickable is-link
-    bind:click="showPopup"
-    data-title="{{item.title}}"
-    url="{{item.url}}"
-    icon="{{item.icon}}" label="{{item.label}}" value="{{item.value}}">
-    <!-- open-type -->
-    <button slot="title" open-type="{{item.openType}}" class="inline-button van-cell-text">{{item.title}}</button>
-    </van-cell>
-</block>
-</van-cell-group>
-
-</view>
 </view>
 
-<van-popup show="{{ isPopupShow }}" bind:close="onClose" round custom-style="width:92vw;padding:10rpx 30rpx;max-height:70vh;min-height:40vh" >
-<rich-text nodes="{{popupContent}}"/>
+<van-popup show="{{ isPopupShow }}" bind:close="onClose" round custom-style="width:92vw;padding:10rpx 30rpx;max-height:70vh;min-height:40vh">
+    <rich-text nodes="{{popupContent}}" />
 </van-popup>
 <van-toast id="van-toast" />

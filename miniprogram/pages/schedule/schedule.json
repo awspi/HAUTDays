@@ -1,10 +1,10 @@
 {
-    "usingComponents": {
-        "van-icon": "@vant/weapp/icon/index",
-        "van-dialog": "@vant/weapp/dialog/index",
-        "detail-card":"../../components/detailCard/detailCard",
-        "week-selecter":"../../components/weekSelecter/weekSelecter",
-        "add-lesson-dialog":"../../components/addLessonDialog/addLessonDialog",
-        "tool-popup":"../../components/toolPopup/toolPopup"
-      }
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "detail-card": "../../components/detailCard/detailCard",
+    "week-selecter": "../../components/weekSelecter/weekSelecter",
+    "add-lesson-dialog": "../../components/addLessonDialog/addLessonDialog",
+    "tool-popup": "../../components/toolPopup/toolPopup"
+  }
 }

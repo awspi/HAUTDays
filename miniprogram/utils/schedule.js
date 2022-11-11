@@ -1,4 +1,4 @@
-import {getTotalWeeks} from './time'
+import { getTotalWeeks } from './time'
 // const colorArr=[
 //     '#99CCFF',
 //     '#FFCC99',
@@ -21,103 +21,107 @@ import {getTotalWeeks} from './time'
 //     '#CCCC99',
 //     '#FF9999'
 // ]
-const colorArr=[
-    "153,204,255",
-    "255,204,153",
-    "255,204,204",
-    "204,102,153",
-    "153,204,204",
-    "255,102,102",
-    "204,204,102",
-    "102,204,153",
-    "255,153,102",
-    "102,204,204",
-    "102,153,204",
-    "153,204,153",
-    "102,153,102",
-    "153,204,153",
-    "153,204,204",
-    "102,204,255",
-    "204,204,255",
-    "153,204,102",
-    "204,204,153",
-    "255,153,153"
+const colorArr = [
+  '153,204,255',
+  '255,204,153',
+  '255,204,204',
+  '204,102,153',
+  '153,204,204',
+  '255,102,102',
+  '204,204,102',
+  '102,204,153',
+  '255,153,102',
+  '102,204,204',
+  '102,153,204',
+  '153,204,153',
+  '102,153,102',
+  '153,204,153',
+  '153,204,204',
+  '102,204,255',
+  '204,204,255',
+  '153,204,102',
+  '204,204,153',
+  '255,153,153'
 ]
-function genCardStyle(lesson,index,random=false){
-    const {timeRange,dayOfWeek}=lesson
-    // const height=(timeRange[1]-timeRange[0]+1)*9
-    const height=`calc(100%/11*${(timeRange[1]-timeRange[0]+1)})`
-    
-    const tem=timeRange[0]-1
-    // const top=(tem>2?tem+1:tem)*9
-    const top=`calc(100%/11*${(tem>2?tem+1:tem)})`
+function genCardStyle(lesson, index, random = false) {
+  const { timeRange, dayOfWeek } = lesson
+  // const height=(timeRange[1]-timeRange[0]+1)*9
+  const height = `calc(100%/11*${timeRange[1] - timeRange[0] + 1})`
 
-    // const left=(dayOfWeek-1)*14.2857
-    const left=`calc(100%/7*${(dayOfWeek-1)})`
+  const tem = timeRange[0] - 1
+  // const top=(tem>2?tem+1:tem)*9
+  const top = `calc(100%/11*${tem > 2 ? tem + 1 : tem})`
 
-    let color=""
-    if(random){
-        color=getRandomColor()
-    }else{
-        color=colorArr[index%20]
-    }
-    
-    return Object.assign(lesson,{
-        style:`
+  // const left=(dayOfWeek-1)*14.2857
+  const left = `calc(100%/7*${dayOfWeek - 1})`
+
+  let color = ''
+  if (random) {
+    color = getRandomColor()
+  } else {
+    color = colorArr[index % 20]
+  }
+
+  return Object.assign(lesson, {
+    style: `
         top:${top};left:${left};height:${height};
         background-color:rgba(${color},var(--card-opacity));`
-    })
+  })
 }
 function hexToRgba(hex) {
-    if (!hex) hex = '#ededed';
-    let rgba = parseInt('0x' + hex.slice(1,3)) + ',' +
-        parseInt('0x' + hex.slice(3,5)) + ',' +
-        parseInt('0x' + hex.slice(5,7)) 
-    return rgba
+  if (!hex) hex = '#ededed'
+  let rgba =
+    parseInt('0x' + hex.slice(1, 3)) +
+    ',' +
+    parseInt('0x' + hex.slice(3, 5)) +
+    ',' +
+    parseInt('0x' + hex.slice(5, 7))
+  return rgba
 }
 function getRandomColor() {
-    let rgb = []
-    for (let i = 0; i < 3; ++i) {
-      let color = Math.floor(Math.random() * 256).toString(16)
-      color = color.length == 1 ? '0' + color : color
-      rgb.push(color)
-    }
-    const res=hexToRgba('#' + rgb.join(''))
-    return res
+  let rgb = []
+  for (let i = 0; i < 3; ++i) {
+    let color = Math.floor(Math.random() * 256).toString(16)
+    color = color.length == 1 ? '0' + color : color
+    rgb.push(color)
+  }
+  const res = hexToRgba('#' + rgb.join(''))
+  return res
 }
 
 /**
- * 
+ *
  * 保存自定义课程
  * 处理 weekArr->weekRange
  */
-function saveCustomLesson(rawinfo,index){
-    const styled= genCardStyle(rawinfo,index)
-    console.log(styled);
-    const lessons=app.globalData.lessons
-    for(let i=0;i<styled.activeWeeks.length;i++){
-        lessons[styled.activeWeeks[i]-1].push(styled)
-    }
-    app.globalData.lessons=lessons
+function saveCustomLesson(rawinfo, index) {
+  const styled = genCardStyle(rawinfo, index)
+  console.log(styled)
+  const lessons = app.globalData.lessons
+  for (let i = 0; i < styled.activeWeeks.length; i++) {
+    lessons[styled.activeWeeks[i] - 1].push(styled)
+  }
+  app.globalData.lessons = lessons
 }
-
 
 /**
  * 把lessons按照周数分类
- * @param {*} termRange 
- * @param {*} lessons 
+ * @param {*} termRange
+ * @param {*} lessons
  */
-function assortLessons(termRange,lessons){
+function assortLessons(termRange, lessons) {
   //? 生成二维数组
-  const totalWeeks=getTotalWeeks(termRange[0],termRange[1])
+  const totalWeeks = getTotalWeeks(termRange[0], termRange[1])
   const lessons_assorted = []
   for (let i = 1; i <= totalWeeks; i++) {
-    lessons_assorted[i-1] = lessons.filter(item => i >= item.weekRange[0] && i <= item.weekRange[1])
+    lessons_assorted[i - 1] = lessons.filter(
+      (item) => i >= item.weekRange[0] && i <= item.weekRange[1]
+    )
   }
   return lessons_assorted
 }
-module.exports={
-    genCardStyle,
-    assortLessons,
-    saveCustomLesson
+module.exports = {
+  genCardStyle,
+  assortLessons,
+  saveCustomLesson
 }

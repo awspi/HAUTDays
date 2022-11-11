@@ -1,36 +1,33 @@
 <!--components/detailCard/detailCard.wxml-->
-<van-popup bind:close="onClose" 
-    show="{{ isDetailCardVisible }}"
-    custom-style="width:80%;overflow: hidden;"
->
-<view>
-    <view class="title">{{lesson.name}}</view>
-    <view style="background-color: #f7f7f7; height: 100%;">
-        <view class="item">
-        <text>上课时间</text>
-        <text>{{lesson.time}}</text>
-        </view>
-        <view class="item">
-        <text>上课地点</text>
-        <text>{{lesson.classroom}}</text>
-        </view>
-        <view class="item">
-        <text>授课老师</text>
-        <text>{{lesson.teacher_name}}</text>
-        </view>
-        <view class="item">
-        <text>学分</text>
-        <text>{{lesson.credit}}</text>
-        </view>
-        <view class="item">
-        <text>上课周次</text>
-        <block>
-        <!--  -->
-        <text>{{lesson.activeWeeks}}周</text>
-        <!-- <text wx:if="{{lesson.weekArr}}" >{{lesson.weekArr}}周</text>
+<van-popup bind:close="onClose" show="{{ isDetailCardVisible }}" custom-style="width:80%;overflow: hidden;">
+    <view>
+        <view class="title">{{lesson.name}}</view>
+        <view style="background-color: #f7f7f7; height: 100%;">
+            <view class="item">
+                <text>上课时间</text>
+                <text>{{lesson.time}}</text>
+            </view>
+            <view class="item">
+                <text>上课地点</text>
+                <text>{{lesson.classroom}}</text>
+            </view>
+            <view class="item">
+                <text>授课老师</text>
+                <text>{{lesson.teacher_name}}</text>
+            </view>
+            <view class="item">
+                <text>学分</text>
+                <text>{{lesson.credit}}</text>
+            </view>
+            <view class="item">
+                <text>上课周次</text>
+                <block>
+                    <!--  -->
+                    <text>{{lesson.activeWeeks}}周</text>
+                    <!-- <text wx:if="{{lesson.weekArr}}" >{{lesson.weekArr}}周</text>
         <text wx:else="" >{{lesson.weekRange[0]}}-{{lesson.weekRange[1]}}周</text> -->
-        </block>
+                </block>
+            </view>
         </view>
     </view>
-</view>
 </van-popup>

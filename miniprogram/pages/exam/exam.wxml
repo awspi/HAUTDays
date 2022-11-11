@@ -1,11 +1,10 @@
-<scroll-view scroll-y  show-scrollbar="{{false}}" bounces="{{false}}"
-enhanced style="width:100vw;height:97vh;background-color: #fafafa;">
+<scroll-view scroll-y show-scrollbar="{{false}}" bounces="{{false}}" enhanced style="width:100vw;height:97vh;background-color: #fafafa;">
     <!-- navi -->
     <view style="background-color: #EC6A8E;position: sticky;top: 0;">
-        <view style="height: 120rpx; "/>
+        <view style="height: 120rpx; " />
         <view style="display: flex;align-items: center;padding-bottom: 10rpx; margin-left: 30rpx;">
-            <van-icon name="arrow-left" color="white" size="36rpx" style="padding: 15rpx;" bind:click="onNaviBack"/>
-            <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">考试安排 | HAUTDAYS</view>    
+            <van-icon name="arrow-left" color="white" size="36rpx" style="padding: 15rpx;" bind:click="onNaviBack" />
+            <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">考试安排 | HAUTDAYS</view>
         </view>
     </view>
     <!-- options -->
@@ -14,35 +13,30 @@ enhanced style="width:100vw;height:97vh;background-color: #fafafa;">
     </view>
     <!-- main -->
 
-    <block wx:for="{{examsArrange}}" 
-        wx:for-item="list" 
-        wx:for-index="term" 
-        wx:key="term">
+    <block wx:for="{{examsArrange}}" wx:for-item="list" wx:for-index="term" wx:key="term">
         <view>
-        <van-divider contentPosition="center" custom-style="margin:5rpx 0;color:#464646;font-size:16px">{{term}}</van-divider>
-        <view style="margin: 0 40rpx;">
-            <view wx:for="{{list}}"
-            style="display: flex;flex-direction: column;background-color: #fff;border-radius: 6rpx;margin-bottom: 20rpx;padding: 5rpx 30rpx;box-shadow: 1rpx 2rpx 5rpx 2rpx pink;" 
-            wx:for-item="subject" wx:key="index">
-            <!-- name -->
-            <view style="text-align: center;font-size: 32rpx;margin: 10rpx 0;font-size: 36rpx;font-weight: 800;color: #464646;">{{subject.name}}</view>
-            <!-- 考试时间 -->
-            <view style="display: flex;justify-content: space-evenly;align-items: center; border-bottom: 1rpx dashed #969696;padding: 10rpx 0;">
-                <text style="margin-right: 50rpx;color: #696969;">考试时间</text>
-                <text style="flex: 1;">{{subject.date}}</text>
+            <van-divider contentPosition="center" custom-style="margin:5rpx 0;color:#464646;font-size:16px">{{term}}</van-divider>
+            <view style="margin: 0 40rpx;">
+                <view wx:for="{{list}}" style="display: flex;flex-direction: column;background-color: #fff;border-radius: 6rpx;margin-bottom: 20rpx;padding: 5rpx 30rpx;box-shadow: 1rpx 2rpx 5rpx 2rpx pink;" wx:for-item="subject" wx:key="index">
+                    <!-- name -->
+                    <view style="text-align: center;font-size: 32rpx;margin: 10rpx 0;font-size: 36rpx;font-weight: 800;color: #464646;">{{subject.name}}</view>
+                    <!-- 考试时间 -->
+                    <view style="display: flex;justify-content: space-evenly;align-items: center; border-bottom: 1rpx dashed #969696;padding: 10rpx 0;">
+                        <text style="margin-right: 50rpx;color: #696969;">考试时间</text>
+                        <text style="flex: 1;">{{subject.date}}</text>
+                    </view>
+                    <!-- 考试地点 -->
+                    <view style="display: flex;justify-content: space-evenly;align-items: center;border-bottom: 1rpx dashed #969696;padding: 10rpx 0;">
+                        <text style="margin-right: 50rpx;color: #696969;">考试地点</text>
+                        <text style="flex: 1;">{{subject.classroom}}</text>
+                    </view>
+                    <!-- 考场座号 -->
+                    <view style="display: flex;justify-content: space-evenly;padding: 10rpx 0;align-items: center;">
+                        <text style="margin-right: 50rpx;color: #696969;">考场座号</text>
+                        <text style="flex: 1;">{{subject.seat}}</text>
+                    </view>
+                </view>
             </view>
-            <!-- 考试地点 -->
-            <view style="display: flex;justify-content: space-evenly;align-items: center;border-bottom: 1rpx dashed #969696;padding: 10rpx 0;">
-                <text style="margin-right: 50rpx;color: #696969;">考试地点</text>
-                <text style="flex: 1;">{{subject.classroom}}</text>
-            </view>
-            <!-- 考场座号 -->
-            <view style="display: flex;justify-content: space-evenly;padding: 10rpx 0;align-items: center;">
-                <text style="margin-right: 50rpx;color: #696969;">考场座号</text>
-                <text style="flex: 1;">{{subject.seat}}</text>
-            </view>
-            </view>
-        </view>
         </view>
     </block>
 

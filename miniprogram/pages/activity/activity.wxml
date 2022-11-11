@@ -1,13 +1,13 @@
 <view catchtouchmove='true' style="display: flex;flex-direction: column;height: 100vh;overflow: hidden; background-color: #fafafa;">
     <view style="background-color: #EC6A8E;flex-shrink: 1;">
-        <view style="height: 120rpx; "/>
+        <view style="height: 120rpx; " />
         <view style="display: flex;align-items: center;padding-bottom: 10rpx; margin-left: 30rpx;">
             <van-icon name="arrow-left" color="white" size="36rpx" bind:click="onNaviBack" style="padding: 15rpx;" />
-            <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">一些活动 | HAUTDAYS</view>    
+            <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">一些活动 | HAUTDAYS</view>
         </view>
     </view>
     <!-- main -->
     <view style="flex:1;height: 1px;">
-        
+
     </view>
 </view>

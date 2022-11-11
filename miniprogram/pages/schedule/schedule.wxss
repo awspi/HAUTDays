@@ -1,122 +1,112 @@
 /* pages/schedule/schedule.wxss */
 
-
-
-
 /* 自定义导航栏 */
-.bg-theme{
-    background-color: #EC6A8E;
+.bg-theme {
+  background-color: #ec6a8e;
 }
 .navbar {
-	height: 65rpx;
-    display: flex;
-    position: relative;
-    padding-bottom: 15rpx;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-    font-size: 28rpx;
-    color: white;
+  height: 65rpx;
+  display: flex;
+  position: relative;
+  padding-bottom: 15rpx;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 28rpx;
+  color: white;
 }
 .popup {
-	position: absolute;
-	left: 30rpx;
-	margin-bottom: 10rpx;
-	z-index: 999;
+  position: absolute;
+  left: 30rpx;
+  margin-bottom: 10rpx;
+  z-index: 999;
 }
 .week {
-	display: flex;
-    font-size: 24rpx;
-    width: 100%;
-    flex-wrap: nowrap;
-    height: 5%;
-    color: white;
+  display: flex;
+  font-size: 24rpx;
+  width: 100%;
+  flex-wrap: nowrap;
+  height: 5%;
+  color: white;
 }
 .week_date {
-    position: relative;
-	width: 14%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-    justify-content: center;
+  position: relative;
+  width: 14%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 课表左侧 */
-.left  {
-    position: relative;
-    left: 0;
-    /* top: 0; */
-    width: 8%;
-    height: 100%;
-    bottom: 0;
-	display: flex;
-	flex-direction: column;
-    align-items: center;
-    font-size: 20rpx;
-    text-align: center;
+.left {
+  position: relative;
+  left: 0;
+  /* top: 0; */
+  width: 8%;
+  height: 100%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20rpx;
+  text-align: center;
 
-
-    /* background-color: aqua; */
+  /* background-color: aqua; */
 }
-.left-item{
-
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    height: calc(100%/11);
-    border-top: 1rpx dotted #f0a8bcb7;
-    border-right: 1rpx dotted #f0a8bcb7;
-    text-shadow: -1rpx 1rpx 1rpx black;
-    /* background-color:#fff5f8; */
-    /* color: #EC6A8E; */
-
+.left-item {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100% / 11);
+  border-top: 1rpx dotted #f0a8bcb7;
+  border-right: 1rpx dotted #f0a8bcb7;
+  text-shadow: -1rpx 1rpx 1rpx black;
+  /* background-color:#fff5f8; */
+  /* color: #EC6A8E; */
 }
-
 
 /* 课表右侧 */
 .right {
-    box-sizing: border-box;
-    width: 100%;
-    padding-left: 8%;
-    height: 100%; 
-    position: absolute; 
-    left: 0; 
-    width: 100%;
-    bottom: 0;
-	display: flex;
-	flex-shrink: 0;
-    font-weight: bolder;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 8%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  flex-shrink: 0;
+  font-weight: bolder;
 }
 
-
 .card {
-    box-shadow: 1rpx -1rpx 5rpx 1rpx rgba(0,0,0,0.53);
-    position: absolute;
-	width: 14%;
-    color: white;
-    text-shadow: 2rpx 2rpx 4rpx #000;
-	font-size: 22rpx;
-	padding: 6rpx 3rpx 0;
-	word-break: break-word;
-	box-sizing: border-box;
-    overflow-y: hidden;
-    border-radius: 7%;
-    /* opacity: var(--card-opacity); */
-    
+  box-shadow: 1rpx -1rpx 5rpx 1rpx rgba(0, 0, 0, 0.53);
+  position: absolute;
+  width: 14%;
+  color: white;
+  text-shadow: 2rpx 2rpx 4rpx #000;
+  font-size: 22rpx;
+  padding: 6rpx 3rpx 0;
+  word-break: break-word;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  border-radius: 7%;
+  /* opacity: var(--card-opacity); */
 }
 
 /* css变量实现动态背景图片和blur */
-.background::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: no-repeat center var(--bg-img-url);
-    background-size:cover ;
-    filter: blur(var(--bg-img-blur));
-    z-index: -1;
-    
+.background::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: no-repeat center var(--bg-img-url);
+  background-size: cover;
+  filter: blur(var(--bg-img-blur));
+  z-index: -1;
 }

@@ -1,7 +1,7 @@
-.title{
-    display: inline-block;
-    margin: 16rpx 0 32rpx;
-    color: rgba(69, 90, 100, 0.6);
-    font-weight: normal;
-    font-size: 32rpx;
+.title {
+  display: inline-block;
+  margin: 16rpx 0 32rpx;
+  color: rgba(69, 90, 100, 0.6);
+  font-weight: normal;
+  font-size: 32rpx;
 }

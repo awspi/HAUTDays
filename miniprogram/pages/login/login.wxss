@@ -1,29 +1,30 @@
-.container::after{
-    position: absolute;
-    left: 0;top: 0;
-    bottom: 0;right: 0;
-    content: '';
-    background: no-repeat center  url("https://img9.vilipix.com/picture/pages/regular/2021/03/24/20/02/88855687_p0_master1200.jpg?x-oss-process=image/resize,m_fill,w_1000") ;
-    /* background-size:cover ; */
-    z-index: -1;
-    filter: blur(10px);
-    
+.container::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  content: '';
+  background: no-repeat center
+    url('https://img9.vilipix.com/picture/pages/regular/2021/03/24/20/02/88855687_p0_master1200.jpg?x-oss-process=image/resize,m_fill,w_1000');
+  /* background-size:cover ; */
+  z-index: -1;
+  filter: blur(10px);
 }
 
-.title{
-    color: white;
-    font-size: 120rpx;
-    font-weight: 700;
-    margin-left: 5%;
-    letter-spacing: 8rpx;
+.title {
+  color: white;
+  font-size: 120rpx;
+  font-weight: 700;
+  margin-left: 5%;
+  letter-spacing: 8rpx;
 }
-.login_box{
-    margin-top: 30rpx;
-    background: white;
-    
+.login_box {
+  margin-top: 30rpx;
+  background: white;
 }
-.submit_button{
-    margin: 20rpx 0 10rpx 0;
-    left: 50%;
-    transform: translateX(-50%);
+.submit_button {
+  margin: 20rpx 0 10rpx 0;
+  left: 50%;
+  transform: translateX(-50%);
 }

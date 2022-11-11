@@ -31,43 +31,43 @@ export const privacy = `<h2>隐私政策</h2>
 </ol>
 <p><strong>HAUTDAYS开发者对上述功能拥有最终解释权。</strong></p>
 `
-export const menus=[
-    {
-    icon:"manager",
-    title:"账户与数据",
-    label:"导入/更新课程表",
-    url:"/pages/login/login"
-},
-{
-    icon:"like",
-    title:"个性设置",
-    url:"",
-},
-{
-    icon:"comment-circle",
-    title:"意见反馈",
-    url:"",
-    openType:"feedback"
-},
-{
-    icon:"chat",
-    title:"联系客服",
-    url:"",
-    openType:"contact"
-},
-{
-    icon:"umbrella-circle",
-    title:"用户服务条款",
-    url:"",
-},
-{
-    icon:"more",
-    title:"关于",
-    value:"pithy",
-    url:"",
-},
+export const menus = [
+  {
+    icon: 'manager',
+    title: '账户与数据',
+    label: '导入/更新课程表',
+    url: '/pages/login/login'
+  },
+  {
+    icon: 'like',
+    title: '个性设置',
+    url: ''
+  },
+  {
+    icon: 'comment-circle',
+    title: '意见反馈',
+    url: '',
+    openType: 'feedback'
+  },
+  {
+    icon: 'chat',
+    title: '联系客服',
+    url: '',
+    openType: 'contact'
+  },
+  {
+    icon: 'umbrella-circle',
+    title: '用户服务条款',
+    url: ''
+  },
+  {
+    icon: 'more',
+    title: '关于',
+    value: 'pithy',
+    url: ''
+  }
 ]
-export const about=`
+export const about = `
 <h2>HAUT DAYS</h2>
 <p>"HAUTDAYS(学在工大)"是一款面向和河南工业大学的非学校官方的微信小程序版教务系统，集合了学生<strong>最常使用</strong>的功能。</p>
 

@@ -1,72 +1,71 @@
 .profile_card {
-    width: 90%;
-    height: 350rpx;
-    position: relative;
-    padding: 20rpx;
-    margin-bottom: 40rpx;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 20rpx;
-    box-shadow:5rpx 10rpx 20rpx 1rpx #e4829e;
-    left: 50%;
-    background-color: #EC6A8E;
-    color:white;
-    box-sizing: border-box;
+  width: 90%;
+  height: 350rpx;
+  position: relative;
+  padding: 20rpx;
+  margin-bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20rpx;
+  box-shadow: 5rpx 10rpx 20rpx 1rpx #e4829e;
+  left: 50%;
+  background-color: #ec6a8e;
+  color: white;
+  box-sizing: border-box;
 }
-.avatar{
-    width: 120rpx;
-    height: 120rpx;
-    /* position: relative; */
-    /* left: 20rpx;
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  /* position: relative; */
+  /* left: 20rpx;
     top: 30rpx; */
-    margin: 30rpx 10rpx 0 20rpx;
-    border-radius: 50%;
-    border: solid 7rpx white;
+  margin: 30rpx 10rpx 0 20rpx;
+  border-radius: 50%;
+  border: solid 7rpx white;
 }
 
-.desc{
-    display: flex;
-    flex-direction: column;
-    font-size: 30rpx;
-    font-weight:600;
-    margin-top: 50rpx;
-    letter-spacing:1rpx;
+.desc {
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 50rpx;
+  letter-spacing: 1rpx;
 }
 
-.student_name{
-    position: relative;
-    left: 15rpx;
-    bottom:80rpx;
-    font-size: 60rpx;
-    font-weight: bold;
-    letter-spacing:1rpx;
+.student_name {
+  position: relative;
+  left: 15rpx;
+  bottom: 80rpx;
+  font-size: 60rpx;
+  font-weight: bold;
+  letter-spacing: 1rpx;
 }
-.student_xh{
-    position: fixed;
-    right: 15rpx;
-    bottom:95rpx;
-    font-size: 78rpx;
-    font-weight: bold;
-    letter-spacing:1rpx;
-    font-style: italic;
-    color:rgba(255,255,255,0.4);
-}
-
-
-.inline-button{
-    position: relative;
-	margin:0;
-    padding:0;
-    border-radius:0;
-    border:none;
-    background-color:transparent;
-    text-align: left;
-    color: #323233;
-    line-height: 24px;
-    font-size: 14px;
-    z-index: 100;
+.student_xh {
+  position: fixed;
+  right: 15rpx;
+  bottom: 95rpx;
+  font-size: 78rpx;
+  font-weight: bold;
+  letter-spacing: 1rpx;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.inline-button::after{
-	border: none;
+.inline-button {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  color: #323233;
+  line-height: 24px;
+  font-size: 14px;
+  z-index: 100;
+}
+
+.inline-button::after {
+  border: none;
 }

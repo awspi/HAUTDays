@@ -1,48 +1,48 @@
 {
-    "pages": [
-        "pages/home/home",
-        "pages/schedule/schedule",
-        "pages/profile/profile",
-        "pages/login/login",
-        "pages/score/score",
-        "pages/exam/exam",
-        "pages/guidance/guidance",
-        "pages/activity/activity"
-    ],
-    "window": {
-        "navigationBarBackgroundColor": "#ff8198",
-        "navigationBarTextStyle": "white",
-        "navigationBarTitleText": "HAUTDAYS|河工大教务",
-        "backgroundColor": "#eeeeee",
-        "navigationStyle": "custom",
-        "enablePullDownRefresh": false
-    },
-    "tabBar": {
-        "color": "#000000",
-        "selectedColor": "#ff8198",
-        "backgroundColor": "",
-        "position": "bottom",
-        "borderStyle": "black",
-        "list": [
-            {
-                "pagePath": "pages/home/home",
-                "text": "首页",
-                "iconPath": "assets/tabBar/home.png",
-                "selectedIconPath": "assets/tabBar/home.png"
-            },
-            {
-                "pagePath": "pages/schedule/schedule",
-                "text": "课程表",
-                "iconPath": "assets/tabBar/schedule.png",
-                "selectedIconPath": "assets/tabBar/schedule.png"
-            },
-            {
-                "pagePath": "pages/profile/profile",
-                "text": "我",
-                "iconPath": "assets/tabBar/me.png",
-                "selectedIconPath": "assets/tabBar/me.png"
-            }
-        ]
-    },
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/home/home",
+    "pages/schedule/schedule",
+    "pages/profile/profile",
+    "pages/login/login",
+    "pages/score/score",
+    "pages/exam/exam",
+    "pages/guidance/guidance",
+    "pages/activity/activity"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ff8198",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "HAUTDAYS|河工大教务",
+    "backgroundColor": "#eeeeee",
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#ff8198",
+    "backgroundColor": "",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "assets/tabBar/home.png",
+        "selectedIconPath": "assets/tabBar/home.png"
+      },
+      {
+        "pagePath": "pages/schedule/schedule",
+        "text": "课程表",
+        "iconPath": "assets/tabBar/schedule.png",
+        "selectedIconPath": "assets/tabBar/schedule.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我",
+        "iconPath": "assets/tabBar/me.png",
+        "selectedIconPath": "assets/tabBar/me.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }
