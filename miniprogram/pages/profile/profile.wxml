@@ -18,7 +18,8 @@
                 <text>{{profile.xh}}</text>
             </view>
             <!-- icon -->
-            <van-icon name="info" size="45rpx" color="white" bindtap="onRefreshHandler" custom-style="position:fixed; right:50rpx;top:40rpx;" />
+            <van-button icon="info" type="primary" custom-style="color:;position:fixed; right:50rpx;top:40rpx;font-size:45rpx;background:transparent !important;border:none !important;border-radius:50%;padding:15px 10px !important;" custom-class="inline-button" open-type="chooseAvatar" bindchooseavatar="getAvatarUrl" />
+            <!-- <van name="info" size="45rpx" color="white" bindtap="onRefreshHandler" custom-style="" /> -->
         </view>
         <!-- cell -->
         <van-cell-group inset>

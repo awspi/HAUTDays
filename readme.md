@@ -18,6 +18,8 @@
 - Alpha ver.|1.4.5|style: 使用 prettier 格式化代码
 - Alpha ver.|1.4.6|refactor: 使用微信小程序分包;替换自定义构建后的 echarts.js
 - Alpha ver.|1.5.0|refactor: 使用 **uniCloud** 代替 微信云开发
+- Alpha ver.|1.5.1|refactor: 改用新的 open-type 获取用户头像
+- Alpha ver.|1.5.2|fix: 课程表页面修改背景 blur 时不能实时预览
 
 ## 提示
 

@@ -9,7 +9,7 @@
             <van-field size="large" model:value="{{ password }}" password="{{isPwdHidden}}" label="密码" placeholder="请输入教务系统的密码" required border="{{ false }}">
                 <van-icon name="{{isPwdHidden?'closed-eye':'eye-o'}}" slot="right-icon" bindtap="tigglePwdHidden" />
             </van-field>
-            <van-button color="#EC6A8E" round form-type="submit" custom-class="submit_button" loading="{{loading}}" loading-text="获取中...">获取课表</van-button>
+            <van-button color="#EC6A8E" round form-type="submit" custom-class="submit_button" loading="{{loading}}" loading-text="获取中..." open-type="chooseAvatar" bindchooseavatar="onChooseavatar">获取课表</van-button>
         </form>
         <text style="position: absolute; right: 30rpx; bottom: 20rpx; font-size: 24rpx; color: #EC6A8E;" bindtap="onInstructionClick">使用须知</text>
     </van-cell-group>

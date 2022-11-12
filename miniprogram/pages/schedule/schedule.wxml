@@ -43,7 +43,10 @@
             </view>
         </view>
         <!-- 课表 页 -->
-        <swiper class="right background" style="{{bgStyle_ImgUrl}} {{bgStyle_blur}}" bindchange="onChangePage" current="{{showWeek-1}}" easing-function="easeOutCubic">
+        <!-- 动态绑定背景和blur -->
+        <!-- 使用swipper代替之前不兼容的伪类方案 -->
+        <swiper class="right background" style="{{bgStyle_ImgUrl}} {{bgStyle_blur}}"></swiper>
+        <swiper class="right" bindchange=" onChangePage" current="{{showWeek-1}}" easing-function="easeOutCubic">
             <swiper-item wx:for="{{totalLessons}}" wx:key="index" wx:for-item="weekLessons">
                 <!-- 背景层 -->
                 <view bindlongpress="onBgLongpress" style="position: relative;width: 100%;height: 100%;"></view>
@@ -53,7 +56,6 @@
                     <text>✿{{item.classroom}}</text>
                 </view>
             </swiper-item>
-
         </swiper>
     </view>
 </view>

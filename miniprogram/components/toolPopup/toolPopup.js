@@ -72,9 +72,7 @@ Component({
         //VM16 asdebug.js:10 setData 数据传输长度为 3672 KB，存在有性能问题！
         // 改为直接存storage
         wx.setStorageSync('style_bgUrl', base64Img)
-        this.triggerEvent('updateBgUrl', {
-          blur: parseFloat(this.data.blur).toFixed(1)
-        })
+        this.triggerEvent('updateBgUrl')
       } catch (error) {
         Toast.clear()
         Toast({
@@ -97,14 +95,14 @@ Component({
       this.setData({
         blur: e.detail.value
       })
-    }, 300),
+    }, 100),
     //用rgba设置仅背景透明
     onOpacityDrag: throttle(function (e) {
       //防抖
       this.setData({
         opacity: e.detail.value
       })
-    }, 300),
+    }, 100),
     // 关闭onCloseBlurPopup
     onCloseBlurPopup() {
       //保存

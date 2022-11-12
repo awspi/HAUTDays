@@ -90,17 +90,21 @@ Page({
   },
   updateBlurOpacity(e) {
     const { blur, opacity } = e.detail
-    console.log({ blur, opacity })
-    this.setData({ cardStyle: `--card-opacity:${opacity};` })
+    this.setData({
+      cardStyle: `--card-opacity:${opacity};`
+    })
     this.setData({ bgStyle_blur: `--bg-img-blur:${blur}px;` })
+    console.log(this.data.bgStyle_blur, this.data.cardStyle)
   },
   updateBgUrl(e) {
-    const { blur } = e.detail
     const url = wx.getStorageSync('style_bgUrl')
     this.setData({
-      bgStyle_ImgUrl: `--bg-img-blur:${blur}px;--bg-img-url:url("${url}");`
+      bgStyle_ImgUrl: `--bg-img-url:url("${url}");`
     })
   },
+  /**
+   * 每次打开
+   */
   onShow() {
     this.setData({
       showWeek: app.globalData.currentWeek, //展示的周数

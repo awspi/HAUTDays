@@ -1,6 +1,6 @@
 // pages/profile/profile.js
 import { menus, privacy, about } from './static/index'
-import { getUserProfile } from '../../utils/user'
+import { getAvatarUrl } from '../../utils/user'
 import Toast from '@vant/weapp/toast/toast'
 
 const app = getApp()
@@ -14,12 +14,12 @@ Page({
     profile: app.globalData.profile,
     menus: menus
   },
-  async onRefreshHandler() {
-    await getUserProfile()
-    this.setData({
-      profile: app.globalData.profile
-    })
-  },
+  //   async onRefreshHandler() {
+  //     await getUserProfile()
+  //     this.setData({
+  //       profile: app.globalData.profile
+  //     })
+  //   },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -33,6 +33,7 @@ Page({
     this.setData({
       profile: app.globalData.profile
     })
+    console.log(this.data.profile.avatarUrl)
   },
   //popup
   onClose() {
@@ -68,7 +69,6 @@ Page({
             })
           }
         })
-
         break
     }
   }

@@ -98,7 +98,7 @@
 }
 
 /* css变量实现动态背景图片和blur */
-.background::after {
+.background {
   content: '';
   position: absolute;
   left: 0;

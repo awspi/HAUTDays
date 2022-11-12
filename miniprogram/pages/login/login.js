@@ -1,6 +1,6 @@
 // pages/login/login.js
 import Toast from '@vant/weapp/toast/toast'
-import { getUserProfile } from '../../utils/user'
+import { getAvatarUrl } from '../../utils/user'
 import { getCurrentWeek } from '../../utils/time'
 import { getData } from '../../api/stu'
 const app = getApp()
@@ -34,8 +34,6 @@ Page({
     this.setData({
       loading: true
     })
-    //获取wx信息
-    getUserProfile()
     //获取课程
     try {
       const { status, msg, data } = await getData(
@@ -100,6 +98,11 @@ Page({
   onIconClick() {
     console.log('?被点击')
   },
+  /**
+   * 获取头像回调
+   */
+  onChooseavatar: getAvatarUrl,
+
   /**
    * 使用须知 被点击
    */
