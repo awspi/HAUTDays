@@ -18,9 +18,10 @@ import Toast from '@vant/weapp/toast/toast'
 const day = new Date().getDay() //周几
 const currentWeekLessons =
   app.globalData.lessons[app.globalData.currentWeek - 1]
-const todayLessons = currentWeekLessons.filter(
-  (item) => item.dayOfWeek === dayOfWeekIndex[day]
-)
+console.log(app.globalData.lessons)
+const todayLessons = currentWeekLessons
+  ? currentWeekLessons.filter((item) => item.dayOfWeek === dayOfWeekIndex[day])
+  : []
 
 Page({
   /**

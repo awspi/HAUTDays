@@ -57,6 +57,19 @@ Page({
       case '个性设置':
         Toast('开发中~')
         break
+      case '清除缓存':
+        wx.clearStorageSync()
+        Toast({
+          type: 'success',
+          message: '清除成功,请重新登录',
+          onClose: () => {
+            wx.navigateTo({
+              url: '/pages/login/login'
+            })
+          }
+        })
+
+        break
     }
   }
 })

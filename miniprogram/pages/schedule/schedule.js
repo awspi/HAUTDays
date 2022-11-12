@@ -84,8 +84,7 @@ Page({
     const url = wx.getStorageSync('style_bgUrl')
     this.setData({ bgStyle_blur: `--bg-img-blur:${blur}px;` })
     this.setData({
-      bgStyle_ImgUrl: `
-        --bg-img-url:url("${url}");`
+      bgStyle_ImgUrl: `--bg-img-url:url("${url}");`
     })
     this.setData({ cardStyle: `--card-opacity:${opacity};` })
   },
@@ -99,8 +98,7 @@ Page({
     const { blur } = e.detail
     const url = wx.getStorageSync('style_bgUrl')
     this.setData({
-      bgStyle_ImgUrl: `--bg-img-blur:${blur}px;
-        --bg-img-url:url("${url}");`
+      bgStyle_ImgUrl: `--bg-img-blur:${blur}px;--bg-img-url:url("${url}");`
     })
   },
   onShow() {

@@ -6,7 +6,7 @@
   right: 0;
   content: '';
   background: no-repeat center
-    url('https://img9.vilipix.com/picture/pages/regular/2021/03/24/20/02/88855687_p0_master1200.jpg?x-oss-process=image/resize,m_fill,w_1000');
+    url('https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6a55c234-d419-42b9-98d8-4733827bec98/d6304fc2-1ecf-48fd-b3c0-515b08721c02.webp');
   /* background-size:cover ; */
   z-index: -1;
   filter: blur(10px);

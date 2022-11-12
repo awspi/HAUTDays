@@ -2,6 +2,7 @@
 import Toast from '@vant/weapp/toast/toast'
 import { getUserProfile } from '../../utils/user'
 import { getCurrentWeek } from '../../utils/time'
+import { getData } from '../../api/stu'
 const app = getApp()
 Page({
   /**
@@ -36,43 +37,36 @@ Page({
     //获取wx信息
     getUserProfile()
     //获取课程
-    wx.cloud
-      .callFunction({
-        // 云函数名称
-        name: 'getData',
-        // 传给云函数的参数
-        data: {
-          xh: this.data.xh,
-          mm: this.data.password
-        }
-      })
-      .then((res) => {
-        const { status, msg, data } = res.result
-        //如果登录成功 把登录信息保存到本地
-        if (status === 'ok') {
-          this.loginDoneHandler(data)
-          Toast({
-            type: 'success',
-            message: msg,
-            onClose: () => {
-              wx.navigateBack()
-            }
-          })
-        } else {
-          //登录失败
-          Toast.fail(msg)
-        }
-        this.setData({
-          loading: false
+    try {
+      const { status, msg, data } = await getData(
+        this.data.xh,
+        this.data.password
+      )
+      console.log(status)
+      //如果登录成功 把登录信息保存到本地
+      if (status === 'ok') {
+        this.loginDoneHandler(data)
+        Toast({
+          type: 'success',
+          message: msg,
+          onClose: () => {
+            wx.navigateBack()
+          }
         })
+      } else {
+        //登录失败
+        Toast.fail(msg)
+      }
+      this.setData({
+        loading: false
       })
-      .catch((err) => {
-        console.log(err)
-        Toast.fail('error')
-        this.setData({
-          loading: false
-        })
+    } catch (err) {
+      console.log(err)
+      Toast.fail('error')
+      this.setData({
+        loading: false
       })
+    }
   },
   async loginDoneHandler(data) {
     wx.setStorageSync('loginForm', {

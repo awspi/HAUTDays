@@ -39,7 +39,7 @@ Component({
     credit: '',
     dayOfWeek: '',
     timeRange: [],
-    weekCount: app.globalData.lessons.length,
+    weekCount: app.globalData.lessons?.length,
     activeWeeks: [], //
     //
     isPickerShow: false,
@@ -209,6 +209,9 @@ Component({
     show: function (show) {
       console.log(show)
       if (show) {
+        this.setData({
+          weekCount: app.globalData.lessons?.length
+        })
         return
       }
       this.setData({

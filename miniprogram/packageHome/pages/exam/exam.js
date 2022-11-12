@@ -1,6 +1,6 @@
 import Toast from '@vant/weapp/toast/toast'
 import { getExamArrange } from './utils/index'
-
+import { getExam } from '../../../api/stu'
 Page({
   /**
    * 页面的初始数据
@@ -38,43 +38,26 @@ Page({
     })
     this.getExams()
   },
-  getExams() {
+  async getExams() {
     const profile = wx.getStorageSync('loginForm')
-    wx.cloud
-      .callFunction({
-        // 云函数名称
-        name: 'getExam',
-        // 传给云函数的参数
-        data: {
-          xh: profile.xh,
-          mm: profile.password
-        }
-      })
-      .then((res) => {
-        const { status, msg, data } = res.result
-        //如果登录成功 把登录信息保存到本地
-        if (status === 'ok') {
-          wx.setStorageSync('exams', data.exams)
-          this.setData({
-            examsArrange: getExamArrange(data.exams)
-          })
-          Toast.clear()
-          Toast.success('获取成功')
-        } else {
-          //登录失败
-          Toast.fail(msg)
-        }
+    try {
+      const { status, msg, data } = await getExam(profile.xh, profile.password)
+      //如果登录成功 把登录信息保存到本地
+      if (status === 'ok') {
+        wx.setStorageSync('exams', data.exams)
         this.setData({
-          loading: false
+          examsArrange: getExamArrange(data.exams)
         })
+        Toast.clear()
+        Toast.success('获取成功')
+      }
+    } catch (err) {
+      console.log(err)
+      Toast.fail('error')
+      this.setData({
+        loading: false
       })
-      .catch((err) => {
-        console.log(err)
-        Toast.fail('error')
-        this.setData({
-          loading: false
-        })
-      })
+    }
   },
   onNaviBack() {
     wx.navigateBack()

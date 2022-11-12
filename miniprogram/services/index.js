@@ -4,6 +4,7 @@
 class WRequest {
   request(options) {
     const { url } = options
+    console.log(url)
     return new Promise((resolve, reject) => {
       wx.request({
         ...options,

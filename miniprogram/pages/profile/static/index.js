@@ -39,6 +39,12 @@ export const menus = [
     url: '/pages/login/login'
   },
   {
+    icon: 'delete',
+    title: '清除缓存',
+    label: '显示出现异常时请尝试清除缓存',
+    url: ''
+  },
+  {
     icon: 'like',
     title: '个性设置',
     url: ''
@@ -73,5 +79,5 @@ export const about = `
 <p>课表、成绩等数据来自教务处官网</p>
 <p>此小程序由校内学生开发,目前由本人维护中,如有问题反馈或建议可以通过点击"联系客服"找到我
 </p>
-<img src="/assets/images/wx.png" width="100%"/>
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-6a55c234-d419-42b9-98d8-4733827bec98/c0fd8d12-dff8-4427-9cee-70cf6a2f37a2.png" width="100%"/>
 `

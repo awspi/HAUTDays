@@ -1,4 +1,5 @@
 import * as echarts from '../../../components/ec-canvas/echarts'
+import { getScore } from '../../../api/stu'
 import {
   getPieData,
   getLineData,
@@ -129,7 +130,7 @@ Page({
   /**
    * 更新成绩
    */
-  getExams() {
+  async getExams() {
     this.setData({
       loading: true
     })
@@ -139,47 +140,36 @@ Page({
       message: '获取中...'
     })
     const profile = wx.getStorageSync('loginForm')
-    wx.cloud
-      .callFunction({
-        // 云函数名称
-        name: 'getScore',
-        // 传给云函数的参数
-        data: {
-          xh: profile.xh,
-          mm: profile.password
-        }
-      })
-      .then((res) => {
-        const { status, msg, data } = res.result
-        //如果登录成功 把登录信息保存到本地
-        if (status === 'ok') {
-          wx.setStorageSync('scores', data.scores)
-          this.setData({
-            scores: data.scores
-          })
-          updateOption(
-            this.data.scores,
-            this.data.year,
-            this.data.term,
-            this.data.includePublic
-          )
-          Toast.clear()
-          Toast.success('获取成功')
-        } else {
-          //登录失败
-          Toast.fail(msg)
-        }
+    try {
+      const { status, msg, data } = await getScore(profile.xh, profile.password)
+      //如果登录成功 把登录信息保存到本地
+      if (status === 'ok') {
+        wx.setStorageSync('scores', data.scores)
         this.setData({
-          loading: false
+          scores: data.scores
         })
+        updateOption(
+          this.data.scores,
+          this.data.year,
+          this.data.term,
+          this.data.includePublic
+        )
+        Toast.clear()
+        Toast.success('获取成功')
+      } else {
+        //登录失败
+        Toast.fail(msg)
+      }
+      this.setData({
+        loading: false
       })
-      .catch((err) => {
-        console.log(err)
-        Toast.fail('error')
-        this.setData({
-          loading: false
-        })
+    } catch (err) {
+      console.log(err)
+      Toast.fail('error')
+      this.setData({
+        loading: false
       })
+    }
   }
 })
 

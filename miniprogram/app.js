@@ -1,5 +1,4 @@
 // app.js
-import { genCardStyle, assortLessons } from './utils/schedule'
 import { getCurrentWeek } from './utils/time'
 
 App({
