@@ -35,7 +35,7 @@ function genMark(latitude, longitude, content, id) {
       display: 'ALWAYS',
       bgColor: '#fff',
       padding: 1,
-      color: '#ec6a8e',
+      color: '#194675',
       borderWidth: 2,
       borderRadius: 3
     }

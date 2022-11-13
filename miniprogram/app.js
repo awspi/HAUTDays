@@ -31,7 +31,14 @@ App({
     !wx.getStorageSync('style') &&
       wx.setStorageSync('style', { blur: 0, opacity: 1 })
     !wx.getStorageSync('style_bgUrl') && wx.setStorageSync('style_bgUrl', '')
-    // 登录
+    // navi
+    // console.log(menuInfo)
+    const { statusBarHeight } = wx.getSystemInfoSync()
+    // console.log(systemInfo)
+    const { height, top } = wx.getMenuButtonBoundingClientRect()
+    const navibarStyle = `line-height:${height}px;height:${height}px;padding-top:${top}px;padding-bottom:32rpx`
+    this.globalData.navibarStyle = navibarStyle
+
     //bg
 
     wx.login({

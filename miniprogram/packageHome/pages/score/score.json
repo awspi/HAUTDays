@@ -10,6 +10,7 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-divider": "@vant/weapp/divider/index",
     "van-toast": "@vant/weapp/toast/index",
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "top-bar": "../../../components/topBar/topBar"
   }
 }

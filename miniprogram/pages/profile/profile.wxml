@@ -1,8 +1,10 @@
-<view style="position: fixed;height: 100%; width: 100%; left: 0; top: 0;">
-    <view style="background-color: #ebdee1; height: 100vh;">
-        <view style="height: 120rpx;" />
-        <view style="margin-left: 50rpx;margin-bottom: 10rpx; font-size: 36rpx; color:#EC6A8E;text-shadow: 1rpx 1rpx 4rpx rgb(255, 255, 255);font-weight: 800;flex-shrink: 1;">HAUT DAYS</view>
+<view class="container">
+    <view>
+        <view class="navi" style="{{navibarStyle}}">
+            <view class=" navi-title">HAUT DAYS</view>
+        </view>
         <view class="profile_card">
+            <van-button icon="info" custom-class="icon-button" open-type="chooseAvatar" bindchooseavatar="getAvatarUrl" />
             <view style="display: flex; height: 100%;">
                 <image src="{{profile.avatarUrl}}" mode="scaleToFill" class="avatar"></image>
                 <view class="desc">
@@ -18,7 +20,7 @@
                 <text>{{profile.xh}}</text>
             </view>
             <!-- icon -->
-            <van-button icon="info" type="primary" custom-style="color:;position:fixed; right:50rpx;top:40rpx;font-size:45rpx;background:transparent !important;border:none !important;border-radius:50%;padding:15px 10px !important;" custom-class="inline-button" open-type="chooseAvatar" bindchooseavatar="getAvatarUrl" />
+
             <!-- <van name="info" size="45rpx" color="white" bindtap="onRefreshHandler" custom-style="" /> -->
         </view>
         <!-- cell -->

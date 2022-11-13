@@ -5,7 +5,13 @@
 .range {
   flex: auto !important;
 }
+
+.switchButton {
+  background-color: var(--theme-color) !important;
+}
+
 .container {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.315));
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -29,9 +29,6 @@ export const functionList = [
 ]
 
 export const swiperList = [
-  'https://img9.vilipix.com/picture/pages/regular/2022/08/31/12/102478682_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg',
-  'https://img9.vilipix.com/picture/pages/regular/2022/07/06/12/100307867_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg',
-  'https://img9.vilipix.com/picture/pages/regular/2022/06/27/14/99319833_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg',
-  'https://img9.vilipix.com/picture/pages/regular/2021/04/24/19/07/89508792_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg',
-  'https://img9.vilipix.com/picture/pages/regular/2022/05/01/19/41/98014664_p0_master1200.jpg?x-oss-process=image/resize,w_450/format,jpg'
+  'https://www.haut.edu.cn/images/0802333.png',
+  'https://www.haut.edu.cn/images/082208.jpg'
 ]

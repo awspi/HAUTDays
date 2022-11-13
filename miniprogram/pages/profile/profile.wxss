@@ -1,4 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(150deg, #fff, var(--theme-color));
+}
+.navi {
+  background-color: var(--theme-color);
+  flex-shrink: 1;
+  /* padding-top: 120rpx; */
+}
+.navi-title {
+  margin-left: 30rpx;
+  margin-bottom: 10rpx;
+  font-size: 36rpx;
+  color: white;
+  /*  */
+  font-weight: 800;
+  flex-shrink: 1;
+}
+
 .profile_card {
+  margin-top: 30px;
   width: 90%;
   height: 350rpx;
   position: relative;
@@ -7,9 +30,9 @@
   left: 50%;
   transform: translateX(-50%);
   border-radius: 20rpx;
-  box-shadow: 5rpx 10rpx 20rpx 1rpx #e4829e;
+  box-shadow: 5rpx 10rpx 20rpx 1rpx var(--theme-color);
   left: 50%;
-  background-color: #ec6a8e;
+  background-color: var(--theme-color);
   color: white;
   box-sizing: border-box;
 }
@@ -68,4 +91,17 @@
 
 .inline-button::after {
   border: none;
+}
+
+.icon-button {
+  position: absolute !important;
+  right: 30rpx;
+  color: white !important;
+  font-size: 45rpx !important;
+  width: 100rpx;
+  height: 100rpx;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 50%;
+  padding: 15px 10px !important;
 }

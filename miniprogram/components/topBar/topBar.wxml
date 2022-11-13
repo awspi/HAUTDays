@@ -1,0 +1,6 @@
+<view class="navi" style="{{navibarStyle}}">
+    <view class="navi-title">
+        <van-icon wx:if="{{naviBack}}" name="arrow-left" color="white" size="36rpx" bind:click="onNaviBack" style="margin:0 0 0 -15rpx;padding-right: 15rpx;" hover-class="bg-grary-scale box-shadow-gary" />
+        <text>{{title}}</text>
+    </view>
+</view>

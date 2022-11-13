@@ -1,13 +1,13 @@
 .container {
   width: 100%;
   white-space: nowrap;
-  color: white;
+  /* color: white; */
 }
 .item {
   font-size: 24rpx;
   display: inline-block;
   padding: 6rpx 10rpx;
   margin: 2rpx 10rpx;
-  border: solid 2rpx white;
+  border: solid 2rpx;
   border-radius: 10%;
 }

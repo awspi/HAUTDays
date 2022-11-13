@@ -1,23 +1,17 @@
 <!-- page-meta 只能是页面内的第一个节点 -->
 <page-meta page-style="{{ isPopupShow ? 'overflow: hidden;' : '' }}" />
-<view catchtouchmove='true' style="display: flex;flex-direction: column;height: 100vh;overflow: hidden; background-color: #fafafa;">
-    <view>
-        <view style="background-color: #EC6A8E;flex-shrink: 1;position: relative;">
-            <view style="height: 120rpx; " />
-            <view style="display: flex;align-items: center;padding-bottom: 10rpx; margin-left: 30rpx;">
-                <van-icon name="arrow-left" color="white" size="36rpx" style="padding: 15rpx;" bind:click="onNaviBack" />
-                <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">成绩分析 | HAUTDAYS</view>
-            </view>
-        </view>
+<view catchtouchmove='true' class="view-container">
+    <top-bar navi-back title="成绩分析 | HAUTDAYS" />
+    <view style="margin-top:30rpx;">
         <!-- 更新 -->
         <view style="position: fixed;right: 16px;height: 40px; padding: 4px 0;display: flex;justify-content: flex-end;">
-            <van-button icon="replay" color="#EC6A8E" size="small" round bind:click="getExams" loading="{{loading}}">更新</van-button>
+            <van-button icon="replay" size="small" custom-class="button-theme" round bind:click="getExams" loading="{{loading}}">更新</van-button>
         </view>
         <!-- 选项 -->
         <van-cell-group title="选项" inset>
             <van-cell title="查看成绩单" icon="bar-chart-o" is-link bind:click="onScoreListhandler" />
             <van-cell title="是否包含公选课" icon="filter-o" clickable bind:click="onSwitchChange">
-                <van-switch checked="{{ includePublic }}" size="30rpx" active-color="#EC6A8E" inactive-color="##ffc0c7" />
+                <van-switch checked="{{ includePublic }}" size="30rpx" custom-class="switchButton" inactive-color="##ffc0c7" />
             </van-cell>
             <van-cell icon="flag-o" title="学期范围" title-class="range">
                 <view slot="right-icon">

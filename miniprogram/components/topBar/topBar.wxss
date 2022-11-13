@@ -1,0 +1,13 @@
+.navi {
+  background-color: var(--theme-color);
+  /* padding-top: 120rpx; */
+}
+.navi-title {
+  margin-left: 30rpx;
+  margin-bottom: 10rpx;
+  font-size: 36rpx;
+  color: white;
+  /*  */
+  font-weight: 800;
+  flex-shrink: 1;
+}

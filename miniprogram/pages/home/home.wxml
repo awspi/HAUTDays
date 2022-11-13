@@ -1,34 +1,30 @@
-<view catchtouchmove='true' style="display: flex;flex-direction: column;height: 100vh;overflow: hidden; background-color: #fafafa;">
-    <view style="background-color: #EC6A8E;flex-shrink: 1;">
-        <view style="height: 120rpx; " />
-        <view style="margin-left: 30rpx;margin-bottom: 10rpx; font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">HAUT DAYS</view>
-    </view>
+<view catchtouchmove='true' class="view-container">
+    <top-bar title="HAUT DAYS" />
     <!-- 通知 -->
-    <van-notice-bar background="#EC6A8E" color="#ffff" text="{{notice}}" />
+    <van-notice-bar custom-class="notice-bar" speed="120" scrollable text="{{notice}}" />
     <!-- 轮播图 -->
-    <swiper autoplay interval="3000" style="margin-top:30rpx; padding: 0 20rpx 0 20rpx;border-radius: 20rpx;">
+    <swiper autoplay circular interval="3000" class="swiper-wrapper">
         <block wx:for="{{swiperList}}" wx:key="*this">
             <swiper-item>
-                <view style="height: 100%;width: 100%; background: no-repeat center  url('{{item}}'); border-radius: 20rpx;" />
+                <image src="{{item}}" style="width: 100%;height: 100%;" />
             </swiper-item>
         </block>
     </swiper>
     <!-- 常用功能 -->
-    <view style="display: flex;justify-content: space-evenly;align-items: center;white-space: nowrap;">
-
+    <view class="card-warpper">
         <view wx:for="{{funcitonList}}" wx:key="title" style="display: inline-block;">
-            <view style="display: flex; flex-direction: column;align-items: center;padding: 10rpx;margin:10rpx 20rpx;border-radius: 10rpx;" hover-class="bg-grary-scale" hover-start-time="20" hover-stay-time="100" bindtap="onIconHandler" data-url="{{item.url}}">
-                <image src="../../assets/icons/{{item.icon}}.png" mode="scaleToFill" style="width: 50rpx;height: 50rpx;" />
-                <text style="font-size: 24rpx;">{{item.title}}</text>
+            <view class="card" hover-class="bg-grary-scale" hover-start-time="20" hover-stay-time="100" bindtap="onIconHandler" data-url="{{item.url}}">
+                <image src="../../assets/icons/{{item.icon}}.png" mode="scaleToFill" style="width: 70rpx;height: 70rpx;" />
+                <text style="font-size: 20rpx;text-align: center;">{{item.title}}</text>
             </view>
         </view>
     </view>
     <!-- 今日课表 -->
     <view style="padding:10rpx 20rpx 10rpx 20rpx; flex:1;height: 1px;">
-        <text style="color: #EC6A8E;font-size: 32rpx;font-weight: 700;text-shadow: 1rpx 1rpx 4rpx pink;">今日课表</text>
-        <view style="border-radius: 3rpx;box-shadow: 3px 7px 9px 1px rgba(236,106,142, 0.4);padding: 20rpx;background-color:white;margin-top: 20rpx;">
+        <text style="font-size: 32rpx;font-weight: 700;">今日课表</text>
+        <view style="border-radius: 7%;box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.4);padding: 20rpx;background-color:white;margin-top: 20rpx;">
             <!-- 标题 -->
-            <view style="display: flex; justify-content:space-between;letter-spacing: 5rpx;font-size: 30rpx; border-bottom: 2rpx solid #ec6a8fcb;padding-bottom: 10rpx; ">
+            <view style="display: flex; justify-content:space-between;letter-spacing: 5rpx;font-size: 30rpx; border-bottom: 2rpx solid ;padding-bottom: 10rpx; ">
                 <text>{{today}}|第{{currentWeek}}周|{{dayOfWeek}}</text>
                 <view>天气:{{weather}},{{degree}}°C</view>
             </view>

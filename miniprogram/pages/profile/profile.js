@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navibarStyle: app.globalData.navibarStyle,
     popupContent: '',
     isPopupShow: false,
     profile: app.globalData.profile,

@@ -4,7 +4,8 @@
     "setting": {
         "compileHotReLoad": false,
         "preloadBackgroundData": false,
-        "autoAudits": false
+        "autoAudits": false,
+        "urlCheck": true
     },
     "condition": {
         "miniprogram": {
@@ -12,13 +13,6 @@
                 {
                     "name": "guidance",
                     "pathName": "pages/guidance/guidance",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "exam",
-                    "pathName": "pages/exam/exam",
                     "query": "",
                     "launchMode": "default",
                     "scene": null
@@ -54,6 +48,13 @@
                 {
                     "name": "login",
                     "pathName": "pages/login/login",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "exam",
+                    "pathName": "packageHome/pages/exam/exam",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

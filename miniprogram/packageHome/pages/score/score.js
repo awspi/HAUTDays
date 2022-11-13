@@ -227,12 +227,9 @@ function getLineOption(scores) {
           position: 'bottom'
         },
         lineStyle: {
-          color: '#EC6A8E',
           width: 4
         },
-        itemStyle: {
-          color: '#EC6A8E'
-        }
+        itemStyle: {}
       }
     ]
   }

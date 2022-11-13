@@ -32,26 +32,23 @@
   },
   "tabBar": {
     "color": "#000000",
-    "selectedColor": "#ff8198",
+    "selectedColor": "#194675",
     "backgroundColor": "",
     "position": "bottom",
     "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页",
         "iconPath": "assets/tabBar/home.png",
         "selectedIconPath": "assets/tabBar/home.png"
       },
       {
         "pagePath": "pages/schedule/schedule",
-        "text": "课程表",
         "iconPath": "assets/tabBar/schedule.png",
         "selectedIconPath": "assets/tabBar/schedule.png"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "我",
         "iconPath": "assets/tabBar/me.png",
         "selectedIconPath": "assets/tabBar/me.png"
       }

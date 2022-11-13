@@ -1,15 +1,9 @@
-<view style="width:100vw;height:97vh;background-color: #fafafa;">
-    <view style="background-color: #EC6A8E;position: sticky;top: 0;">
-        <view style="height: 120rpx; " />
-        <view style="display: flex;align-items: center;padding-bottom: 10rpx; margin-left: 30rpx;">
-            <van-icon name="arrow-left" color="white" size="36rpx" bind:click="onNaviBack" style="padding: 15rpx;" />
-            <view style="margin-left: 10rpx;font-size: 36rpx; color: white;font-weight: 800;flex-shrink: 1;">校园引导 | HAUTDAYS</view>
-        </view>
-    </view>
+<view catchtouchmove='true' class="view-container">
+    <top-bar navi-back title="校园地图 | HAUTDAYS" />
     <!-- 地图 -->
     <map style="width: 100%;flex:1;height: 70vh;" enable-poi="{{false}}" show-compass enable-scroll enable-rotate enable-3D rotate="145" skew="30" scale="15.4" min-scale="14.6" enable-building show-location latitude="34.830976" longitude="113.549923" markers="{{markers}}" />
     <!-- 底部cell -->
-    <view style="margin-bottom: 5rpx;margin-top: 20rpx;">
+    <view style="margin-bottom: 40rpx;margin-top: 20rpx;">
         <van-cell-group inset>
             <van-cell value="双指可以缩放旋转" />
             <van-cell icon="free-postage" title="生活便利" is-link />
