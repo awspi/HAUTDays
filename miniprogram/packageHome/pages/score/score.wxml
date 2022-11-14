@@ -1,6 +1,6 @@
 <!-- page-meta 只能是页面内的第一个节点 -->
 <page-meta page-style="{{ isPopupShow ? 'overflow: hidden;' : '' }}" />
-<view catchtouchmove='true' class="view-container">
+<view catchtouchmove='true' class="view-container" style="{{themeCss}}">
     <top-bar navi-back title="成绩分析 | HAUTDAYS" />
     <view style="margin-top:30rpx;">
         <!-- 更新 -->
@@ -15,7 +15,7 @@
             </van-cell>
             <van-cell icon="flag-o" title="学期范围" title-class="range">
                 <view slot="right-icon">
-                    <van-dropdown-menu active-color="#EC6A8E" custom-class="dropdown">
+                    <van-dropdown-menu custom-class="dropdown">
                         <van-dropdown-item value="{{ year }}" options="{{ yearOption }}" bind:change="onYearChange" />
                         <van-dropdown-item value="{{ term }}" options="{{ termOption }}" bind:change="onTermChange" />
                     </van-dropdown-menu>

@@ -1,10 +1,12 @@
 import { markData } from './static/index'
 const markers = markData.map((item, index) => genMark(...item, index))
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    themeCss: app.globalData.themeCss,
     markers: markers
   },
 

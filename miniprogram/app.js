@@ -27,10 +27,26 @@ App({
     this.globalData.scores = wx.getStorageSync('scores')
     //用户信息
     this.globalData.profile = wx.getStorageSync('profile') || {}
-    //课程表背景 高斯模糊 透明度
+    //课程表背景 高斯模糊 透明度 字体颜色 主题色
     !wx.getStorageSync('style') &&
-      wx.setStorageSync('style', { blur: 0, opacity: 1 })
+      wx.setStorageSync('style', { blur: 0.5, opacity: 0.8 })
     !wx.getStorageSync('style_bgUrl') && wx.setStorageSync('style_bgUrl', '')
+    !wx.getStorageSync('color') &&
+      wx.setStorageSync('color', {
+        theme: 'rgb(251, 103, 142)',
+        font: 'rgb(168, 24, 223)',
+        bg: 'rgb(232,237,255)'
+      })
+    !wx.getStorageSync('preference') &&
+      wx.setStorageSync('preference', {
+        isUseBgColor: true
+      })
+    this.globalData.isUseBgColor = wx.getStorageSync('preference').isUseBgColor
+
+    this.globalData.themeCss =
+      `--theme-color:${wx.getStorageSync('color').theme};` +
+      `--bg-color:${wx.getStorageSync('color').bg};` +
+      `--text-color:${wx.getStorageSync('color').font};`
     // navi
     // console.log(menuInfo)
     const { statusBarHeight } = wx.getSystemInfoSync()

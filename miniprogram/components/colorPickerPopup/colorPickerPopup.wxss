@@ -1,0 +1,19 @@
+.button {
+  margin: 20rpx 0 10rpx 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white !important;
+  background-color: var(--theme-color) !important;
+}
+.wrapper {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  z-index: 99999;
+  background-color: #fff;
+  /* padding-bottom: calc(env(safe-area-inset-bottom)); */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}

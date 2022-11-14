@@ -20,6 +20,7 @@
 - Alpha ver.|1.5.0|refactor: 使用 **uniCloud** 代替 微信云开发
 - Alpha ver.|1.5.1|refactor: 改用新的 open-type 获取用户头像
 - Alpha ver.|1.5.2|fix: 课程表页面修改背景 blur 时不能实时预览
+- Alpha ver.|1.6.0|refactor: 统一界面 UI;feat:可自定义自定义背景、背景色、主题色,字体颜色
 
 ## 提示
 

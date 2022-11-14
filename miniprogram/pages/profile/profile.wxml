@@ -1,4 +1,5 @@
-<view class="container">
+<page-meta page-style="{{ isCustomShow ? 'overflow: hidden;' : '' }}" />
+<view class="container" style="{{themeCss}}">
     <view>
         <view class="navi" style="{{navibarStyle}}">
             <view class=" navi-title">HAUT DAYS</view>
@@ -32,7 +33,6 @@
                 </van-cell>
             </block>
         </van-cell-group>
-
     </view>
 </view>
 
@@ -40,3 +40,4 @@
     <rich-text nodes="{{popupContent}}" />
 </van-popup>
 <van-toast id="van-toast" />
+<color-picker-popup bind:save='onCssUpdated' theme show="{{isCustomShow}}" />

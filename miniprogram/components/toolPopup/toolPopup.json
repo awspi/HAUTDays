@@ -7,6 +7,8 @@
     "van-icon": "@vant/weapp/icon/index",
     "van-slider": "@vant/weapp/slider/index",
     "van-button": "@vant/weapp/button/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "color-picker-popup": "../../components/colorPickerPopup/colorPickerPopup",
+    "van-switch": "@vant/weapp/switch/index"
   }
 }

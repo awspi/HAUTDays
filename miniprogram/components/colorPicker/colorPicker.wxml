@@ -1,0 +1,9 @@
+<view style="display: flex;">
+    <movable-area class="target" bindtap="areaTap" style="background-color:{{hueColor}};height:{{size}}px;width: {{size}}px;">
+        <movable-view direction="all" bindchange="changeSV" x="{{x}}" y="{{y}}" animation="{{false}}" class="iconfont icon-ios-locate-outline" bindtouchend="onEnd" />
+    </movable-area>
+    <!-- slider -->
+    <van-slider min="0" max="360" step="1" value="{{hsv.h }}" active-color="transparent" nactive-color="transparent" style="--slider-height: {{size}}px;" vertical use-button-slot bind:drag="changeHue" bind:drag-end="onEnd" custom-class="ribbon">
+        <view style="background-color: {{colorRes}};width: 50rpx;height: 50rpx;border-radius: 50%;" slot="button" />
+    </van-slider>
+</view>

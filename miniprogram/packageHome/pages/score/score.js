@@ -16,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    themeCss: app.globalData.themeCss,
     scores: app.globalData.scores || [],
     //成绩单
     schoolReport: getSchoolReport(app.globalData.scores),

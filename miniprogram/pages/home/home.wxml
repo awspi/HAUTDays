@@ -1,4 +1,4 @@
-<view catchtouchmove='true' class="view-container">
+<view catchtouchmove='preventdefault' class="view-container" style="{{themeCss}}">
     <top-bar title="HAUT DAYS" />
     <!-- 通知 -->
     <van-notice-bar custom-class="notice-bar" speed="120" scrollable text="{{notice}}" />

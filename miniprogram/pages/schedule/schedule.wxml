@@ -1,7 +1,13 @@
-<view catchtouchmove='true' style="display: flex;flex-direction: column;height: 100vh;overflow: hidden;color: #000;font-weight: 800;">
+<page-meta page-style="{{ isPopupShow ? 'overflow: hidden;' : '' }}" />
+<view catchtouchmove='preventdefault' class="container" style="{{themeCss}}">
     <!-- 动态绑定背景和blur -->
     <!-- 使用swipper代替之前不兼容的伪类方案 -->
-    <swiper class="background" style="{{bgStyle_ImgUrl}} {{bgStyle_blur}}"></swiper>
+    <block wx:if="{{bgStyle_ImgUrl!='--bg-img-url:url(\" \");'}}">
+        <view wx:if="{{isUseBgColor}}" class="bg-color" />
+        <swiper wx:else class="background" style="{{bgStyle_ImgUrl}} {{bgStyle_blur}}" />
+    </block>
+    <!-- 未上传背景 使用纯色 -->
+    <view wx:else class="bg-color" />
     <!-- 自定义导航栏 -->
     <view class="topbar">
         <view style="height: 100rpx;"></view>
@@ -14,7 +20,7 @@
                 <!-- 展示课表的周数 -->
                 <text>{{today}} 第{{showWeek}}周{{showWeek===currentWeek?"(本周)":""}}</text>
                 <!-- 下拉箭头 -->
-                <van-icon style="position: relative; left: 10rpx;" name="{{isSwitchingWeek ? 'arrow-up' : 'arrow-down' }}" />
+                <van-icon size="28rpx" style="position: relative; left: 10rpx;" name="{{isSwitchingWeek ? 'arrow-down' : 'arrow-up' }}" />
             </view>
         </view>
     </view>
@@ -64,7 +70,7 @@
     </view>
 </view>
 <!-- 组件 -->
-<tool-popup show="{{isPopupShow}}" bind:updateBlurOpacity="updateBlurOpacity" bind:updateBgUrl="updateBgUrl" />
+<tool-popup show="{{isPopupShow}}" bind:updateBlurOpacity="updateBlurOpacity" bind:updateBgUrl="updateBgUrl" bind:updateThemeCss="updateThemeCss" bind:updateBgColor="updateBgColor" bind:changeIsUseBgColor="changeIsUseBgColor" />
 
 <add-lesson-dialog show="{{isAddLessonDialogVisible}}" bind:done="onAddLessonDone" lesson="{{selectedLesson}}">
 </add-lesson-dialog>

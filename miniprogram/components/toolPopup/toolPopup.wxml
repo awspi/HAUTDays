@@ -1,21 +1,39 @@
-<view>
-    <van-popup show="{{ isPopupShow }}" round overlay="{{!isBlurPopupShow}}" lock-scroll position="top" custom-style="height: 20%;width:100%" bind:close="onClose">
-        <text style="margin-top: 100rpx; display: block; text-align: center;font-size: 32rpx;color: #EC6A8E;font-weight: 800;">HAUT DAYS</text>
+<view style="{{themeCss}}">
+    <van-popup show="{{ isPopupShow }}" round overlay="{{!isBlurPopupShow}}" lock-scroll position="top" custom-style="height: 20%;width:100%;overflow:hidden;" bind:close="onClose">
+        <text class="title-center">HAUT DAYS</text>
         <view style="padding-top: 20rpx;">
             <van-grid clickable border="{{ false }}" icon-size="32px">
                 <van-grid-item icon="exchange" text="重新加载" bind:click="onUpdateHandler" />
                 <van-grid-item icon="photo-o" text="自定义背景" bind:click="onChangeBgHandler" />
                 <van-grid-item icon="brush-o" text="透明度" bind:click="onBlurHandler" />
-                <van-grid-item icon="question-o" text="使用方法" bind:click="onHelpHandler" />
+                <van-grid-item icon="font-o" text="字体颜色" bind:click="onColorHandler" />
             </van-grid>
         </view>
     </van-popup>
+    <!-- 自定义背景 -->
+    <van-popup show="{{ isCustomBgShow }}" closeable custom-style=" width:100%; padding:30rpx 60rpx;overflow:hidden;" bind:close="onCloseBg" round lock-scroll position="bottom" overlay="{{false}}">
+        <view>
+            <view style="display:flex;justify-content:space-around;align-items: center;">
+                <text class="title">图片背景</text>
+                <van-switch checked="{{ isUseBgColor }}" bind:change="onSwitchChange" custom-class="switch" />
+                <text class="title">纯色背景</text>
+            </view>
+            <view style="padding: 0 16rpx 10rpx; display: flex;justify-content: space-between;align-items: center;">
+                <text class="title">自定义背景图片</text>
+                <van-button block="{{false}}" round plain size="small" bind:click="onDelBgImgHandler">删除</van-button>
+                <van-button block="{{false}}" round size="small" custom-class="button" bind:click="onChangeBgImgHandler">选择</van-button>
+            </view>
+            <view style="padding: 0 16rpx 10rpx;display: flex;justify-content: space-between;align-items: center;">
+                <text class="title">自定义背景颜色</text>
+                <van-button block="{{false}}" round size="small" custom-class="button" bind:click="onChangeBgColor">选择颜色</van-button>
+            </view>
+        </view>
+    </van-popup>
     <!-- 修改透明度 -->
-    <van-popup show="{{ isBlurPopupShow }}" custom-style=" width:100%;height:25%; padding:100rpx 60rpx 30rpx" bind:close="onClose" round lock-scroll position="top" overlay="{{false}}">
-
+    <van-popup show="{{ isBlurPopupShow }}" custom-style=" width:100%;height:25%; padding:10rpx 60rpx 30rpx" bind:close="onClose" round lock-scroll position="bottom" overlay="{{false}}">
         <view>
             <view style="position:fixed;left: 50%;transform: translateX(-50%);">
-                <van-button icon="replay" color="#EC6A8E" size="small" round bind:click="onCloseBlurPopup">保存</van-button>
+
             </view>
             <view style="padding: 0 16rpx 20rpx;">
                 <text class="title">背景高斯模糊</text>
@@ -25,9 +43,16 @@
                 <text class="title">课程格子透明度</text>
                 <van-slider value="{{opacity}}" max="1" step="0.1" bind:drag="onOpacityDrag" />
             </view>
-
+            <view style="display: flex;justify-content: space-evenly;">
+                <van-button round custom-class="button" bind:click="cancel">取消</van-button>
+                <van-button round custom-class="button" bind:click="onCloseBlurPopup">保存</van-button>
+            </view>
         </view>
     </van-popup>
     <!-- 组件 -->
     <van-toast id="van-toast" />
 </view>
+
+<color-picker-popup bind:change="onthemeCssChange" bind:save='onCssUpdated' font show="{{isCustomShow}}" />
+
+<color-picker-popup bind:change="onthemeCssChange" bind:save='onCssUpdated' bg show="{{isBgPopupShow}}" />

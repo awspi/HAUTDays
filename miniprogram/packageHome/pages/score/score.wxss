@@ -1,7 +1,13 @@
 .dropdown {
   height: 24px !important;
   width: 50vw !important;
+  --dropdown-menu-title-active-text-color: var(--theme-color);
+  --dropdown-menu-option-active-color: var(--theme-color);
 }
+/* .van-dropdown-item--down {
+  margin: 10px 16px !important;
+} */
+
 .range {
   flex: auto !important;
 }
@@ -11,7 +17,9 @@
 }
 
 .container {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.315));
+  background: rgb(255, 255, 255);
+  margin-top: 30rpx;
+  border-radius: 3%;
   display: flex;
   flex-direction: column;
   align-items: center;

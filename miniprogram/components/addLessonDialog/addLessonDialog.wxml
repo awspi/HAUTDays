@@ -1,6 +1,5 @@
 <van-toast id="van-toast" />
 <view>
-
     <van-dialog width="85%" custom-style="position:absolute; margin-top:100rpx;" use-slot title="{{title}}" show="{{ show }}" show-cancel-button confirmButtonText="{{confirmText}}" bind:confirm="submit" bind:close="cancel">
         <view>
             <van-cell-group>

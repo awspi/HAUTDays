@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    themeCss: app.globalData.themeCss,
     weeks: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'], //周
     courseTime: courseTime,
     showWeekDates: genWeekDates(), //展示的7个日期
@@ -28,8 +29,11 @@ Page({
     selectedLesson: {},
 
     //背景
+    isUseBgColor: wx.getStorageSync('preference').isUseBgColor,
     bgStyle_ImgUrl: '',
     bgStyle_blur: '',
+    bgStyle_color: `--bg-color:${wx.getStorageSync('color').bg};`,
+
     cardStyle: ''
   },
 
@@ -100,6 +104,25 @@ Page({
     const url = wx.getStorageSync('style_bgUrl')
     this.setData({
       bgStyle_ImgUrl: `--bg-img-url:url("${url}");`
+    })
+  },
+  updateBgColor(e) {
+    const { bgColor } = e.detail
+
+    this.setData({
+      bgStyle_color: `--bg-color:${bgColor};`
+    })
+    console.log(this.data.bgStyle_color)
+  },
+  //更新主题色 文字颜色 课程表背景色
+  updateThemeCss(e) {
+    this.setData({
+      themeCss: e.detail.themeCss
+    })
+  },
+  changeIsUseBgColor(e) {
+    this.setData({
+      isUseBgColor: e.detail.isUseBgColor
     })
   },
   /**
@@ -195,5 +218,6 @@ Page({
       isAddLessonDialogVisible: true,
       selectedLesson: e.currentTarget.dataset.detail
     })
-  }
+  },
+  preventdefault: function () {}
 })

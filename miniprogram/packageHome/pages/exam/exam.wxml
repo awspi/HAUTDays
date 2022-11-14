@@ -1,4 +1,4 @@
-<view catchtouchmove='true' class="view-container">
+<view class="view-container" style="{{themeCss}}">
     <top-bar navi-back title="考试安排 | HAUTDAYS" />
     <!-- options -->
     <view style="margin: 20rpx;display: flex;justify-content: flex-end;">

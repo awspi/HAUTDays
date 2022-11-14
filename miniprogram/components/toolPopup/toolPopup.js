@@ -18,12 +18,19 @@ Component({
    * 组件的初始数据
    */
   data: {
+    themeCss: app.globalData.themeCss,
     isPopupShow: false,
     isBlurPopupShow: false,
     //blur,opacity
+    isUseBgColor: app.globalData.isUseBgColor, //是否使用纯色背景
     blur: 0,
     opacity: 1,
-    ...wx.getStorageSync('style')
+    bgColor: '',
+    ...wx.getStorageSync('style'),
+    //
+    isCustomShow: true, //颜色
+    isCustomBgShow: true,
+    isBgPopupShow: true
   },
 
   /**
@@ -47,10 +54,21 @@ Component({
       //     url: "",
       //     })
     },
+    onChangeBgHandler() {
+      this.setData({
+        isCustomBgShow: true,
+        isPopupShow: false
+      })
+    },
+    onCloseBg() {
+      this.setData({
+        isCustomBgShow: false
+      })
+    },
     /**
      * 上传图片并转为base64
      */
-    async onChangeBgHandler() {
+    async onChangeBgImgHandler() {
       Toast.loading({
         duration: 0, // 持续展示 toast
         forbidClick: true,
@@ -82,13 +100,83 @@ Component({
         })
       }
     },
+    onSwitchChange({ detail }) {
+      this.setData({
+        isUseBgColor: detail
+      })
+      wx.setStorageSync('preference', {
+        isUseBgColor: this.data.isUseBgColor
+      })
+      this.triggerEvent('changeIsUseBgColor', {
+        isUseBgColor: detail
+      })
+    },
+    /**
+     * 删除背景图片
+     */
+    onDelBgImgHandler() {
+      wx.setStorageSync('style_bgUrl', '')
+      this.triggerEvent('updateBgUrl')
+      Toast({
+        type: 'success',
+        message: '删除成功',
+        context: this
+      })
+    },
+    saveBg() {},
+    onChangeBgColor() {
+      this.setData({
+        isBgPopupShow: true
+      })
+    },
     // 修改透明度
     onBlurHandler() {
       this.setData({
+        isPopupShow: false,
         isBlurPopupShow: true
       })
     },
-    onHelpHandler() {},
+    /**
+     * 修改字体颜色
+     */
+    onColorHandler() {
+      this.setData({
+        isPopupShow: false,
+        isCustomShow: true
+      })
+    },
+    // 实时预览 themeCss颜色
+    onthemeCssChange: throttle(function (e) {
+      console.log(e.detail)
+      //防抖
+      this.setData({
+        themeCss: e.detail.themeCss
+      })
+      this.triggerEvent('updateThemeCss', {
+        themeCss: e.detail.themeCss
+      })
+    }, 100),
+    // 保存字体颜色 背景颜色
+    onCssUpdated(e) {
+      this.setData({
+        themeCss: e.detail.themeCss
+      })
+      this.triggerEvent('updateThemeCss', {
+        themeCss: e.detail.themeCss
+      })
+      Toast({
+        message: '修改成功',
+        context: this
+      })
+    },
+    updateBgColor(e) {
+      this.setData({
+        bgColor: e.detail.color
+      })
+      this.triggerEvent('updateBgColor', {
+        bgColor: e.detail.color
+      })
+    },
     // 修改高斯模糊
     onBlurDrag: throttle(function (e) {
       //防抖
@@ -111,6 +199,15 @@ Component({
       this.setData({
         isBlurPopupShow: false
       })
+    },
+    cancel() {
+      const style = wx.getStorageSync('style')
+      this.setData({
+        ...style
+      })
+      this.setData({
+        isBlurPopupShow: false
+      })
     }
   },
   observers: {
@@ -128,6 +225,15 @@ Component({
       this.triggerEvent('updateBlurOpacity', {
         blur: parseFloat(blur).toFixed(1),
         opacity: parseFloat(opacity).toFixed(1)
+      })
+    }
+  },
+  lifetimes: {
+    attached() {
+      this.setData({
+        isCustomShow: false, //getBoundingClientRecta
+        isCustomBgShow: false,
+        isBgPopupShow: false //getBoundingClientRecta
       })
     }
   }

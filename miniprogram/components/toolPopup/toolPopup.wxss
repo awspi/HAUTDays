@@ -5,3 +5,22 @@
   font-weight: normal;
   font-size: 32rpx;
 }
+.title-center {
+  margin-top: 100rpx;
+  display: block;
+  text-align: center;
+  font-size: 32rpx;
+  color: var(--theme-color);
+  font-weight: 800;
+}
+.button {
+  /* margin: 20rpx 0 10rpx 0; */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white !important;
+  background-color: var(--theme-color) !important;
+}
+
+.switch {
+  background-color: var(--theme-color);
+}

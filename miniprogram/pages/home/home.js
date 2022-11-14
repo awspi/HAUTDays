@@ -28,6 +28,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    themeCss: app.globalData.themeCss,
+    //
     navibarStyle: app.globalData.navibarStyle,
     // weather degree
     weather: '',
@@ -97,5 +99,6 @@ Page({
     } else {
       Toast('开发ing~')
     }
-  }
+  },
+  preventdefault: function () {}
 })

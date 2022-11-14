@@ -1,4 +1,4 @@
-<view catchtouchmove='true' class="view-container">
+<view class="view-container" style="{{themeCss}}">
     <top-bar navi-back title="校园地图 | HAUTDAYS" />
     <!-- 地图 -->
     <map style="width: 100%;flex:1;height: 70vh;" enable-poi="{{false}}" show-compass enable-scroll enable-rotate enable-3D rotate="145" skew="30" scale="15.4" min-scale="14.6" enable-building show-location latitude="34.830976" longitude="113.549923" markers="{{markers}}" />

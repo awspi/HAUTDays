@@ -2,13 +2,16 @@ page {
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
     Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB',
     'Microsoft Yahei', sans-serif;
-  /* #EC6A8E */
-  --theme-color: #194675;
-  --text-color: #fff;
+  /* 主题色 */
+  /* --theme-color: rgb(128, 29, 173); */
+  /* 课程表font-color */
+  /* --text-color: rgb(128, 29, 173); */
 }
-.bg-theme {
+/* .bg-theme {
   background-color: #ec6a8e;
-}
+  --background-color: #fff;
+  --text-color: #000;
+} */
 .bg-grary-scale {
   background-color: #eeeeee;
   transform: scale(0.99);

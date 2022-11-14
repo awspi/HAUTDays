@@ -1,11 +1,13 @@
 import Toast from '@vant/weapp/toast/toast'
 import { getExamArrange } from './utils/index'
 import { getExam } from '../../../api/stu'
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    themeCss: app.globalData.themeCss,
     examsArrange: {},
     loading: false
   },

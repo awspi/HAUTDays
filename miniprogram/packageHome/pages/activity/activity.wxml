@@ -1,4 +1,4 @@
-<view catchtouchmove='true' class="view-container">
+<view catchtouchmove='true' class="view-container" style="{{themeCss}}">
     <top-bar navi-back title="一些活动 | HAUTDAYS" />
     <!-- main -->
     <view style="flex:1;height: 1px;">

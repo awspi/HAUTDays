@@ -1,0 +1,28 @@
+<view wx:if="{{show}}" style="{{themeCss}}" class="wrapper">
+    <view style=" margin:30rpx 40rpx 0;display: flex;flex-direction: column;">
+        <text style="font-weight:800;font-size: 36rpx;margin-bottom: 30rpx;">个性设置</text>
+        <block wx:if="{{theme}}">
+            <text style="font-weight:700;font-size: 32rpx;margin-bottom: 20rpx">主题色</text>
+            <view style="display: flex;justify-content: center;">
+                <color-picker bindchangeColor="pickColorTheme" initColor="{{theme_rgb}}" size="200" />
+            </view>
+        </block>
+        <block wx:if="{{font}}">
+            <text style="font-weight:700;font-size: 32rpx;">字体颜色</text>
+            <view style="display: flex;justify-content: center;">
+                <color-picker bindchangeColor="pickColorFont" initColor="{{font_rgb}}" size="200" />
+            </view>
+        </block>
+        <block wx:if="{{bg}}">
+            <text style="font-weight:700;font-size: 32rpx;">背景颜色</text>
+            <view style="display: flex;justify-content: center;">
+                <color-picker bindchangeColor="pickColorBg" initColor="{{bg_rgb}}" size="200" />
+            </view>
+        </block>
+
+        <view style="display: flex;justify-content: space-evenly;">
+            <van-button round custom-class="button" bind:click="cancel">取消</van-button>
+            <van-button round custom-class="button" bind:click="save">保存</van-button>
+        </view>
+    </view>
+</view>

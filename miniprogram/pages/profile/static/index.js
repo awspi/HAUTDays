@@ -38,12 +38,7 @@ export const menus = [
     label: '导入/更新课程表',
     url: '/pages/login/login'
   },
-  {
-    icon: 'delete',
-    title: '清除缓存',
-    label: '显示出现异常时请尝试清除缓存',
-    url: ''
-  },
+
   {
     icon: 'like',
     title: '个性设置',
@@ -64,6 +59,12 @@ export const menus = [
   {
     icon: 'umbrella-circle',
     title: '用户服务条款',
+    url: ''
+  },
+  {
+    icon: 'delete',
+    title: '清除缓存',
+    label: '显示出现异常时请尝试清除缓存',
     url: ''
   },
   {

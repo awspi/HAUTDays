@@ -1,6 +1,5 @@
 // pages/profile/profile.js
 import { menus, privacy, about } from './static/index'
-import { getAvatarUrl } from '../../utils/user'
 import Toast from '@vant/weapp/toast/toast'
 
 const app = getApp()
@@ -9,11 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    themeCss: app.globalData.themeCss,
     navibarStyle: app.globalData.navibarStyle,
     popupContent: '',
     isPopupShow: false,
     profile: app.globalData.profile,
-    menus: menus
+    menus: menus,
+    //
+    isCustomShow: true
   },
   //   async onRefreshHandler() {
   //     await getUserProfile()
@@ -27,9 +29,11 @@ Page({
   onLoad(options) {
     console.log(app.globalData.profile)
     this.setData({
-      profile: app.globalData.profile
+      profile: app.globalData.profile,
+      isCustomShow: false //getBoundingClientRect
     })
   },
+  onReady() {},
   onShow() {
     this.setData({
       profile: app.globalData.profile
@@ -55,9 +59,10 @@ Page({
           isPopupShow: true
         })
         break
-
       case '个性设置':
-        Toast('开发中~')
+        this.setData({
+          isCustomShow: true
+        })
         break
       case '清除缓存':
         wx.clearStorageSync()
@@ -72,5 +77,11 @@ Page({
         })
         break
     }
+  },
+  onCssUpdated(e) {
+    this.setData({
+      themeCss: e.detail.themeCss
+    })
+    Toast('部分颜色重新进入小程序后生效')
   }
 })

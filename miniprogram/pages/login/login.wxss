@@ -27,4 +27,14 @@
   margin: 20rpx 0 10rpx 0;
   left: 50%;
   transform: translateX(-50%);
+  color: white !important;
+  background-color: var(--theme-color) !important;
+}
+
+.tip {
+  position: absolute;
+  right: 30rpx;
+  bottom: 20rpx;
+  font-size: 24rpx;
+  color: var(--theme-color);
 }

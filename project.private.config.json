@@ -11,27 +11,6 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "guidance",
-                    "pathName": "pages/guidance/guidance",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "score",
-                    "pathName": "pages/score/score",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "activity",
-                    "pathName": "pages/activity/activity",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
                     "name": "profile",
                     "pathName": "pages/profile/profile",
                     "query": "",
@@ -55,6 +34,13 @@
                 {
                     "name": "exam",
                     "pathName": "packageHome/pages/exam/exam",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "score",
+                    "pathName": "packageHome/pages/score/score",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

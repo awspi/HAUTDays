@@ -10,7 +10,6 @@ const dayOfWeekNames = [
   '星期日'
 ]
 const app = getApp()
-import { LessonsDB } from '../../db/lesson_db'
 Component({
   /**
    * 组件的属性列表
@@ -92,15 +91,13 @@ Component({
         style: '',
         custom: this.data.confirmText === '新增' ? true : false
       }
-      const lessonDB = new LessonsDB()
+
       if (this.data.lesson.style) {
         //如果是已经存在style 就不重新生成颜色
         rawInfo.style = this.data.lesson.style
         const styled = rawInfo
-        lessonDB.updateLesson(styled, app.globalData.profile.xh)
       } else {
         const styled = genCardStyle(rawInfo, index, true)
-        lessonDB.addLesson(styled, app.globalData.profile.xh)
       }
 
       const index = app.globalData.lessons.length

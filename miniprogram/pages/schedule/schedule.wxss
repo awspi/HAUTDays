@@ -1,12 +1,18 @@
 /* pages/schedule/schedule.wxss */
-
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--text-color);
+  font-weight: 800;
+}
 /* 自定义导航栏 */
-.bg-theme {
+/* .bg-theme {
   --background-color: #fff;
   --text-color: #000;
-  /* background-color: #ec6a8e; */
-  /* color: aqua !important; */
-}
+} */
+
 .navbar {
   height: 65rpx;
   display: flex;
@@ -118,5 +124,21 @@
   background: no-repeat center var(--bg-img-url);
   background-size: cover;
   filter: blur(var(--bg-img-blur));
+  z-index: -1;
+}
+
+.bg-color {
+  height: 100%;
+  width: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-color);
+  /* background: no-repeat center var(--bg-img-url); */
+  background-size: cover;
+  /* filter: blur(var(--bg-img-blur)); */
   z-index: -1;
 }
