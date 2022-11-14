@@ -32,7 +32,7 @@ Page({
     isUseBgColor: wx.getStorageSync('preference').isUseBgColor,
     bgStyle_ImgUrl: '',
     bgStyle_blur: '',
-    bgStyle_color: `--bg-color:${wx.getStorageSync('color').bg};`,
+    bgStyle_color: '',
 
     cardStyle: ''
   },
@@ -84,28 +84,24 @@ Page({
    */
   setStyle() {
     console.log('设置背景&css')
-    const { blur, opacity } = wx.getStorageSync('style')
-    const url = wx.getStorageSync('style_bgUrl')
-    this.setData({ bgStyle_blur: `--bg-img-blur:${blur}px;` })
+    const { blur, opacity, bg_url } = wx.getStorageSync('style')
+    console.log({ blur, opacity, bg_url })
     this.setData({
-      bgStyle_ImgUrl: `--bg-img-url:url("${url}");`
-    })
-    this.setData({ cardStyle: `--card-opacity:${opacity};` })
-  },
-  updateBlurOpacity(e) {
-    const { blur, opacity } = e.detail
-    this.setData({
-      cardStyle: `--card-opacity:${opacity};`
-    })
-    this.setData({ bgStyle_blur: `--bg-img-blur:${blur}px;` })
-    console.log(this.data.bgStyle_blur, this.data.cardStyle)
-  },
-  updateBgUrl(e) {
-    const url = wx.getStorageSync('style_bgUrl')
-    this.setData({
-      bgStyle_ImgUrl: `--bg-img-url:url("${url}");`
+      cardStyle: `--card-opacity:${opacity};`,
+      bgStyle_blur: `--bg-img-blur:${blur}px;`,
+      bgStyle_ImgUrl: `--bg-img-url:url("${bg_url}");`
     })
   },
+  updateSchedule(e) {
+    const { blur, opacity, bg_url } = e.detail
+    console.log({ blur, opacity, bg_url })
+    this.setData({
+      cardStyle: `--card-opacity:${opacity};`,
+      bgStyle_blur: `--bg-img-blur:${blur}px;`,
+      bgStyle_ImgUrl: `--bg-img-url:url("${bg_url}");`
+    })
+  },
+
   updateBgColor(e) {
     const { bgColor } = e.detail
 

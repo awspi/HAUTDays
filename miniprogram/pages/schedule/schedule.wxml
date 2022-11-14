@@ -70,7 +70,7 @@
     </view>
 </view>
 <!-- 组件 -->
-<tool-popup show="{{isPopupShow}}" bind:updateBlurOpacity="updateBlurOpacity" bind:updateBgUrl="updateBgUrl" bind:updateThemeCss="updateThemeCss" bind:updateBgColor="updateBgColor" bind:changeIsUseBgColor="changeIsUseBgColor" />
+<tool-popup show="{{isPopupShow}}" bind:updateSchedule="updateSchedule"  bind:updateThemeCss="updateThemeCss" bind:updateBgColor="updateBgColor" bind:changeIsUseBgColor="changeIsUseBgColor" />
 
 <add-lesson-dialog show="{{isAddLessonDialogVisible}}" bind:done="onAddLessonDone" lesson="{{selectedLesson}}">
 </add-lesson-dialog>

@@ -21,6 +21,7 @@
 - Alpha ver.|1.5.1|refactor: 改用新的 open-type 获取用户头像
 - Alpha ver.|1.5.2|fix: 课程表页面修改背景 blur 时不能实时预览
 - Alpha ver.|1.6.0|refactor: 统一界面 UI;feat:可自定义自定义背景、背景色、主题色,字体颜色
+- Alpha ver.|1.6.1|feat: 使用**背景图片上传到云储存**获取 url 代替 **base64 格式图片**
 
 ## 提示
 

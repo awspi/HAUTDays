@@ -11,6 +11,7 @@ export function chooseImageToBase64(maxSize) {
         mediaType: ['image'],
         sourceType: ['album']
       })
+      //
       const { tempFilePath, size } = tempFiles[0]
       console.log(tempFilePath)
       const { type } = await wx.getImageInfo({ src: tempFilePath })
@@ -25,8 +26,8 @@ export function chooseImageToBase64(maxSize) {
         success: (res) => {
           //成功的回调
           //返回base64格式
-          const base64Str = 'data:image/' + type + ';base64,' + res.data
-          resolve(base64Str)
+          const base64Img = 'data:image/' + type + ';base64,' + res.data
+          resolve({ base64Img, type })
         }
       })
     } catch (error) {

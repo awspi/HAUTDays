@@ -1,6 +1,9 @@
 import { throttle } from '../../utils/index'
-import { chooseImageToBase64 } from './utils/index'
+import { chooseImageToBase64, uploadImage } from './utils/index'
 import Toast from '@vant/weapp/toast/toast'
+//
+import { uploadImg } from '../../api/stu'
+//
 const app = getApp()
 
 Component({
@@ -26,6 +29,7 @@ Component({
     blur: 0,
     opacity: 1,
     bgColor: '',
+    bg_url: '',
     ...wx.getStorageSync('style'),
     //
     isCustomShow: true, //颜色
@@ -66,7 +70,7 @@ Component({
       })
     },
     /**
-     * 上传图片并转为base64
+     * 转为base64并上传图片
      */
     async onChangeBgImgHandler() {
       Toast.loading({
@@ -76,21 +80,21 @@ Component({
         message: '上传中...'
       })
       try {
-        const base64Img = await chooseImageToBase64(3145728)
-        console.log(base64Img)
+        const { base64Img, type } = await chooseImageToBase64(3145728)
+        const imgUrl = await uploadImg({ base64Img, type })
+        console.log(imgUrl)
+        this.setData({
+          bg_url: imgUrl,
+          isPopupShow: false // 上传成功默认关闭下拉框
+        })
+        const { blur, opacity, bg_url } = this.data
+        wx.setStorageSync('style', { blur, opacity, bg_url })
         Toast.clear()
         Toast({
           type: 'success',
           message: '上传成功',
           context: this
         })
-        this.setData({
-          isPopupShow: false // 上传成功默认关闭下拉框
-        })
-        //VM16 asdebug.js:10 setData 数据传输长度为 3672 KB，存在有性能问题！
-        // 改为直接存storage
-        wx.setStorageSync('style_bgUrl', base64Img)
-        this.triggerEvent('updateBgUrl')
       } catch (error) {
         Toast.clear()
         Toast({
@@ -115,15 +119,18 @@ Component({
      * 删除背景图片
      */
     onDelBgImgHandler() {
-      wx.setStorageSync('style_bgUrl', '')
-      this.triggerEvent('updateBgUrl')
+      this.setData({
+        bg_url: ''
+      })
       Toast({
         type: 'success',
         message: '删除成功',
         context: this
       })
     },
-    saveBg() {},
+    /**
+     * 修改背景颜色
+     */
     onChangeBgColor() {
       this.setData({
         isBgPopupShow: true
@@ -191,11 +198,10 @@ Component({
         opacity: e.detail.value
       })
     }, 100),
-    // 关闭onCloseBlurPopup
+    // 关闭模糊度 透明度 保存
     onCloseBlurPopup() {
-      //保存
-      const { blur, opacity } = this.data
-      wx.setStorageSync('style', { blur, opacity })
+      const { blur, opacity, bg_url } = this.data
+      wx.setStorageSync('style', { blur, opacity, bg_url })
       this.setData({
         isBlurPopupShow: false
       })
@@ -219,12 +225,11 @@ Component({
       }
     },
     // 自动更新到storage 并回调 节流
-    'blur,opacity': function (blur, opacity) {
-      // console.log(blur,opacity);
-      //节流
-      this.triggerEvent('updateBlurOpacity', {
+    'blur,opacity,bg_url': function (blur, opacity, bg_url) {
+      this.triggerEvent('updateSchedule', {
         blur: parseFloat(blur).toFixed(1),
-        opacity: parseFloat(opacity).toFixed(1)
+        opacity: parseFloat(opacity).toFixed(1),
+        bg_url
       })
     }
   },
