@@ -81,6 +81,9 @@ Page({
 
     this.setStyle()
   },
+  onShow() {
+    this.setStyle()
+  },
   /**
    * 设置背景和格子css
    */

@@ -26,6 +26,7 @@ page {
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(150deg, #fff, var(--theme-color));
+  /* background-color: rgb(246, 247, 249); */
 }
 
 .button-theme {

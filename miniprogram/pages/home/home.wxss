@@ -10,7 +10,8 @@
 
 .cell {
   margin-top: 10rpx;
-  background: none;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 5px;
   padding-left: 10rpx !important;
   padding-right: 10rpx !important;
 }
@@ -37,4 +38,12 @@
   margin: 10rpx 20rpx;
   border-radius: 10rpx;
   box-shadow: 0rpx 0rpx 1rpx 2rpx rgba(255, 255, 255, 0.315);
+}
+.today-card {
+  border-radius: 7%;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.4);
+  padding: 20rpx;
+  margin-top: 20rpx;
+  background-color: rgba(255, 255, 255, 0.148);
+  /* filter: blur(10px); */
 }

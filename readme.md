@@ -25,6 +25,7 @@
 - Alpha ver.|1.6.2|feat: swiper/notice 调整为动态获取
 - Alpha ver.|1.6.3|refactor:解决首页白屏刷新
 - Alpha ver.|1.6.4|refactor:优化课程表页展示效果
+- Alpha ver.|1.6.4|feat:使用 **自定义 tabBar** 替换 默认 tabBar
 
 ## 提示
 

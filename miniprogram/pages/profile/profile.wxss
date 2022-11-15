@@ -30,7 +30,7 @@
   left: 50%;
   transform: translateX(-50%);
   border-radius: 20rpx;
-  box-shadow: 5rpx 10rpx 20rpx 1rpx var(--theme-color);
+  box-shadow: 2rpx 5rpx 10rpx 1rpx var(--theme-color);
   left: 50%;
   background-color: var(--theme-color);
   color: white;

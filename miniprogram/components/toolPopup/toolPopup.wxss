@@ -24,3 +24,9 @@
 .switch {
   background-color: var(--theme-color);
 }
+
+.popup {
+  padding: 20rpx 0;
+  bottom: 30vh !important;
+  width: 80vw !important;
+}

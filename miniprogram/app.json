@@ -31,9 +31,10 @@
     "enablePullDownRefresh": false
   },
   "tabBar": {
+    "custom": true,
     "color": "#000000",
     "selectedColor": "#194675",
-    "backgroundColor": "",
+    "backgroundColor": "transparent",
     "position": "bottom",
     "borderStyle": "black",
     "list": [

@@ -9,8 +9,8 @@
     <!-- 未上传背景 使用纯色 -->
     <view wx:else class="bg-color" />
     <!-- 自定义导航栏 -->
-    <view class="topbar">
-        <view style="height: 90rpx;"></view>
+    <view class="{{isUseBgColor?'bg-wrap':''}}">
+        <view style="height: 100rpx;"></view>
         <view class="navbar">
             <view bindtap="onSwitchWeekHandler" style="display: flex;justify-content: center;width: 100%;">
                 <!-- 展示课表的周数 -->
@@ -28,12 +28,12 @@
 
     <!-- <view style="text-align: center;width: 8%; margin: auto;">{{showMonth}}月</view> -->
     <!-- 星期 行 -->
-    <view class="week">
+    <view class="week {{isUseBgColor?'bg-wrap':''}}">
         <!-- 选择周数 -->
         <view wx:if="{{isSwitchingWeek}}" style="position: relative;width: 100%;">
             <week-selecter show="{{isSwitchingWeek}}" totalWeeks="{{totalLessons.length}}" current="{{showWeek-1}}" bindchange="onChangeWeek" />
         </view>
-        <view wx:for="{{weeks}}" wx:key="item" class="week_date" style="box-sizing:content-box; {{today===showWeekDates[index] ? 'box-sizing:border-box; border-bottom: 10rpx solid;':'box-sizing:border-box; border-bottom: 10rpx solid transparent;'}}">
+        <view wx:for="{{weeks}}" wx:key="item" class="week_date" style="box-sizing:border-box; {{today===showWeekDates[index] ? ' transform: scale(1.2);':''}}">
             <text>{{ item }}</text>
             <text style=" font-size: 21rpx;">{{showWeekDates[index]}}</text>
         </view>

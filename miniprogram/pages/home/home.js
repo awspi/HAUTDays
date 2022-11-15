@@ -1,5 +1,7 @@
 import { timeFormat } from '../../utils/time'
 import { functionList } from './static/index'
+import { getWeather } from '../../api/weather'
+import { getNotice } from '../../api/user'
 import Dialog from '@vant/weapp/dialog/dialog'
 const dayOfWeek = [
   '星期日',
@@ -47,8 +49,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    const { notice, swiper } = app.globalData.notice
-    const { weather, degree } = app.globalData.weather
+    const { notice, swiper } = await getNotice()
+    const { weather, degree } = await getWeather()
     this.setData({
       notice: notice.join('  '),
       swiper,

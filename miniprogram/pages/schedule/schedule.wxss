@@ -2,7 +2,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
+  height: calc(100vh - 48px - env(safe-area-inset-bottom));
   overflow: hidden;
   color: var(--text-color);
   font-weight: 800;
@@ -12,7 +13,9 @@
   --background-color: #fff;
   --text-color: #000;
 } */
-
+.bg-wrap {
+  background: rgba(255, 255, 255, 0.05);
+}
 .navbar {
   height: 65rpx;
   display: flex;
@@ -29,13 +32,13 @@
   color: white;
   padding: 20rpx;
   right: 3%;
-  bottom: 3%;
+  bottom: 20%;
   z-index: 999;
   position: absolute;
   margin: 10rpx;
 }
 .week {
-  margin-left: 8%;
+  padding-left: 8%;
   display: flex;
   font-size: 24rpx;
   flex-wrap: nowrap;
@@ -76,7 +79,8 @@
   width: 100%;
   content: '';
   display: grid;
-  background-color: rgba(88, 88, 88, 0.2);
+  /* background-color: rgba(88, 88, 88, 0.2); */
+  background-color: rgba(255, 255, 255, 0.05);
   filter: blur(1px);
 }
 .left-item {

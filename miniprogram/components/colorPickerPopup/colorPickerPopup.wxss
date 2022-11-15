@@ -16,4 +16,5 @@
   /* padding-bottom: calc(env(safe-area-inset-bottom)); */
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
 }
