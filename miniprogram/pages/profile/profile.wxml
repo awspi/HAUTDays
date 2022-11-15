@@ -5,7 +5,7 @@
             <view class=" navi-title">HAUT DAYS</view>
         </view>
         <view class="profile_card">
-            <van-button icon="info" custom-class="icon-button" open-type="chooseAvatar" bindchooseavatar="getAvatarUrl" />
+            <van-button icon="info" custom-class="icon-button" bind:click="setUserInfo" open-type="chooseAvatar" bindchooseavatar="getAvatarUrl" />
             <view style="display: flex; height: 100%;">
                 <image src="{{profile.avatarUrl}}" mode="scaleToFill" class="avatar"></image>
                 <view class="desc">

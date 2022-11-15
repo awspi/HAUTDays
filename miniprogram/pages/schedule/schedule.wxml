@@ -10,21 +10,20 @@
     <view wx:else class="bg-color" />
     <!-- 自定义导航栏 -->
     <view class="topbar">
-        <view style="height: 100rpx;"></view>
+        <view style="height: 90rpx;"></view>
         <view class="navbar">
-            <!-- 更多icon -->
-            <view class="popup" bindtap="onPopupClick">
-                <van-icon name="weapp-nav" size="23" />
-            </view>
-            <view bindtap="onSwitchWeekHandler">
+            <view bindtap="onSwitchWeekHandler" style="display: flex;justify-content: center;width: 100%;">
                 <!-- 展示课表的周数 -->
-                <text>{{today}} 第{{showWeek}}周{{showWeek===currentWeek?"(本周)":""}}</text>
+                <view style="font-size: 32rpx;flex-shrink: 0;">{{today}} 第{{showWeek}}周{{showWeek===currentWeek?"(本周)":""}}</view>
                 <!-- 下拉箭头 -->
-                <van-icon size="28rpx" style="position: relative; left: 10rpx;" name="{{isSwitchingWeek ? 'arrow-down' : 'arrow-up' }}" />
+                <van-icon size="40rpx" style="position: relative; left: 10rpx;" name="{{isSwitchingWeek ? 'sort' : 'sort' }}" />
             </view>
         </view>
     </view>
-
+    <!-- 更多icon -->
+    <view class="popup" bindtap="onPopupClick">
+        <van-icon name="plus" size="28" />
+    </view>
 
 
     <!-- <view style="text-align: center;width: 8%; margin: auto;">{{showMonth}}月</view> -->
@@ -34,9 +33,9 @@
         <view wx:if="{{isSwitchingWeek}}" style="position: relative;width: 100%;">
             <week-selecter show="{{isSwitchingWeek}}" totalWeeks="{{totalLessons.length}}" current="{{showWeek-1}}" bindchange="onChangeWeek" />
         </view>
-        <view wx:for="{{weeks}}" wx:key="item" class="week_date">
+        <view wx:for="{{weeks}}" wx:key="item" class="week_date" style="box-sizing:content-box; {{today===showWeekDates[index] ? 'box-sizing:border-box; border-bottom: 10rpx solid;':'box-sizing:border-box; border-bottom: 10rpx solid transparent;'}}">
             <text>{{ item }}</text>
-            <text style=" font-size: 21rpx;  " style="{{today===showWeekDates[index] ? '':''}}">{{showWeekDates[index]}}</text>
+            <text style=" font-size: 21rpx;">{{showWeekDates[index]}}</text>
         </view>
     </view>
 
@@ -45,12 +44,11 @@
         <view class="left">
             <view wx:for="{{courseTime}}" wx:key="courseTime" class="left-item">
                 <block wx:if="{{index!==4}}">
-                    <text style="position:absolute;left:3rpx;top:5rpx;;font-size: 20rpx;">{{ item[0] }}</text>
-                    <text hidden="{{index === 4}}" style="font-size: 25rpx;">
-                        {{ index < 4 ? index + 1 : index }} </text>
-                            <text style="position:absolute;left:3rpx;bottom:5rpx;font-size: 20rpx;">{{ item[1] }}</text>
+                    <view style="">{{ item[0] }}</view>
+                    <view hidden="{{index === 4}}" style="font-size: 28rpx;">{{ index < 4 ? index + 1 : index }}</view>
+                            <view style="">{{ item[1] }}</view>
                 </block>
-                <text wx:else style="display:block;font-size: 25rpx;margin-top: 50%;">{{ item }}</text>
+                <text wx:else style="display:block;font-size: 28rpx;margin-top: 50%;">{{ item }}</text>
             </view>
         </view>
         <!-- 课表 页 -->
@@ -70,7 +68,7 @@
     </view>
 </view>
 <!-- 组件 -->
-<tool-popup show="{{isPopupShow}}" bind:updateSchedule="updateSchedule"  bind:updateThemeCss="updateThemeCss" bind:updateBgColor="updateBgColor" bind:changeIsUseBgColor="changeIsUseBgColor" />
+<tool-popup show="{{isPopupShow}}" bind:updateSchedule="updateSchedule" bind:updateThemeCss="updateThemeCss" bind:updateBgColor="updateBgColor" bind:changeIsUseBgColor="changeIsUseBgColor" />
 
 <add-lesson-dialog show="{{isAddLessonDialogVisible}}" bind:done="onAddLessonDone" lesson="{{selectedLesson}}">
 </add-lesson-dialog>

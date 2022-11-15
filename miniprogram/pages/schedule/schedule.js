@@ -8,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navibarStyle: app.globalData.navibarStyle,
+    //
     themeCss: app.globalData.themeCss,
     weeks: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'], //周
     courseTime: courseTime,
@@ -42,7 +44,7 @@ Page({
    */
   onPopupClick() {
     this.setData({
-      isPopupShow: true
+      isPopupShow: !this.data.isPopupShow
     })
   },
   onSwitchWeekHandler() {

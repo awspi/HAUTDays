@@ -4,9 +4,9 @@
     <van-notice-bar custom-class="notice-bar" speed="120" scrollable text="{{notice}}" />
     <!-- 轮播图 -->
     <swiper autoplay circular interval="3000" class="swiper-wrapper">
-        <block wx:for="{{swiperList}}" wx:key="*this">
+        <block wx:for="{{swiper}}" wx:key="desc">
             <swiper-item>
-                <image src="{{item}}" style="width: 100%;height: 100%;" />
+                <image src="{{item.url}}" style="width: 100%;height: 100%;" />
             </swiper-item>
         </block>
     </swiper>
@@ -34,7 +34,7 @@
                 <view style="height: 30vh;width: 100%;line-height: 30vh;font-size:32rpx;">
                     <view wx:if="{{todayLessons.length===0}}" style="text-align: center;">今天没有课程~</view>
                     <block wx:else>
-                        <block wx:for="{{todayLessons}}" wx:key="*this">
+                        <block wx:for="{{todayLessons}}" wx:key="time">
                             <van-cell title="{{item.name}}" label="{{item.time}}" value="{{item.classroom}}" custom-class="cell" title-class="cell-title" clickable border="{{false}}" size="large" />
                         </block>
                     </block>

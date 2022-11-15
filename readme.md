@@ -22,6 +22,9 @@
 - Alpha ver.|1.5.2|fix: 课程表页面修改背景 blur 时不能实时预览
 - Alpha ver.|1.6.0|refactor: 统一界面 UI;feat:可自定义自定义背景、背景色、主题色,字体颜色
 - Alpha ver.|1.6.1|feat: 使用**背景图片上传到云储存**获取 url 代替 **base64 格式图片**
+- Alpha ver.|1.6.2|feat: swiper/notice 调整为动态获取
+- Alpha ver.|1.6.3|refactor:解决首页白屏刷新
+- Alpha ver.|1.6.4|refactor:优化课程表页展示效果
 
 ## 提示
 

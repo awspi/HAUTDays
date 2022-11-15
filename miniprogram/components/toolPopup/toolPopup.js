@@ -2,7 +2,7 @@ import { throttle } from '../../utils/index'
 import { chooseImageToBase64, uploadImage } from './utils/index'
 import Toast from '@vant/weapp/toast/toast'
 //
-import { uploadImg } from '../../api/stu'
+import { uploadImg } from '../../api/user'
 //
 const app = getApp()
 
@@ -218,11 +218,9 @@ Component({
   },
   observers: {
     show: function (show) {
-      if (show) {
-        this.setData({
-          isPopupShow: true
-        })
-      }
+      this.setData({
+        isPopupShow: show
+      })
     },
     // 自动更新到storage 并回调 节流
     'blur,opacity,bg_url': function (blur, opacity, bg_url) {

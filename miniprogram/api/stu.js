@@ -43,15 +43,3 @@ export function getExam(xh, mm) {
     }
   })
 }
-
-export function uploadImg({ base64Img, type }) {
-  const { xh } = wx.getStorageSync('profile')
-  return wRequest.post({
-    url: BASE_URL + '/uploadImage',
-    data: {
-      base64Img,
-      type,
-      xh
-    }
-  })
-}

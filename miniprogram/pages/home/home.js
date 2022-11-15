@@ -1,6 +1,5 @@
-import { getWeather } from '../../api/weather'
 import { timeFormat } from '../../utils/time'
-import { notification, functionList, swiperList } from './static/index'
+import { functionList } from './static/index'
 import Dialog from '@vant/weapp/dialog/dialog'
 const dayOfWeek = [
   '星期日',
@@ -37,8 +36,8 @@ Page({
     today: timeFormat(new Date(), '.'),
     currentWeek: app.globalData.currentWeek,
     dayOfWeek: dayOfWeek[day],
-    notice: notification,
-    swiperList: swiperList, //轮播图列表
+    notice: '', //公告
+    swiper: '', //轮播图列表
     todayLessons: todayLessons.slice(0, 3),
     overflow: todayLessons.length > 3,
     funcitonList: functionList
@@ -48,8 +47,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
+    const { notice, swiper } = app.globalData.notice
+    const { weather, degree } = app.globalData.weather
     this.setData({
-      ...(await getWeather())
+      notice: notice.join('  '),
+      swiper,
+      weather,
+      degree
     })
   },
 

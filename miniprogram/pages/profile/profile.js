@@ -1,7 +1,7 @@
 // pages/profile/profile.js
 import { menus, privacy, about } from './static/index'
 import Toast from '@vant/weapp/toast/toast'
-
+import { getUserInfo } from '../../api/user'
 const app = getApp()
 Page({
   /**
@@ -83,5 +83,16 @@ Page({
       themeCss: e.detail.themeCss
     })
     Toast('部分颜色重新进入小程序后生效')
+  },
+  async setUserInfo() {
+    const userInfo = await getUserInfo()
+    wx.setStorageSync('profile', {
+      xh: userInfo.xh,
+      name: userInfo.name,
+      college: userInfo.college,
+      class: userInfo.class
+    })
+    const raw = wx.getStorageSync('style')
+    wx.setStorageSync('style', Object.assign(raw, { bg_url: userInfo.bg_url }))
   }
 })
